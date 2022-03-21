@@ -27,5 +27,5 @@
     "firebase-admin": "^10.0.2",
     "mongoose": "^6.2.7",
     "nodemon": "^2.0.15"
-  }
+  } 
 }
