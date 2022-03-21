@@ -21,44 +21,8 @@ app.set('layout extractScripts', true);
 app.set("view engine", "ejs");
 // app.set("views", "views");
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
-
-app.get("/login", (req, res) => {
-    res.render('sign_in');
-})
-
-app.get("/signup", (req, res) => {
-    res.render('sign_up');
-})
-
-app.post("/login", (req, res) => {
-    let data = req.body;
-    let email = data.email
-    let password = data.password
-    signIn(email, password)
-        .then((value) => {
-            return res.send(value)
-        })
-        .catch((err) => {
-            return res.send(err)
-        })
-})
-
-app.post("/signup", (req, res) => {
-    let data = req.body;
-    let email = data.email
-    let password = data.password
-    register(email, password)
-        .then((value) => {
-            return res.send(value)
-        })
-        .catch((err) => {
-            return res.send(err)
-        })
-
-})
+// use express router
+app.use('/',require('./routes/index'));
 
 
 app.listen(3000, () => {
