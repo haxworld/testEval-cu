@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300;700&family=Poppins:wght@400;600;700&display=swap');
+
+:root
+{
+    --primary: #5463FF;
+    --ash: #F5F5F5;
+    --highlight: #ffc300;
+}
+/* p{
+    color:var(--ash);
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+} */
+h1{
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+h2{
+    font-family: 'Merriweather', serif;
+    
+}
+/************************** navbar********************* */
+a{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+.navbar{
+    padding:2% 5%;
+  
+}
+.logo{
+    font-family: 'Lobster', cursive;
+    color:var(--primary);
+}

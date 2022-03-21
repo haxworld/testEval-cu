@@ -21,6 +21,9 @@ app.set('layout extractScripts', true);
 app.set("view engine", "ejs");
 // app.set("views", "views");
 
+// use assets
+app.use(express.static('./assets'))
+
 // use express router
 app.use('/',require('./routes/index'));
 
