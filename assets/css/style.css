@@ -5,6 +5,9 @@
     --primary: #5463FF;
     --ash: #F5F5F5;
     --highlight: #ffc300;
+    --secondary:#2f2e41;
+    --headings:#5E5E5E;
+    --danger:#ff1818;
 }
 /* p{
     color:var(--ash);
@@ -14,6 +17,7 @@
 h1{
     font-family: 'Merriweather', serif;
     font-weight: 700;
+    color: var(--secondary);
 }
 h2{
     font-family: 'Merriweather', serif;
