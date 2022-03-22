@@ -13,10 +13,11 @@
     cursor:pointer;
     font-weight: bolder;
 }
-span{
+#brand-name{
     font-family: 'Lobster', cursive;
     color:var(--primary);
 }
+
 /* *******************Hero section *********************/
 /* .hero-image-container
 {
@@ -25,3 +26,55 @@ span{
 } */
 
 /* ***************Features************* */
+
+/* The customed underline */
+.border-short
+{
+    color: var(--headings);
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+.border-short::after
+{
+    content: '';
+    width: 8%;
+    height: 0.1rem;
+    background: var(--danger);
+    position: absolute;
+    left: calc(50% - 4%);
+    bottom: 0;
+}
+
+@media screen and (max-width:790px) {
+    .border-short::after
+    {
+        width: 20%;
+        left: calc(50% - 10%);
+    }
+}
+/* For feature's card designing */
+.round-corner
+{
+    border: 2px solid var(--ash);
+    border-radius: 45px 15px 15px 15px;
+    box-shadow: -3px 0 5px -2px #707070;
+}
+/* for circles with icons inside */
+.coloured-circles
+{
+    
+    background-color: var(--ash);
+    width: 60px;
+    margin: auto;
+    height: 60px;
+}
+
+h5,p{
+    font-family: 'Poppins', sans-serif;
+}
+.description
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
