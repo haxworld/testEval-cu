@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://testeval:LHbWIQTaWODGqTZG@cluster0.bqzyz.mongodb.net/testeval?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://testeval:LHbWIQTaWODGqTZG@cluster0.bqzyz.mongodb.net/grabitt?retryWrites=true&w=majority');
 
 const db = mongoose.connection;
 
