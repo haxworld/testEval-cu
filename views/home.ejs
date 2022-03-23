@@ -14,8 +14,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
     <link rel="stylesheet" href="/css/home.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/slider.css" />
 
     <script
       src="https://kit.fontawesome.com/a076d05399.js"
@@ -202,15 +205,129 @@
         </div>
       </div>
     </section>
-    <!-- *****************************************courses-sec  -->
+    <!-- *****************************************courses-sec ************************ -->
 
-    <section>
-      <h1>Courses</h1>
+    <section class="py-5" style="background-color: var(--ash);">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="row">
+            <h2 class="text-center py-2 border-short">Our Courses</h2>
+          </div>
+          <div class="row text-muted text-justify py-5">
+            <p class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+              velit at quidem eligendi maxime officiis inventore, laboriosam
+              sapiente placeat, voluptates, eaque reprehenderit doloribus?
+              Numquam, praesentium. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit.
+            </p>
+          </div>
+          <div class="row" id="slider">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="border box" style="background-color: white;">
+                      <div class="course-img pt-5 pb-4">
+                        <img src="images/undraw_online_test_gba7 .svg" alt="Course-image">
+                      </div>
+                      <div class="px-3 pt-4">
+                          <!-- <h5 class="text-center">Accurate</h5> -->
+                          <p class="text-center mb-0" style="font-weight: bold">
+                            Computer Networks 1
+                          </p>
+                          <p class="text-center mb-4 pt-1">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Illum, quasi?
+                          </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images/undraw_online_test_gba7 .svg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                        <!-- <h5 class="text-center">Accurate</h5> -->
+                        <p class="text-center mb-0" style="font-weight: bold">
+                          Computer Networks 2
+                        </p>
+                        <p class="text-center mb-4 pt-1">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Illum, quasi?
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images/undraw_online_test_gba7 .svg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                        <!-- <h5 class="text-center">Accurate</h5> -->
+                        <p class="text-center mb-0" style="font-weight: bold">
+                          Computer Networks 3
+                        </p>
+                        <p class="text-center mb-4 pt-1">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Illum, quasi?
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images/undraw_online_test_gba7 .svg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                        <!-- <h5 class="text-center">Accurate</h5> -->
+                        <p class="text-center mb-0" style="font-weight: bold">
+                          Computer Networks 4
+                        </p>
+                        <p class="text-center mb-4 pt-1">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Illum, quasi?
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images/undraw_online_test_gba7 .svg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                        <!-- <h5 class="text-center">Accurate</h5> -->
+                        <p class="text-center mb-0" style="font-weight: bold">
+                          Computer Networks 5
+                        </p>
+                        <p class="text-center mb-4 pt-1">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Illum, quasi?
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- *****************************************testimonials ***************************-->
-    <section>
-      <h1>Testimonials</h1>
+    <section class="py-5">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="row">
+            <h2 class="text-center py-2 border-short">Testimonials</h2>
+          </div>
+        </div>
+      </div>
+
     </section>
     <!-- *****************************************get in touch ***************************-->
     <section id="contact-us">
@@ -226,5 +343,7 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/js/slide.js"></script>
   </body>
 </html>
