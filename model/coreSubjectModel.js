@@ -1,10 +1,15 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
-const coreSubject = new Schema({
-    title: String,
+const coreSubjectSchema = new Schema({
+    title: {
+        required: true,
+        type: String,
+        unique: true
+    },
     desc: String,
     hidden: Boolean,
 }, {
     timestamps: true,
 });
+
+module.exports = mongoose.model('coreSubject', coreSubjectSchema);
