@@ -12,6 +12,7 @@ require('./firebase.service')
 
 app.use(cors())
 app.use(express.urlencoded());
+app.use(express.json());
 
 // extract styles and scripts from subpages into the layouts
 app.set('layout extractStyles', true);
@@ -23,14 +24,11 @@ app.set("view engine", "ejs");
 
 
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
 // use assets
 app.use(express.static('./assets'))
 
 // use express router
-app.use('/', require('./routes/index'));
+app.use('/', require('./router'));
 
 
 app.listen(3000, () => {
