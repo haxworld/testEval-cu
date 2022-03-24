@@ -23,10 +23,17 @@ h1 {
 h2 {
   font-family: "Merriweather", serif;
 }
+
+.headline
+{
+  color: var(--headings);
+  font-weight: bold;
+}
 /************************** navbar********************* */
 a {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  text-decoration: none;
 }
 .navbar {
   padding: 2% 5%;
@@ -34,4 +41,10 @@ a {
 .logo {
   font-family: "Lobster", cursive;
   color: var(--primary);
+}
+
+/* Footer */
+.paint-white
+{
+  color: var(--ash);
 }
