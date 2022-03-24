@@ -59,7 +59,7 @@
 .round-corner {
   border: 2px solid var(--ash);
   border-radius: 45px 15px 15px 15px;
-  box-shadow: -3px 0 5px -2px #707070;
+  box-shadow: -3px 0 5px -2px var(--shadow);
 }
 /* for circles with icons inside */
 .coloured-circles {
@@ -77,3 +77,8 @@ p {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
+
+/* Course */
+
+
+
