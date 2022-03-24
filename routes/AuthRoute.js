@@ -1,5 +1,5 @@
 const express = require('express');
-const { signIn, register } = require('../controller/auth');
+const { signIn, register, createSession } = require('../controller/auth');
 const AuthRoute = express.Router();
 
 AuthRoute
@@ -11,7 +11,12 @@ AuthRoute
         let password = req.body.password
         signIn(email, password)
             .then((value) => {
-                return res.send(value)
+                console.log(value.token)
+                console.log(createSession(value.token));
+                const options = { maxAge: expiresIn, httpOnly: true, secure: true };
+                res.cookie('session', sessionCookie, options);
+                res.end(JSON.stringify({ status: 'success' }));
+                // return res.send(value)
             })
             .catch((err) => {
                 return res.send(err)

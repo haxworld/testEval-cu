@@ -5,9 +5,6 @@ const db = require('./config/mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const cors = require('cors')
 
-//firebase 
-require('./firebase.service')
-
 
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +17,6 @@ app.set('layout extractScripts', true);
 // set the view engine to ejs
 app.set("view engine", "ejs");
 // app.set("views", "views");
-
 
 
 // use assets
