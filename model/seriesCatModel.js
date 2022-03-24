@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const coreSubjectSchema = new Schema({
+const seriesCatSchema = new Schema({
     title: {
         required: true,
         type: String,
@@ -12,4 +12,4 @@ const coreSubjectSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('coreSubject', coreSubjectSchema);
+module.exports = mongoose.model('seriesCat', seriesCatSchema);

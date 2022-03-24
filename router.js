@@ -1,6 +1,6 @@
 const express = require('express');
 const AuthRouter = require('./routes/AuthRoute');
-const SubjectRouter = require('./routes/SubjectRoute');
+const SeriesCatRouter = require('./routes/SeriesCat');
 const router = express.Router();
 
 
@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.use(AuthRouter);
-router.use(SubjectRouter);
+router.use(SeriesCatRouter);
 
 
 module.exports = router;

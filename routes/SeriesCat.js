@@ -1,10 +1,10 @@
 const express = require('express');
-const SubjectRoute = express.Router();
-var coreSubject = require('../model/coreSubjectModel');
+const SeriesCatRoute = express.Router();
+var seriesCat = require('../model/seriesCatModel');
 
-SubjectRoute
-    .get("/subjects", (req, res) => {
-        coreSubject.find({}, (err, data) => {
+SeriesCatRoute
+    .get("/seriescategory", (req, res) => {
+        seriesCat.find({}, (err, data) => {
             if (!err) {
                 return res.json({ subjects: data, success: true })
             } else {
@@ -12,9 +12,9 @@ SubjectRoute
             }
         })
     })
-    .post("/createSubject", (req, res) => {
-        var CoreSubject = new coreSubject(req.body)
-        CoreSubject.save((err, data) => {
+    .post("/seriescategory/create/", (req, res) => {
+        var SeriesCat = new seriesCat(req.body)
+        SeriesCat.save((err, data) => {
             if (!err) {
                 return res.json({ msg: `${data.title} created successfully!`, success: true })
             } else {
@@ -24,4 +24,4 @@ SubjectRoute
     })
 
 
-module.exports = SubjectRoute
+module.exports = SeriesCatRoute
