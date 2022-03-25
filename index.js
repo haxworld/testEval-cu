@@ -3,8 +3,10 @@ const app = express();
 const port = 3000;
 const db = require('./config/mongoose');
 const expressLayouts = require('express-ejs-layouts');
-const cors = require('cors')
+const cors = require('cors');
+const errorHandler = require('./helpers/errorHandler');
 
+require('dotenv').config();
 
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -20,11 +22,15 @@ app.set("view engine", "ejs");
 
 
 // use assets
-app.use(express.static('./assets'))
+app.use(express.static('./assets'));
+
+
 
 // use express router
 app.use('/', require('./router'));
 
+// global error handler
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);

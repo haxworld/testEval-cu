@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const seriesCatSchema = new Schema({
+const testResultSchema = new Schema({
     title: {
         required: true,
         type: String,
         unique: true
+    },
+    topicCategory: {
+        type: String,
+        default: null
     },
     desc: String,
     hidden: Boolean,
@@ -12,4 +16,4 @@ const seriesCatSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('seriesCat', seriesCatSchema);
+module.exports = mongoose.model('TestResultSchema', testResultSchema);

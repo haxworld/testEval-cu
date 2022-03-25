@@ -1,15 +1,23 @@
 const express = require('express');
+const { isSignedIn, isAdmin } = require('./helpers/verifyToken');
 const AuthRouter = require('./routes/AuthRoute');
-const SeriesCatRouter = require('./routes/SeriesCat');
+const ProfileRouter = require('./routes/ProfileRoute');
+const QuestionRouter = require('./routes/QuestionRoute');
+const SubjectRouter = require('./routes/SubjectRoute');
 const router = express.Router();
-
 
 router.get('/', (req, res) => {
     return res.render('home');
 })
 
 router.use(AuthRouter);
-router.use(SeriesCatRouter);
+router.use(SubjectRouter);
+router.use(QuestionRouter);
+router.use(isSignedIn, ProfileRouter);
+
+router.get('/test', isSignedIn, isAdmin, (req, res) => {
+    return res.json(req.user)
+})
 
 
 module.exports = router;
