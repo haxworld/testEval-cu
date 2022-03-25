@@ -14,7 +14,7 @@
 .button:hover {
   background-color: rgb(250, 204, 52);
 }
-#brand-name {
+.brand-name {
   font-family: "Lobster", cursive;
   color: var(--primary);
 }
@@ -34,8 +34,6 @@
 
 /* The customed underline */
 .border-short {
-  color: var(--headings);
-  font-weight: bold;
   position: relative;
   display: inline-block;
 }
@@ -65,7 +63,6 @@
 .coloured-circles {
   background-color: var(--ash);
   width: 60px;
-  margin: auto;
   height: 60px;
 }
 
@@ -78,7 +75,45 @@ p {
   font-weight: 300;
 }
 
-/* Course */
+/* contact */
+@media screen and (min-width:576px){
+    .shift-left
+  {
+    margin-left: -1.75rem;
+  }
+}
+@media screen and (max-width:576px){
+    .shift-left
+  {
+    margin-top: 15px;
+  }
+}
+.contact
+{
+  height: 22px;
+  width: 22px;
+  border-radius: 100%;
+  display: inline-block;
+  background-color: var(--primary);
+}
 
+/* Footer */
+.footer-container
+{
+  margin: auto;
+  
+}
 
+.footer-container div
+{
+
+  margin: 3% 0%;
+
+}
+.footer-container div a
+{
+  color: var(--ash);
+  text-decoration: none;
+  text-align: center;
+}
 
