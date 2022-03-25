@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
     return res.render('home');
 })
 
+router.get('/profile',(req,res)=>{
+    return res.render('admin/profile');
+})
+
 router.use(AuthRouter);
 router.use(SeriesCatRouter);
 
