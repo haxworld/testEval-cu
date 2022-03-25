@@ -1,28 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
-
-body{
-    background-color: #F5F5F5;
+body {
+  background-color: #f5f5f5;
 }
-a{
-    text-decoration: none;
-    color:#FFC300;
+a {
+  text-decoration: none;
+  color: #ffc300;
 }
-h4{
-    color:white;
-    font-weight: 500;
+h4 {
+  color: white;
+  font-weight: 500;
 }
-
 
 /* **************** name box***************************************/
-  .college-name{
-    font-family: 'Kalam', cursive;
-  }
-  .btn{
-      color:#080880;
-      font-weight: 600;
-      background-color: white;
-  }
-  .info{
-      background-color: #A2A2EE;
-  }
+.college-name {
+  font-family: "Kalam", cursive;
+}
+.btn {
+  color: #080880;
+  font-weight: 600;
+  background-color: white;
+}
+.info {
+  background-color: #a2a2ee;
+}
+.profile-pic {
+  clip-path: circle();
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  border: 10px solid #e0f1ff;
+}

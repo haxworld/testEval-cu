@@ -7,7 +7,7 @@
   --secondary: #2f2e41;
   --headings: #5e5e5e;
   --danger: #ff1818;
-  --shadow:#707070;
+  --shadow: #707070;
 }
 /* p{
     color:var(--ash);
@@ -24,8 +24,7 @@ h2 {
   font-family: "Merriweather", serif;
 }
 
-.headline
-{
+.headline {
   color: var(--headings);
   font-weight: bold;
 }
@@ -44,7 +43,11 @@ a {
 }
 
 /* Footer */
-.paint-white
-{
+.paint-white {
   color: var(--ash);
+}
+.text-purple {
+  font-family: "poppins";
+  color: #080880;
+  font-weight: 600;
 }

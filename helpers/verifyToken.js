@@ -1,6 +1,7 @@
 const expressJwt = require('express-jwt')
 const User = require('../models/userModel')
 
+
 exports.isSignedIn = expressJwt({
     secret: process.env.TOKEN_SECRET,
     algorithms: ['HS256']

@@ -15,7 +15,6 @@ const register = (data) => {
             bcrypt.genSalt(10, function async(err, salt) {
                 bcrypt.hash(data.password, salt, function async(err, hash) {
                     if (err) throw err;
-                    console.log(hash);
                     const user = new User({
                         name: data.name,
                         username: data.username,
