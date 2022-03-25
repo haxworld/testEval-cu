@@ -1,23 +1,4 @@
-/********************** navbar *********************/
-.button {
-  border: none;
-  border-radius: 0.25rem;
-  color: var(--secondary);
-  background-color: var(--highlight);
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  margin: 4px 2px;
-}
-.button:hover {
-  background-color: rgb(250, 204, 52);
-}
-.brand-name {
-  font-family: "Lobster", cursive;
-  color: var(--primary);
-}
+
 
 /* *******************Hero section *********************/
 .hero-image-container {
