@@ -18,6 +18,7 @@ AuthRoute
                     const refreshToken = await generateRefreshToken(user);
                     res.cookie('refreshToken', refreshToken.token);
                     res.cookie('token', token);
+                    //POSTMAN
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
                     // });
@@ -40,7 +41,7 @@ AuthRoute
         register(data)
             .then((value) => {
                 console.log(value)
-                return res.status(200).send(value)
+                return res.status(200).redirect('/login')
             })
             .catch((err) => {
                 console.log(err)
@@ -75,9 +76,8 @@ AuthRoute
     })
 AuthRoute
     .get('/logout', function (req, res) {
-        req.logOut();
-        req.session.destroy(function (err) {
-            res.redirect('/'); //Inside a callback… bulletproof!
-        });
+        res.clearCookie('token', { path: '/' })
+        res.clearCookie('refreshToken', { path: '/' });
+        return res.redirect('/')
     });
 module.exports = AuthRoute;
