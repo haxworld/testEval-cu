@@ -46,11 +46,15 @@ h6,h5{
   color:#080880;
   font-weight: 500;
 }
+<<<<<<< HEAD
 .btn-new {
+=======
+/* .btn {
+>>>>>>> d801beeb26a9e0b22721cc1369c82ae9d8734802
   color: #080880;
   font-weight: 600;
   background-color: white;
-}
+} */
 .info {
   background-color: #a2a2ee;
 }
