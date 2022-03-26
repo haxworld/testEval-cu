@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAdmin } = require('../helpers/verifyToken');
+const { isAdmin, isSignedIn } = require('../helpers/verifyToken');
 const question = require('../models/questionModel');
 const QuestionRoute = express.Router();
 const _ = require('lodash');

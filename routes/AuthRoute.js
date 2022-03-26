@@ -16,10 +16,12 @@ AuthRoute
                 if (user._id) {
                     const token = await generateToken(user);
                     const refreshToken = await generateRefreshToken(user);
-                    res.cookie('refresh-token', refreshToken.token)
-                    return res.header('auth-token', token).json({
-                        token, refreshToken: refreshToken.token
-                    });
+                    res.cookie('refreshToken', refreshToken.token);
+                    res.cookie('token', token);
+                    // return res.header('auth-token', token).json({
+                    //     token, refreshToken: refreshToken.token
+                    // });
+                    return res.redirect('/profile')
                 }
                 return res.send("Unknown error occoured!")
             })
@@ -65,10 +67,17 @@ AuthRoute
         token = await generateToken(user);
         refreshToken = await generateRefreshToken(user);
 
-        res.cookie('refresh-token', refreshToken.token)
+        res.cookie('refreshToken', refreshToken.token)
+        res.cookie('token', token)
         return res.header('auth-token', token).json({
             token, refreshToken: refreshToken.token
         });
     })
-
+AuthRoute
+    .get('/logout', function (req, res) {
+        req.logOut();
+        req.session.destroy(function (err) {
+            res.redirect('/'); //Inside a callback… bulletproof!
+        });
+    });
 module.exports = AuthRoute;

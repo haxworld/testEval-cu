@@ -5,9 +5,9 @@ const db = require('./config/mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const errorHandler = require('./helpers/errorHandler');
-
+const cookieParser = require('cookie-parser')
 require('dotenv').config();
-
+app.use(cookieParser())
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
