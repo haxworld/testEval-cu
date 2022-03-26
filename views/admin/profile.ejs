@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 
 <head>
-    
+
     <title>
         <%=title%>
     </title>
 
     <%- include('../partials/styles'); %>
 
-    <!-- external css link / -->
-    <link rel="stylesheet" href="/css/profile.css" />
+        <!-- external css link / -->
+        <link rel="stylesheet" href="/css/profile.css" />
 
 </head>
 
@@ -19,104 +19,93 @@
         <!-- Nav Bar -->
         <%- include('../partials/navbar'); %>
 
-
-        <div class="container">
-            <div class="container-fluid">
-                <div class="row mt-5">
-                    <div class="col-lg-3 mb-5 ">
-                        <div class=" mb-2 me-5 shadow-sm rounded w-100 pb-4 h-100  bg-white">
-                            <div class="w-100 d-flex py-4">
-                                <img src="images/girl.jpg" alt="profile.pic" class="profile-pic m-auto shadow-sm">
+                                <p class="text-center"><a class="test-status" href="">Latest Tests </a></p>
+                                <p class="text-center"><a class="test-status" href="">Past Tests</a></p>
                             </div>
-                            <h5 class="text-center">Rashmi Prasad Roy</h5>
-                            <p class="text-center college-name pt-0 mb-5">Chandigarh University</p>
-
-                            <p class="text-center"><a class="test-status" href="">Latest Tests </a></p>
-                            <p class="text-center"><a class="test-status" href="">Past Tests</a></p>
                         </div>
-                    </div>
 
-                    <div class="col-lg-9 ">
-                        <div class="row mb-4 ">
-                            <div class="col-lg-12  info shadow-sm rounded">
-                                <div class=" mb-4 me-5  w-100 pb-4 p-4">
-                                    <h3 class="mt-4 mb-3">Hi, Rashmi Prasad Roy</h3>
-                                    <h6 class="mt-4 mb-3">You are going good, try giving more tests & level up your knowledge</h6>
+                        <div class="col-lg-9 ">
+                            <div class="row mb-4  ">
+                                <div class="col-lg-12  info shadow-sm rounded">
+                                    <div class=" mb-4 me-5  w-100 pb-4 p-4">
+                                        <h3 class="mt-4 mb-3">Hi, Rashmi Prasad Roy</h3>
+                                        <h6 class="mt-4 mb-3">You are going good, try giving more tests & level up your
+                                            knowledge</h6>
+                                        <div class=" mb-3">
+                                            <button class="btn btn-for-new-test shadow-sm px-4">Start New Test</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between">
+                                <div class="col-lg-5 text-center shadow-sm rounded bg-white mb-5">
+                                    <h5 class="text-purple pt-4">Current Test Result</h5>
+                                    <div class="row text-purple">
+                                        <div class="col subjects mt-4">Total Score</div>
+                                        <div class="col subjects mt-4">78/90</div>
+                                    </div>
+                                    <div class="row text-purple">
+                                        <div class="col subjects">Correct</div>
+                                        <div class="col subjects">39/45</div>
+                                    </div>
+                                    <div class="row text-purple">
+                                        <div class="col subjects">Incorect</div>
+                                        <div class="col subjects">6/45</div>
+                                    </div>
+                                    <div class="row text-purple">
+                                        <div class="col subjects">Accuracy</div>
+                                        <div class="col subjects">86.6%</div>
+                                    </div>
                                     <div class=" mb-3">
-                                        <button class="btn btn-new shadow-sm px-4">Start New Test</button>
+                                        <button class="btn btn-for-view shadow px-4">View Paper</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-lg-5 text-center shadow-sm rounded bg-white mb-4">
-                                <h5 class="text-purple pt-4">Current Test Result</h5>
-                                <div class="row text-purple">
-                                    <div class="col">Total Score</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">Total Score</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">Total Score</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">Total Score</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 text-center shadow-sm rounded bg-white mb-4">
-                                <h5 class="text-purple pt-4">Past Tests Result</h5>
-                                <div class="row">
-                                    <div class="col">
-                                        <h5>Subject</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5>Scores</h5>
+                                <div class="col-lg-5 text-center  rounded bg-white mb-5">
+                                    <h5 class="text-purple pt-4">Past Tests Result</h5>
+                                    <div class="row">
+                                        <div class="col mb-2 ">
+                                            <h6 class="heading">Subject</h6>
+                                        </div>
+                                        <div class="col mb-2 ">
+                                            <h6 class="heading">Scores</h6>
                                     </div>
                                 </div>
-                                <div class="row text-purple">
-                                    <div class="col">Graphs</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">Computer Networks</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">Trees</div>
-                                    <div class="col">78/90</div>
-                                </div>
-                                <div class="row text-purple">
-                                    <div class="col">DBMS</div>
-                                    <div class="col">78/90</div>
+                                <div class=" row text-purple">
+                                                <div class="col subjects">Graphs</div>
+                                                <div class="col  subjects">78/90</div>
+                                        </div>
+                                        <div class="row text-purple">
+                                            <div class="col subjects">Computer Networks</div>
+                                            <div class="col subjects">78/90</div>
+                                        </div>
+                                        <div class="row text-purple">
+                                            <div class="col subjects">Trees</div>
+                                            <div class="col subjects">78/90</div>
+                                        </div>
+                                        <div class="row text-purple">
+                                            <div class="col subjects">DBMS</div>
+                                            <div class="col subjects">78/90</div>
+                                        </div>
+                                        <div class=" mb-3">
+                                            <button class="btn btn-for-view shadow px-4">View All</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
+    </section>
+    <footer id="footer">
+        <p class="text-center pt-3">&copy;Copyright GrabItt</p>
+     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-
-        <script src="" async defer></script>
+    <script src="" async defer></script>
 </body>
 
 </html>
