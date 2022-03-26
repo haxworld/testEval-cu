@@ -33,7 +33,7 @@ router.get('/profile', (req, res) => {
 
 router.use(AuthRouter);
 router.use(SubjectRouter);
-router.use(QuestionRouter);
+router.use(isSignedIn, QuestionRouter);
 router.use(isSignedIn, ProfileRouter);
 
 router.get('/test', isSignedIn, isAdmin, (req, res) => {
