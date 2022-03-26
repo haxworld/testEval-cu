@@ -44,7 +44,7 @@ a {
 
 /* Footer */
 .paint-white {
-  color: var(--ash);
+  color: var(--ash) !important;
 }
 .text-purple {
   font-family: "poppins";
@@ -70,4 +70,10 @@ a {
 .brand-name {
   font-family: "Lobster", cursive;
   color: var(--primary);
+}
+
+/*  */
+.swiper.slide
+{
+  width: 300px !important;
 }
