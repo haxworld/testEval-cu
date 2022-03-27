@@ -59,7 +59,7 @@
           <!-- Individual boxes  -->
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="round-corner">
-              <div class="rounded-circle d-flex justify-content-center coloured-circles mt-4 shadow m-auto">
+              <div class="rounded-circle d-flex justify-content-center coloured-circles mt-4 shadow m-auto ">
                 <i class="fas fa-book-open pt-3" style="font-size: 30px; color: var(--primary)"></i>
               </div>
               <div class="px-3 pt-4">
@@ -150,6 +150,7 @@
             adipisicing elit.
           </p>
         </div>
+
         <div class="row" id="slider">
           <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -247,59 +248,209 @@
   </section>
 
   <!-- *****************************************testimonials ***************************-->
-  <section class="py-5">
+   <section class="py-5">
     <div class="container-fluid">
       <div class="container">
-        <div class="row">
+
+        <div class="row mb-3">
           <h2 class="text-center py-2 border-short headline">Testimonials</h2>
         </div>
       </div>
-      <div class="container" style="background-color: var(--ash);">
-        <div class="row">
-          <div class="col-3 d-flex flex-column">
-            <h5>What others say about us</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, excepturi!</p>
+      <div class="container py-5" style="background-color: var(--ash);">
+        <!-- Large circle -->
+        <div
+          class="rounded-circle coloured-circles enlarge shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center" >
+
+          <i class="fa fa-quote-left align-items-center px-3" aria-hidden="true"></i>
+
+        </div>
+
+        <div class="row d-flex justify-content-end px-5">
+          <!-- <div
+            class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center "
+            style="cursor: pointer;" onclick="prev()">
+            <i class="fa-solid fa-less-than px-1" style="font-size: 30px; color: var(--primary)"></i>
           </div>
-          <div class="col-9">
+          <div
+            class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+            style="cursor: pointer;" onclick="next()">
+            <i class="fa-solid fa-greater-than px-1" style="font-size: 30px; color: var(--primary)"></i>
+          </div> -->
+        </div>
+        <div class="row">
+          <div class="col-lg-3 d-flex flex-column align-self-center">
+            <div class="pt-3  ms-5">
+              <h2 class="headline">
+                What others say about us...
+              </h2>
+              
+              <p class="pt-3 description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, excepturi!</p>
+            </div>
+
+          </div>
+          <div class="col-lg-9 col-sm-10 right">
+
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="border box" style="background-color: white;">
                     <div class="course-img pb-2">
-                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <img src="images/pic1.jpeg" alt="Course-image" class="item">
+
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+
+
                     </div>
                     <div class=" pt-1">
                       <p class=" pt-1 ps-1">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Illum, quasi?
                       </p>
-                      <h5 class=" ps-1" style="font-weight: bold">Naman</h5>
-                      <p class="mb-0 ps-1" >
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
                         Student
                       </p>
-                     
+
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                <div class="swiper-slide">Slide 7</div>
-                <div class="swiper-slide">Slide 8</div>
-                <div class="swiper-slide">Slide 9</div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center ">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="border box" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images/pic1.jpeg" alt="Course-image">
+                      <div
+                        class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
+
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
+
             </div>
+
+
           </div>
         </div>
       </div>
     </div>
 
-  </section>
+  </section> 
   <!-- *****************************************get in touch ***************************-->
   <section id="contact-us" class="mb-3">
     <div class="container-fluid mt-0">
@@ -389,24 +540,9 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <!-- Slider -->
     <script src="/js/slide.js"></script>
-    <!--  -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        slidesPerGroup: 3,
-        loop: true,
-        loopFillGroupWithBlank: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    </script>
+    <!-- Testimonial -->
+    <script src="/js/testimonial-slide.js"></script>
+
 </body>
 
 </html>
