@@ -31,6 +31,9 @@ router.get('/profile', (req, res) => {
         c: 'Logout'
     });
 })
+router.get('/test',(req,res)=>{
+    res.render('test');
+})
 
 router.use(AuthRouter);
 router.use(SubjectRouter);
