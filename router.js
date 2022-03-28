@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
         a: 'About Us',
         url2: '#features',
         b: 'Features',
-        url3: '/signup',
-        c: 'Sign-up'
+        url3: '/login',
+        c: 'Sign-in'
     });
 })
 
