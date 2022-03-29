@@ -1,4 +1,5 @@
 const express = require('express');
+const { ignore } = require('nodemon/lib/rules');
 const { signIn, register } = require('../controllers/auth');
 const { generateToken, generateRefreshToken } = require('../helpers/jwtTokens');
 const refreshTokenModel = require('../models/refreshTokenModel');
@@ -11,8 +12,10 @@ AuthRoute
         });
     })
     .post("/login", (req, res) => {
+        
         let email = req.body.email
         let password = req.body.password
+        
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {
@@ -42,6 +45,7 @@ AuthRoute
     })
     .post("/signup", (req, res) => {
         let data = req.body
+        
         register(data)
             .then((value) => {
                 console.log(value)
