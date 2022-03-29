@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.get('/profile', (req, res) => {
     const data = {
-        title: 'Add Question',
+        title: 'Profile',
     }
     return res.render('admin/profile', { data });
 })
