@@ -6,7 +6,9 @@ const AuthRoute = express.Router();
 
 AuthRoute
     .get("/login", (req, res) => {
-        res.render('sign_in');
+        res.render('auth',{
+            title:'Sign-In',
+        });
     })
     .post("/login", (req, res) => {
         let email = req.body.email
@@ -34,7 +36,9 @@ AuthRoute
 
 AuthRoute
     .get("/signup", (req, res) => {
-        res.render('sign_up');
+        res.render('auth',{
+            title:'Sign-Up',
+        });
     })
     .post("/signup", (req, res) => {
         let data = req.body

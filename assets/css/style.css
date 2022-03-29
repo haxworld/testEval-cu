@@ -9,6 +9,10 @@
   --danger: #ff1818;
   --shadow: #707070;
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 /* p{
     color:var(--ash);
     font-weight: 400;

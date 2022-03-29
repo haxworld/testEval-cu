@@ -148,11 +148,15 @@ p {
   .course-img div i {
     font-size: 0.8rem;
   }
-
+  .right .swiper-slide {
+    box-shadow: none;
+  }
+}
+@media screen and (max-width: 992px) {
   .enlarge {
     width: 5rem;
     height: 5rem;
-    top: -7%;
+    top: -5%;
   }
   .enlarge i {
     font-size: 35px;
@@ -161,5 +165,33 @@ p {
   .box h5,
   p {
     font-size: 1rem;
+  }
+  .right {
+    margin: auto;
+    top: 0;
+    transform: translateX(0);
+  }
+
+  .space {
+    margin: auto !important;
+    text-align: center;
+  }
+
+  .right .swiper-slide {
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 758px) {
+  .right .swiper-slide {
+    width: 100% !important;
+  }
+  .right .box .course-img {
+    width: 80%;
+    margin: 2rem auto !important;
+  }
+  .course-img + div {
+    text-align: center;
+    margin: 0 2rem;
   }
 }
