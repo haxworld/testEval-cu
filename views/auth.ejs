@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,15 @@
     </title>
 
     <%- include('./partials/styles'); %>
-    <!-- External css-->
-    <link rel="stylesheet" href="/css/auth.css">
+        <!-- External css-->
+        <link rel="stylesheet" href="/css/auth.css">
 
 </head>
+
 <body>
-    Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-   <!-- Sign in -->
+    Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a
+        href="https://icons8.com/illustrations">Ouch!</a>
+    <!-- Sign in -->
     <div class="form-container sign-in-form">
         <div class="form-box sign-in-box">
             <h2>Login</h2>
@@ -24,7 +27,7 @@
                     <i class="fa-solid fa-at"></i>
                     <input type="text" id="text1" name="email" placeholder="Email" required>
                 </div>
-                
+
                 <div class="field">
                     <i class="fa-solid fa-key"></i>
                     <input class="pass-input" type="password" name="password" placeholder="Enter password" required>
@@ -35,7 +38,7 @@
                 <div class="forgot-link">
                     <a href="">Forgot password?</a>
                 </div>
-                <input type="submit" class="submit-btn" value="Login" >
+                <input type="submit" class="submit-btn" value="Login">
             </form>
 
             <div class="login-options">
@@ -78,7 +81,7 @@
         <div class="form-box sign-up-box">
             <h2>Sign up</h2>
             <div class="login-options">
-                
+
                 <div class="other-logins">
                     <a href="">
                         <img src="images/google.png" alt="">
@@ -110,25 +113,26 @@
                 <div class="field">
                     <i class="fa-solid fa-key"></i>
                     <input type="password" name="password" placeholder="Enter password" required>
-                    
+
                 </div>
                 <div class="field">
                     <i class="fa-solid fa-key"></i>
                     <input type="password" name="confirm-password" placeholder="Confirm password" required>
-                    
+
                 </div>
-                
+
                 <input type="submit" class="submit-btn" value="Sign up">
             </form>
 
-            
+
 
         </div>
-        
+
     </div>
 
 
     <script src="/js/auth.js"></script>
 
 </body>
+
 </html>
