@@ -31,21 +31,21 @@ eyeBtn.addEventListener('click',()=>{
     }
 })
 
-// username/email
-function validate() {
-    let field = document.getElementById('text1').value;
+// // username/email
+// function validate() {
+//     let field = document.getElementById('text1').value;
 
-    // CHeck if email
-    if (/\@/.test(field)) {
-        field.type = 'email';
-        field.name = 'email'
-    }
-    else {
-        // Validate username
+//     // CHeck if email
+//     if (/\@/.test(field)) {
+//         field.type = 'email';
+//         field.name = 'email'
+//     }
+//     else {
+//         // Validate username
         
-        field.name = 'username'
-    }
-}
+//         field.name = 'username'
+//     }
+// }
 
 // Toggling sign in and sign up
 

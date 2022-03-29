@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>
+        <%=data.title%>
+    </title>
+
+    <%- include('../partials/styles'); %>
+
+        <!-- external css link / -->
+        <link rel="stylesheet" href="/css/profile.css" />
+
+</head>
+
+<body>
+
+    <section id="body-color">
+        <!-- Nav Bar -->
+        <%- include('../admin/partials/navbar'); %>
+            <div class="container">
+                <div class="container-fluid">
+                    <form action="#" method="post">
+                        <input type="text" placeholder="title">
+                        <div class="mb-2">
+                            <label class="form-label" for="autoSizingSelect">Course Name</label>
+                            <select class="form-select  " id="autoSizingSelect" name="coursename">
+                                <% subjects.forEach(course=> { %>
+                                    <option value="<%= course._id %>">
+                                        <%= course.title %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="incorrect Option 1">
+                        <input type="text" placeholder="incorrect Option 2">
+                        <input type="text" placeholder="incorrect Option 3">
+                        <input type="text" placeholder="correct option">
+                        <input type="button" value="submit">
+                    </form>
+                </div>
+            </div>
+            </div>
+    </section>
+    <%- include('../admin/partials/footer'); %>
+</body>
+
+</html>
