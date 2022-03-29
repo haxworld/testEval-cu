@@ -15,7 +15,7 @@
 
 <body>
   <!-- ************************************hero sec********************************************* -->
-  <section class="">
+  <section class="position-relative pb-5">
     <div class="hero-image-container"></div>
     <!--******************* nav bar **************-->
     <%- include('./partials/navbar'); %>
@@ -24,15 +24,17 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6 align-self-center">
-              <div class="col-9">
-                <h1>
+              <div class="col-12 col-lg-9">
+                <h1 class="hero-text m-auto mt-3">
                   Improve Your Skills As the World Needs with
-                  <span class="brand-name">GrabItt</span>
+                  <!-- <span class="brand-name">GrabItt</span> -->
+                  <img src="svg/logo.svg" alt="logo" width="150" style="margin-top: -10px; background-color:white;">
                 </h1>
               </div>
             </div>
             <div class="col-lg-6">
-              <img src="/images/undraw_reading_re_29f8.svg" alt="" />
+              <img src="/images/hero-img.png" class="w-100" alt="" />
+              <!-- <img src="/images/undraw_reading_re_29f8.svg" class="w-100" alt="" /> -->
             </div>
           </div>
         </div>
@@ -248,7 +250,7 @@
   </section>
 
   <!-- *****************************************testimonials ***************************-->
-   <section class="py-5">
+  <section class="pt-5">
     <div class="container-fluid">
       <div class="container">
 
@@ -259,14 +261,14 @@
       <div class="container py-5" style="background-color: var(--ash);">
         <!-- Large circle -->
         <div
-          class="rounded-circle coloured-circles enlarge shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center" >
+          class="rounded-circle coloured-circles enlarge shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center">
 
           <i class="fa fa-quote-left align-items-center px-3" aria-hidden="true"></i>
 
         </div>
 
-        <div class="row d-flex justify-content-end px-5">
-          <!-- <div
+        <!-- <div class="row d-flex justify-content-end px-5">
+          <div
             class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center "
             style="cursor: pointer;" onclick="prev()">
             <i class="fa-solid fa-less-than px-1" style="font-size: 30px; color: var(--primary)"></i>
@@ -275,21 +277,20 @@
             class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
             style="cursor: pointer;" onclick="next()">
             <i class="fa-solid fa-greater-than px-1" style="font-size: 30px; color: var(--primary)"></i>
-          </div> -->
-        </div>
-        <div class="row">
+          </div>
+        </div> -->
+        <div class="row ">
           <div class="col-lg-3 d-flex flex-column align-self-center">
             <div class="pt-3  ms-5">
               <h2 class="headline">
                 What others say about us...
               </h2>
-              
+
               <p class="pt-3 description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, excepturi!</p>
             </div>
 
           </div>
           <div class="col-lg-9 col-sm-10 right">
-
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -443,83 +444,81 @@
               </div>
 
             </div>
-
-
           </div>
         </div>
       </div>
     </div>
 
-  </section> 
+  </section>
   <!-- *****************************************get in touch ***************************-->
-  <section id="contact-us" class="mb-3">
-    <div class="container-fluid mt-0">
-      <div class="container ">
+  <section id="contact-us" class="my-3 p-2">
+    <div class="container mt-0">
+      <div class="container-fluid ">
         <div class="row justify-content-center">
+          <div class="col-lg-6 d-flex flex-row ">
+            <img src="svg/newsletter.svg" class="w-100 mirror-image" alt="" class="m-auto" />
+            <!-- <div class="d-flex flex-column justify-content-end pb-4 ms-0">
+                        <div class="row  mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+          
+                      </div> -->
+          </div>
           <div class="col-lg-6  align-self-center">
             <div class="row">
               <h2 class="headline">
                 Learn how
-                <span class="brand-name">GrabItt</span> <br>
-                can help you in getting your dream job...
+                <img src="svg/logo.svg" alt="logo" width="120" style="margin-top: -10px;  "> <br />
+                can help you in <br />getting your dream job.
               </h2>
             </div>
             <div class="row">
-              <h5 class="mb-0 pt-5 pb-3" style="font-weight: bold; color: var(--primary);">
+              <h3 class="mb-0 pt-5 pb-3" style="color: var(--primary); font-family: 'Lobster', serif;">
                 Subscribe us
-              </h5>
-            </div>
-
-            <form action="#" method="post">
-              <div class="row ">
-                <div class="col-sm-6 description ">
-                  <input type="text" class="form-control" placeholder="Enter email Address">
+              </h3>
+              <form action="#" method="post">
+                <div class="row ">
+                  <div class="form-floating col-sm-6 description">
+                    <input type="text" class="form-control rounded-0" placeholder="Enter email Address">
+                    <label for="floatingInput" class="ps-4">Email address</label>
+                  </div>
+                  <div class="col-sm-6 shift-left">
+                    <button type="submit" class="btn px-4 py-3 mt-0 rounded-0 sub_button">Surprise Me</button>
+                  </div>
                 </div>
-                <div class="col-sm-6 shift-left ">
-                  <button type="submit" class="btn button px-3 py-2 mt-0">Send</button>
-                </div>
-              </div>
-            </form>
-
-          </div>
-          <div class="col-lg-6 d-flex flex-row ">
-            <img src="images/contact.svg" alt="" class="m-auto" />
-            <div class="d-flex flex-column justify-content-end pb-4 ms-0">
-              <div class="row  mb-5 ">
-                <div class="col mx-2 contact ">
-
-                </div>
-                <div class="col mx-2 contact ">
-
-                </div>
-              </div>
-              <div class="row mb-5 ">
-                <div class="col mx-2 contact ">
-
-                </div>
-                <div class="col mx-2 contact ">
-
-                </div>
-              </div>
-              <div class="row mb-5 ">
-                <div class="col mx-2 contact ">
-
-                </div>
-                <div class="col mx-2 contact ">
-
-                </div>
-              </div>
-              <div class="row mb-5 ">
-                <div class="col mx-2 contact ">
-
-                </div>
-                <div class="col mx-2 contact ">
-
-                </div>
-              </div>
-
+              </form>
             </div>
           </div>
+
 
 
         </div>
@@ -541,7 +540,7 @@
     <!-- Slider -->
     <script src="/js/slide.js"></script>
     <!-- Testimonial -->
-    <script src="/js/testimonial-slide.js"></script>
+    <!-- <script src="/js/testimonial-slide.js"></script> -->
 
 </body>
 

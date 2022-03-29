@@ -1,16 +1,30 @@
-
+/* navbar */
+.nav-link {
+  color: var(--ash) !important;
+  background-color: var(--primary);
+  padding: 7px !important;
+  /* mix-blend-mode: difference !important; */
+}
+.nav-link:hover {
+  background-color: var(--ash) !important;
+  color: var(--primary) !important;
+  /* mix-blend-mode: difference !important; */
+}
 
 /* *******************Hero section *********************/
 .hero-image-container {
   background-color: var(--primary);
-  /* clip-path: polygon(39% 0, 100% 0, 100% 100%, 0% 100%); */
+  -webkit-clip-path: polygon(65% 0%, 100% 0%, 100% 100%, 40% 100%);
   clip-path: polygon(65% 0%, 100% 0%, 100% 100%, 40% 100%);
   width: 100%;
   position: absolute;
   height: 100%;
   z-index: -1;
 }
-
+.hero-text {
+  /* color: white !important;
+  mix-blend-mode: difference !important; */
+}
 /* ***************Features************* */
 
 /* The customed underline */
@@ -44,7 +58,7 @@
 .coloured-circles {
   background-color: var(--ash);
   width: 60px;
-  height:60px;
+  height: 60px;
 }
 
 h5,
@@ -57,20 +71,17 @@ p {
 }
 
 /* contact */
-@media screen and (min-width:576px){
-    .shift-left
-  {
+@media screen and (min-width: 576px) {
+  .shift-left {
     margin-left: -1.75rem;
   }
 }
-@media screen and (max-width:576px){
-    .shift-left
-  {
+@media screen and (max-width: 576px) {
+  .shift-left {
     margin-top: 15px;
   }
 }
-.contact
-{
+.contact {
   height: 22px;
   width: 22px;
   border-radius: 100%;
@@ -79,38 +90,30 @@ p {
 }
 
 /* Footer */
-.footer-container
-{
+.footer-container {
   margin: auto;
-  
 }
 
-.footer-container div
-{
-
+.footer-container div {
   margin: 3% 0%;
-
 }
-.footer-container div a
-{
+.footer-container div a {
   color: var(--ash);
   text-decoration: none;
   text-align: center;
 }
 
 /* Testimonial */
- .right {
-  
+.right {
   position: relative;
   top: 50%;
   transform: translateX(7%);
 }
 
-.course-img
-{
+.course-img {
   position: relative;
 }
-.course-img div{
+.course-img div {
   position: absolute;
   width: 19%;
   height: 19%;
@@ -118,12 +121,11 @@ p {
   left: 74%;
   background-color: #a2a2ee;
 }
-.course-img div i{
+.course-img div i {
   font-size: 1.5rem;
-  
 }
 
-.container{
+.container {
   position: relative;
 }
 
@@ -134,29 +136,30 @@ p {
   width: 8rem;
   height: 8rem;
 }
-.enlarge i{
+.enlarge i {
   font-size: 50px;
 }
+.mirror-image {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
-@media screen and (max-width:1000px){
-  .course-img div i{
+@media screen and (max-width: 1000px) {
+  .course-img div i {
     font-size: 0.8rem;
-    
   }
 
-  .enlarge
-  {
+  .enlarge {
     width: 5rem;
     height: 5rem;
     top: -7%;
   }
-  .enlarge i
-  {
+  .enlarge i {
     font-size: 35px;
   }
 
- .box h5,p{
+  .box h5,
+  p {
     font-size: 1rem;
   }
-  
 }
