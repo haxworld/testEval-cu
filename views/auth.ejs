@@ -11,21 +11,20 @@
     <%- include('./partials/styles'); %>
     <!-- External css-->
     <link rel="stylesheet" href="/css/auth.css">
+
 </head>
 <body>
-   
+    Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
+   <!-- Sign in -->
     <div class="form-container sign-in-form">
         <div class="form-box sign-in-box">
             <h2>Login</h2>
-            <form action="">
+            <form action="/login" method="post">
                 <div class="field">
                     <i class="fa-solid fa-at"></i>
-                    <input type="email" name="email" placeholder="Enter email ID" required>
+                    <input type="text" id="text1" placeholder="Email/Username" required>
                 </div>
-                <div class="field">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="username" placeholder="Enter your name" required>
-                </div>
+                
                 <div class="field">
                     <i class="fa-solid fa-key"></i>
                     <input class="pass-input" type="password" name="password" placeholder="Enter password" required>
@@ -36,9 +35,96 @@
                 <div class="forgot-link">
                     <a href="">Forgot password?</a>
                 </div>
-                <input type="submit" class="submit-btn" value="Login">
+                <input type="submit" class="submit-btn" value="Login" onclick="validate()">
             </form>
+
+            <div class="login-options">
+                <p class="text">
+                    Or, login with...
+                </p>
+                <div class="other-logins">
+                    <a href="">
+                        <img src="images/google.png" alt="">
+                    </a>
+                    <a href="">
+                        <img src="images/facebook.png" alt="">
+                    </a>
+                    <a href="">
+                        <img src="images/apple.png" alt="">
+                    </a>
+                </div>
+            </div>
+
         </div>
+        <div class="imgBox sign-in-imgBox">
+            <div class="sliding-link">
+                <p>Don't have an account?</p>
+                <span class="sign-up-btn">Sign up</span>
+            </div>
+            <img src="/images/sammy-29.png" alt="">
+        </div>
+    </div>
+
+
+    <!-- Sign up -->
+    <div class="form-container sign-up-form">
+        <div class="imgBox sign-up-imgBox">
+            <div class="sliding-link">
+                <p>Already have an account?</p>
+                <span class="sign-in-btn">Sign in</span>
+            </div>
+            <img src="/images/sammy-25.png" alt="">
+        </div>
+        <div class="form-box sign-up-box">
+            <h2>Sign up</h2>
+            <div class="login-options">
+                
+                <div class="other-logins">
+                    <a href="">
+                        <img src="images/google.png" alt="">
+                    </a>
+                    <a href="">
+                        <img src="images/facebook.png" alt="">
+                    </a>
+                    <a href="">
+                        <img src="images/apple.png" alt="">
+                    </a>
+                </div>
+                <p class="text">
+                    Or, sign up with email...
+                </p>
+            </div>
+            <form action="/signup" method="post">
+                <div class="field">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" name="email" placeholder="Enter email ID" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="password" placeholder="Enter password" required>
+                    
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="confirm-password" placeholder="Confirm password" required>
+                    
+                </div>
+                
+                <input type="submit" class="submit-btn" value="Sign up">
+            </form>
+
+            
+
+        </div>
+        
     </div>
 
 

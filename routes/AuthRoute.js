@@ -11,6 +11,7 @@ AuthRoute
         });
     })
     .post("/login", (req, res) => {
+        
         let email = req.body.email
         let password = req.body.password
         signIn(email, password)
@@ -42,6 +43,10 @@ AuthRoute
     })
     .post("/signup", (req, res) => {
         let data = req.body
+        if(data.confirm-password != data.password)
+        {
+            return res.redirect('back');
+        }
         register(data)
             .then((value) => {
                 console.log(value)
