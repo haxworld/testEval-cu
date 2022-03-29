@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
 
-#body-color{
+#body-color {
   background-color: #f5f5f5;
 }
 a {
@@ -8,7 +8,7 @@ a {
   color: #d6a914;
   font-weight: 600;
 }
-h3{
+h3 {
   color: white;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
@@ -17,25 +17,26 @@ h4 {
   color: white;
   font-weight: 500;
 }
-h6,h5{
-  color:#080880;
+h6,
+h5 {
+  color: #080880;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
 }
-h5:after {
-    content: "";
-    display: block;
-    width: 25%;
-    height: 1.5px;
-    background: #7F0000;
-    margin: 0 auto;
-    border-radius: 3px;
-  }
-  
+
+#title_underline:after {
+  content: "";
+  display: block;
+  width: 25%;
+  height: 1.5px;
+  background: #7f0000;
+  margin: 0 auto;
+  border-radius: 3px;
+}
 /* **************** nav bar**********************************/
 .navbar {
   padding: 0.5% 5%;
-  background-color:white;
+  background-color: white;
 }
 .button {
   border: none;
@@ -55,7 +56,7 @@ h5:after {
 /* **************** name box***************************************/
 .college-name {
   font-family: "Kalam", cursive;
-  color:#080880;
+  color: #080880;
   font-weight: 500;
 }
 .btn-for-new-test {
@@ -71,22 +72,22 @@ h5:after {
 }
 .btn-for-new-test:hover {
   background-color: rgb(249, 251, 255);
-} 
-.btn-for-view{
-background-color: #E0F1FF;
-color: #080880;
-font-weight: 600;
-padding: 10px ;
-text-align: center;
-text-decoration: none;
-font-family: "Poppins", sans-serif;
-font-size: 12px;
-margin: 4px 2px;
+}
+.btn-for-view {
+  background-color: #e0f1ff;
+  color: #080880;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  margin: 4px 2px;
 }
 .btn-for-view:hover {
   background-color: rgb(237, 240, 248);
-} 
-.subjects{
+}
+.subjects {
   font-size: small;
   font-weight: 600;
 }
@@ -94,40 +95,41 @@ margin: 4px 2px;
   background-color: #a2a2ee;
 }
 .profile-pic {
-  clip-path: circle();
   border-radius: 50%;
+  clip-path: circle();
   height: 150px;
+  width: 150px;
   border: 10px solid #e0f1ff;
 }
 
 /* **************** result section *********************************/
 
-.btn-for-view{
-  background-color: #E0F1FF;
+.btn-for-view {
+  background-color: #e0f1ff;
   color: #080880;
   font-weight: 600;
-  padding: 10px ;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   margin: 4px 2px;
-  }
-  .btn-for-view:hover {
-    background-color: rgb(237, 240, 248);
-  } 
-  .subjects{
-    font-size: small;
-    font-weight: 600;
-  }
-  .heading{
-    color:#299b07;
-  }
-  /************************** footer*************** */
-  #footer{
-    color: #080880;
-    font-weight: bold;
-    font-family: "Poppins", sans-serif;
-    opacity:0.7 ;
-    font-size: smaller;
-  }
+}
+.btn-for-view:hover {
+  background-color: rgb(237, 240, 248);
+}
+.subjects {
+  font-size: small;
+  font-weight: 600;
+}
+.heading {
+  color: #299b07;
+}
+/************************** footer*************** */
+#footer {
+  color: #080880;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  opacity: 0.7;
+  font-size: smaller;
+}

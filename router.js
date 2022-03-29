@@ -1,11 +1,10 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const { home } = require('nodemon/lib/utils');
 const { isSignedIn, isAdmin } = require('./helpers/verifyToken');
 const AuthRouter = require('./routes/AuthRoute');
 const ProfileRouter = require('./routes/ProfileRoute');
 const QuestionRouter = require('./routes/QuestionRoute');
 const SubjectRouter = require('./routes/SubjectRoute');
+const SuperAdminRoute = require('./routes/SuperAdminRoute');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -16,22 +15,17 @@ router.get('/', (req, res) => {
         url2: '#features',
         b: 'Features',
         url3: '/login',
-        c: 'Sign-in'
+        c: 'Login'
     });
 })
 
 router.get('/profile', (req, res) => {
-    return res.render('admin/profile', {
-        title: 'Profile',
-        url1: '#categories',
-        a: 'Categories',
-        url2: '/#features',
-        b: 'Features',
-        url3: '/logout',
-        c: 'Logout'
-    });
+    const data = {
+        title: 'Add Question',
+    }
+    return res.render('admin/profile', { data });
 })
-router.get('/test',(req,res)=>{
+router.get('/test', (req, res) => {
     res.render('test');
 })
 
@@ -39,6 +33,7 @@ router.use(AuthRouter);
 router.use(SubjectRouter);
 router.use(isSignedIn, QuestionRouter);
 router.use(isSignedIn, ProfileRouter);
+router.use(isSignedIn, isAdmin, SuperAdminRoute);
 
 router.get('/test', isSignedIn, (req, res) => {
     // console.log('Cookies: ', req.cookies)

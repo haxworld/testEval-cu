@@ -26,11 +26,24 @@ h1 {
 }
 h2 {
   font-family: "Merriweather", serif;
+  color: var(--secondary);
+  font-size: 2.5rem;
 }
 
 .headline {
-  color: var(--headings);
+  color: var(--secondary);
   font-weight: bold;
+  line-height: 3rem;
+  letter-spacing: 0.02rem;
+}
+#title_underline:after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 1.5px;
+  background: #7f0000;
+  margin: 0 auto;
+  border-radius: 3px;
 }
 /************************** navbar********************* */
 a {
@@ -55,6 +68,7 @@ a {
   color: #080880;
   font-weight: 600;
 }
+
 /********************** navbar *********************/
 .button {
   border: none;
@@ -76,4 +90,19 @@ a {
   color: var(--primary);
 }
 
-/*  */
+.sub_button {
+  color: var(--secondary);
+  background-color: var(--highlight);
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+.sub_button:hover {
+  background-color: rgb(250, 204, 52);
+}
+/* footer  */
+
+.list-group-item {
+  border: none !important;
+  background-color: transparent;
+}
