@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Test
+    </title>
+
+    <%- include('./partials/styles'); %>
+        <!-- External css-->
+        <link rel="stylesheet" href="/css/test.css">
+
+        <link rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/monokai-sublime.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+        <!-- Main Quill library -->
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+</head>
+
+<body>
+
+    <section id="body-color">
+        <div class="container-fluid p-4 ">
+            <div class="row">
+                <div class="col-lg-9  shadow-sm bg-white">
+                    <h2 class="logo m-3 mb-2">GrabItt</h2>
+                    <div class="position-relative">
+                        <h4 class="ms-3">
+                            <%= subjectTitle %>
+                        </h4>
+                        <div class="position-absolute top-0 end-0  shadow-sm">
+                            <i class="fa-solid fa-hourglass "></i>
+                            <span id="timer">
+
+                            </span>
+                            <!-- <span>1:40:20 left</span> -->
+                        </div>
+                    </div>
+                    <h6 class="ms-3 mb-4">Test id: <%= testId %>
+                    </h6>
+                </div>
+                <!-- ---------- -->
+                <div class=" col-lg-3 shadow-sm bg-white">
+                    <div class="row ">
+                        <div class="col-5 ">
+                            <div class="d-flex my-4">
+                                <img src="/images/girl.jpg" alt="profile.pic" class="profile-pic shadow-sm" width="90"
+                                    height="90">
+                            </div>
+                        </div>
+                        <div class="col subjects mt-4">
+                            <h5>
+                                <%= name %>
+                            </h5>
+                            <p class="mb-0">Attempted : 0/<%= total %>
+                            </p>
+                            <p class="mt-0 ">Remaining : <%= total %>/<%= total %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ----------- -->
+            </div>
+
+            <div class="row  my-3">
+                <div class="col-lg-9 shadow-sm bg-white ">
+                    <div>
+                        <div id="editorDisplay">
+                            <%= firstdata.title %>
+                        </div>
+                    </div>
+                </div>
+                <!------  -->
+                <div class="col-lg-3 shadow-sm bg-white">
+                    <div class="row mx-3 pt-3">
+                        <h6>Exam Instructions</h6>
+                        <ol>
+                            <li>
+                                You must use a functioning webcam and microphone.
+                            </li>
+                            <li>
+                                No cell phones or other secondary devices in the room or
+                                test area.
+                            </li>
+                            <li>
+                                Your desk/table must be clear or any materials except your
+                                test-taking device.
+                            </li>
+                            <li>
+                                No one else can be in the room with you.
+                            </li>
+                            <li>
+                                No talking.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-9 shadow-sm bg-white">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="checkbox" name="option" id="option1" onclick="onlyOne(this)" />
+                            <label for="option1" id="optionEditor1"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" name="option" id="option2" onclick="onlyOne(this)" />
+                            <label for="option2" id="optionEditor2"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" name="option" id="option3" onclick="onlyOne(this)" />
+                            <label for="option3" id="optionEditor3"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" name="option" id="option4" onclick="onlyOne(this)" />
+                            <label for="option4" id="optionEditor4"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 shadow-sm bg-white ">
+                    <h6 class="m-2">Questions</h6>
+                    <div class=" row ans-status">
+                        <div class="col ms-0"><i class="fa-solid fa-square ms-0" style="color:#A0E6B7"></i>Answered
+                        </div>
+                        <div class="col ms-0"><i class="fa-solid fa-square ms-0" style="color:#F7B2B2"></i>Unanswered
+                        </div>
+                        <div class="col ms-0"><i class="fa-solid fa-square ms-0" style="color:#B9B5F6"></i>Review
+                            Later
+                        </div>
+                    </div>
+                    <div class=" scroll-bg">
+                        <div class="row scroll-div">
+                            <div class="row m-auto mt-3  ">
+                                <div class="">
+                                    <% for( let index=0; index < total; index++ ) { %>
+                                        <button type="button" class="btn  btn-circle m-1"
+                                            style="background-color:#F7B2B2" onclick="buttonclick(this)"
+                                            value="<%= moreQuestion[index].questionId %>">
+                                            <%= index+1 %>
+                                        </button>
+                                        <% } %>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col">
+                            <div class=" mb-3">
+                                <button class="btn btn-for-view shadow px-4" onclick="saveandprevious()">Save
+                                    &
+                                    previous</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class=" mb-3">
+                                <button class="btn btn-for-view shadow px-4" onclick="reviewLater()"
+                                    id="reviewBtn">Review
+                                    Later</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class=" mb-3">
+                                <button class="btn btn-for-view shadow px-4" onclick="saveandnext()">Save &
+                                    next</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script>
+        hljs.configure({
+            languages: ['javascript', 'ruby', 'python']
+        });
+
+        let options = {
+            modules: {
+                syntax: true,
+            },
+            readOnly: true,
+            theme: 'bubble'
+
+        };
+        let quillDisplay = new Quill('#editorDisplay', options);
+        let quillOption1 = new Quill('#optionEditor1', options);
+        let quillOption2 = new Quill('#optionEditor2', options);
+        let quillOption3 = new Quill('#optionEditor3', options);
+        let quillOption4 = new Quill('#optionEditor4', options);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#reviewBtn').prop('disabled', true);
+            $(`button[value="${localStorage.getItem('currentQuesId')}"]`).addClass("activeques");
+            let buttonclr = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
+            buttonclr.forEach(function (checkbox) {
+                try {
+                    if (checkbox.id === localStorage.getItem('currentQuesId')) {
+                        $("input[value='" + checkbox.choice + "']").prop('checked', true);
+                        if (checkbox.review == 1) {
+                            $('#reviewBtn').prop('disabled', true);
+                        }
+                    }
+
+                    if (checkbox.review == 1) {
+                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
+                    } else {
+                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#A0E6B7';
+                    }
+                } catch {
+                    //
+                }
+            });
+        });
+
+        const reviewLater = () => {
+            let reviewLater = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
+            reviewLater.forEach(function (checkbox) {
+                try {
+                    if (checkbox.id === localStorage.getItem('currentQuesId')) {
+                        checkbox.review = 1;
+                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
+                        $('#reviewBtn').prop('disabled', true);
+                    }
+                } catch {
+                    //
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(reviewLater));
+            });
+        }
+
+        const saveandnext = () => {
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const saveandprevious = () => {
+            $("button.btn.btn-circle.m-1.activeques").prev().click();
+        }
+    </script>
+    <script>
+        localStorage.setItem('currentQuesId', `<%- firstdata.questionId %>`)
+        //First Question
+        quillDisplay.root.innerHTML = `<%- firstdata.question %>`;
+        quillOption1.root.innerHTML = `<%- firstdata.options[0] %>`;
+        quillOption2.root.innerHTML = `<%- firstdata.options[1] %>`;
+        quillOption3.root.innerHTML = `<%- firstdata.options[2] %>`;
+        quillOption4.root.innerHTML = `<%- firstdata.options[3] %>`;
+
+        document.getElementById('option1').value = `<%- firstdata.options[0] %>`;
+        document.getElementById('option2').value = `<%- firstdata.options[1] %>`;
+        document.getElementById('option3').value = `<%- firstdata.options[2] %>`;
+        document.getElementById('option4').value = `<%- firstdata.options[3] %>`;
+
+        //Timer left
+        var end = new Date('<%= timer %>');
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById('timer').innerHTML = 'EXPIRED!';
+                return;
+            }
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById('timer').innerHTML = hours + ':';
+            document.getElementById('timer').innerHTML += minutes + ':';
+            document.getElementById('timer').innerHTML += seconds + ' left';
+        }
+        timer = setInterval(showRemaining, 1000);
+
+
+    </script>
+    <script src="/js/exam.js"></script>
+</body>
+
+</html>

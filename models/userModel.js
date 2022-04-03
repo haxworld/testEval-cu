@@ -39,7 +39,7 @@ const UserSchema = new Schema({
         default: false
     },
     currentTestId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         default: null
     },
     currentTestSubjectId: {

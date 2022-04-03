@@ -1,21 +1,41 @@
 const express = require('express');
-const { ignore } = require('nodemon/lib/rules');
 const { signIn, register } = require('../controllers/auth');
 const { generateToken, generateRefreshToken } = require('../helpers/jwtTokens');
 const refreshTokenModel = require('../models/refreshTokenModel');
 const AuthRoute = express.Router();
 
 AuthRoute
-    .get("/login", (req, res) => {
-        res.render('auth',{
-            title:'Sign-In',
+    .get("/login", async (req, res) => {
+        if (req.cookies && req.cookies.token && req.cookies.refreshToken) {
+            const findtoken = await refreshTokenModel.findOne({ token: req.cookies.refreshToken })
+            if (!findtoken) {
+                return res.render('auth', {
+                    title: 'Sign-In',
+                });
+            }
+            if (findtoken.isExpired) {
+                return res.render('auth', {
+                    title: 'Sign-In',
+                });
+            }
+            let user = {
+                _id: findtoken.user
+            }
+            token = generateToken(user);
+            refreshToken = generateRefreshToken(user);
+
+            res.cookie('refreshToken', refreshToken.token)
+            res.cookie('token', token)
+            return res.redirect('/profile')
+        }
+        return res.render('auth', {
+            title: 'Sign-In',
         });
     })
     .post("/login", (req, res) => {
-        
         let email = req.body.email
         let password = req.body.password
-        
+
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {
@@ -23,7 +43,7 @@ AuthRoute
                     const refreshToken = await generateRefreshToken(user);
                     res.cookie('refreshToken', refreshToken.token);
                     res.cookie('token', token);
-                    //POSTMAN
+                    // // POSTMAN
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
                     // });
@@ -39,13 +59,13 @@ AuthRoute
 
 AuthRoute
     .get("/signup", (req, res) => {
-        res.render('auth',{
-            title:'Sign-Up',
+        res.render('auth', {
+            title: 'Sign-Up',
         });
     })
     .post("/signup", (req, res) => {
         let data = req.body
-        
+
         register(data)
             .then((value) => {
                 console.log(value)
@@ -78,9 +98,10 @@ AuthRoute
 
         res.cookie('refreshToken', refreshToken.token)
         res.cookie('token', token)
-        return res.header('auth-token', token).json({
-            token, refreshToken: refreshToken.token
-        });
+        return;
+        // return res.header('auth-token', token).json({
+        //     token, refreshToken: refreshToken.token
+        // });
     })
 AuthRoute
     .get('/logout', function (req, res) {

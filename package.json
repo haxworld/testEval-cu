@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.2.7",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "uuid4": "^2.0.2"
   }
 }
