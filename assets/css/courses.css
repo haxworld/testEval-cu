@@ -1,0 +1,25 @@
+.size
+{
+    min-width: 130px;
+    
+}
+
+.incre {
+    width: 100px;
+    height: 100px;
+  }
+
+  .incre>img{
+    height: 60px;
+    width: 60px;
+  }
+
+  .round-corner
+  {
+    background-color: var(--highlight);
+  }
+
+  .underline
+  {
+    border-bottom: 2px solid var(--danger);
+  }

@@ -5,13 +5,25 @@ const subject = require('../models/subjectModel');
 
 SubjectRoute
     .get("/subjectCategory", (req, res) => {
+        // subjectCategory.find({}, (err, data) => {
+        //     if (!err) {
+        //         return res.json({ subjects: data, success: true })
+        //     } else {
+        //         return res.json({ msg: err.message, success: false })
+        //     }
+        // })
         subjectCategory.find({}, (err, data) => {
             if (!err) {
-                return res.json({ subjects: data, success: true })
+                return res.render('courses',{
+                    subjects: data,
+                    success: true
+                });
+                
             } else {
                 return res.json({ msg: err.message, success: false })
             }
         })
+        
     })
     .post("/subjectCategory/create/", (req, res) => {
         var SubjectCategory = new subjectCategory(req.body)

@@ -100,9 +100,25 @@ a {
 .sub_button:hover {
   background-color: rgb(250, 204, 52);
 }
+
+/* For feature's card designing */
+.round-corner {
+  border: 2px solid var(--ash);
+  border-radius: 45px 15px 15px 15px;
+  box-shadow: -3px 0 5px -2px var(--shadow);
+}
+
+/* for circles with icons inside */
+.coloured-circles {
+  background-color: var(--ash);
+  width: 60px;
+  height: 60px;
+}
 /* footer  */
 
 .list-group-item {
   border: none !important;
   background-color: transparent;
 }
+
+
