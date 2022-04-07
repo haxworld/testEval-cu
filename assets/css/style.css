@@ -121,4 +121,7 @@ a {
   background-color: transparent;
 }
 
-
+/* exam */
+.activeques{
+      border: 2px solid green;
+}

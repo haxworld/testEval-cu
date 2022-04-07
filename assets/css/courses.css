@@ -1,7 +1,7 @@
 .size
 {
     min-width: 130px;
-    
+    cursor: pointer;
 }
 
 .incre {
@@ -23,3 +23,27 @@
   {
     border-bottom: 2px solid var(--danger);
   }
+
+  .s-border
+  {
+    border-radius: 15px;
+    box-shadow: 5px 0 4px -6px #70707085, -5px 0 4px -6px #70707085
+    
+  }
+
+  /* TODO */
+
+  #view-topic-1
+  {
+    position: absolute;
+    visibility:hidden;
+    /* display: none !important; */
+  }
+
+  .show
+  {
+    visibility: visible !important;
+    /* display: block !important; */
+  }
+
+  

@@ -19,7 +19,10 @@ const questionSchema = new Schema({
         required: true,
         default: null
     },
-    hidden: Boolean,
+    hidden: {
+        type: Boolean,
+        default: false
+    },
 }, {
     timestamps: true,
 });

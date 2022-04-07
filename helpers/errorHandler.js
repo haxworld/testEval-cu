@@ -18,7 +18,8 @@ module.exports = async (err, req, res, next) => {
                     return res.status(400).json("Invalid Token")
                 }
                 if (findtoken.isExpired) {
-                    return res.status(401).json("Login again!")
+                    // return res.status(401).json("Login again!")
+                    return res.status(401).redirect('/login')
                 }
                 let user = {
                     _id: findtoken.user
@@ -30,7 +31,8 @@ module.exports = async (err, req, res, next) => {
                 res.cookie('token', token)
                 return next()
             }
-            return res.status(401).json({ message: 'Unauthorized' });
+            return res.status(401).redirect('/login')
+        // return res.status(401).json({ message: 'Unauthorized' });
 
         default:
             return res.status(500).json({ message: err.message });
