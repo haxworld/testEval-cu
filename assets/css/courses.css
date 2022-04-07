@@ -33,7 +33,7 @@
 
   /* TODO */
 
-  #view-topic-1
+  .view-topic-1
   {
     position: absolute;
     visibility:hidden;
@@ -46,4 +46,7 @@
     /* display: block !important; */
   }
 
-  
+  /* .colour-changer
+  {
+    background-color: red;
+  } */
