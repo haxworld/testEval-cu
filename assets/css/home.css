@@ -26,7 +26,6 @@
   mix-blend-mode: difference !important; */
 }
 /* ***************Features************* */
-
 /* The customed underline */
 .border-short {
   position: relative;
@@ -48,18 +47,6 @@
     left: calc(50% - 10%);
   }
 }
-/* For feature's card designing */
-.round-corner {
-  border: 2px solid var(--ash);
-  border-radius: 45px 15px 15px 15px;
-  box-shadow: -3px 0 5px -2px var(--shadow);
-}
-/* for circles with icons inside */
-.coloured-circles {
-  background-color: var(--ash);
-  width: 60px;
-  height: 60px;
-}
 
 h5,
 p {
@@ -69,7 +56,11 @@ p {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
-
+/* courses */
+.box
+{
+  color: black;
+}
 /* contact */
 @media screen and (min-width: 576px) {
   .shift-left {
