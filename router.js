@@ -9,8 +9,9 @@ const router = express.Router();
 const uuid4 = require('uuid4');
 const userModel = require('./models/userModel');
 const questionModel = require('./models/questionModel');
-const subjectModel = require('./models/subjectModel');
+
 const _ = require('lodash');
+const testSeriesModel = require('./models/testSeriesModel');
 router.get('/', (req, res) => {
     return res.render('home', {
         title: 'Home',
@@ -45,7 +46,7 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
     let { currentTestSubjectId, testStartTime, isTestOn, name } = await userModel.findById({ _id: user })
     testStartTime.setMinutes(testStartTime.getMinutes() + 60);
     let question = await questionModel.find({ subjectId: currentTestSubjectId })
-    let subject = await subjectModel.findOne({ _id: currentTestSubjectId })
+    let subject = await testSeriesModel.findOne({ _id: currentTestSubjectId })
     const questionData = question.map((e) => {
         let formattedQues = {
             questionId: e._id,
@@ -70,6 +71,13 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
 router.get('/test', (req, res) => {
     res.render('test');
 })
+router.get('/sadmin', (req, res) => {
+    data = {
+        title: "super admin menu"
+    }
+    res.render('admin/superAdmin', data);
+})
+
 
 router.use(AuthRouter);
 router.use(SubjectRouter);

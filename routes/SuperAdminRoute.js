@@ -1,15 +1,24 @@
 const express = require('express');
 const questionModel = require('../models/questionModel');
-const subjectModel = require('../models/subjectModel');
+const subjectCategoryModel = require('../models/subjectCategoryModel');
+const testSeriesModel = require('../models/testSeriesModel');
 const SuperAdminRoute = express.Router();
+
 
 SuperAdminRoute
     .get("/question/add", async (req, res) => {
         const data = {
             title: 'Add Question',
         }
-        var subjects = await subjectModel.find({})
-        res.render('admin/addQuestion', { data, subjects })
+        var TestSeries = await testSeriesModel.find({})
+        res.render('admin/addQuestion', { data, series: TestSeries })
+    })
+    .get("/testseries/add", async (req, res) => {
+        const data = {
+            title: 'Add Test Series',
+        }
+        var SubjectCategories = await subjectCategoryModel.find({})
+        res.render('admin/addSeries', { data, subjects: SubjectCategories })
     })
     .post("/question/add", async (req, res) => {
         var Question = new questionModel(req.body)
