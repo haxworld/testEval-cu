@@ -2,7 +2,7 @@ hljs.configure({
     languages: ['javascript', 'ruby', 'python']
 });
 let toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],
+    ['bold', 'italic', 'underline', 'strike', 'formula'],
     ['blockquote', 'code-block'],
 
     [{ 'header': 1 }, { 'header': 2 }],
