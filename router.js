@@ -9,9 +9,9 @@ const router = express.Router();
 const uuid4 = require('uuid4');
 const userModel = require('./models/userModel');
 const questionModel = require('./models/questionModel');
-
 const _ = require('lodash');
 const testSeriesModel = require('./models/testSeriesModel');
+const ExamRouter = require('./routes/ExamRoute');
 router.get('/', (req, res) => {
     return res.render('home', {
         title: 'Home',
@@ -68,7 +68,7 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
     res.render('demotest', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.uuid, subjectTitle: subject.title, timer: testStartTime, name });
 })
 
-router.get('/test', (req, res) => {
+router.get('/exam', (req, res) => {
     res.render('test');
 })
 router.get('/sadmin', (req, res) => {
@@ -82,6 +82,7 @@ router.get('/sadmin', (req, res) => {
 router.use(AuthRouter);
 router.use(SubjectRouter);
 router.use(QuestionRouter);
+router.use(ExamRouter);
 router.use(isSignedIn, ProfileRouter);
 router.use(isSignedIn, isAdmin, SuperAdminRoute);
 

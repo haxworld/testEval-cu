@@ -56,6 +56,27 @@ AuthRoute
                 return res.send(err)
             })
     })
+    .post("/postmanlogin", async (req, res) => {
+        if (req.cookies && req.cookies.token && req.cookies.refreshToken) {
+            const findtoken = await refreshTokenModel.findOne({ token: req.cookies.refreshToken })
+            if (!findtoken) {
+                return res.render('auth', {
+                    title: 'Sign-In',
+                });
+            }
+            if (findtoken.isExpired) {
+                return res.render('auth', {
+                    title: 'Sign-In',
+                });
+            }
+            let user = {
+                _id: findtoken.user
+            }
+            token = generateToken(user);
+            refreshToken = generateRefreshToken(user);
+        }
+        return res.json({ token, refreshToken });
+    })
 
 AuthRoute
     .get("/signup", (req, res) => {

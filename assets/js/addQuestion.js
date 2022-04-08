@@ -25,7 +25,7 @@ let quill = new Quill('#questionEditor', options);
 let quillOption1 = new Quill('#optionEditor1', options);
 let quillOption2 = new Quill('#optionEditor2', options);
 let quillOption3 = new Quill('#optionEditor3', options);
-let quillOption4 = new Quill('#optionEditor4', options);
+let quillExplaination = new Quill('#editorExplaination', options);
 let quillCorrectAnswer = new Quill('#editorCorrectAnswer', options);
 let quillDisplay = new Quill('#editorDisplay', {
     modules: {
@@ -33,7 +33,6 @@ let quillDisplay = new Quill('#editorDisplay', {
     },
     readOnly: true,
     theme: 'bubble'
-
 });
 // post req
 const addQuestion = () => {
@@ -47,8 +46,9 @@ const addQuestion = () => {
 
     let title = quill.root.innerHTML.split('  ').join(' &nbsp;');
     let correctAnswer = quillCorrectAnswer.root.innerHTML.split('  ').join(' &nbsp;');
+    let explaination = quillExplaination.root.innerHTML.split('  ').join(' &nbsp;');
     let subjectId = document.getElementById('autoSizingSelect').value;
-    const data = { title, incorrectOptions, correctAnswer, subjectId };
+    const data = { title, incorrectOptions, correctAnswer, subjectId, explaination };
     fetch("/question/add", {
         method: "POST",
         headers: {

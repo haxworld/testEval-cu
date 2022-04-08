@@ -13,7 +13,7 @@ SuperAdminRoute
         var TestSeries = await testSeriesModel.find({})
         res.render('admin/addQuestion', { data, series: TestSeries })
     })
-    .get("/testseries/add", async (req, res) => {
+    .get("/testseries/create", async (req, res) => {
         const data = {
             title: 'Add Test Series',
         }

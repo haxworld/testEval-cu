@@ -35,36 +35,44 @@
                     <h2 class="text-center">
                         <%= data.title %>
                     </h2>
-                    <form action="/testseries/create" method="post">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+                    <% if (data.msg) { %>
+                        <div class="card border <%=  data.success === true ? 'border-success':'border-danger' %> ">
+                            <div class="card-body <%=  data.success === true ? 'text-success':'text-danger' %>">
+                                <%= data.msg %>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="desc" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="desc" placeholder="Description" name="desc">
-                        </div>
-                        <div class="mb-3">
-                            <label for="desc" class="form-label">Total time</label>
-                            <input type="text" class="form-control" id="desc" placeholder="Total time in mins"
-                                name="totalTime">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label" for="autoSizingSelect">Select Subject</label>
-                            <select class="form-select  " id="autoSizingSelect" name="category">
-                                <% subjects.forEach(course=> { %>
-                                    <option value="<%= course._id %>">
-                                        <%= course.title %>
-                                    </option>
-                                    <% }) %>
-                            </select>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="hide" name="hidden">
-                            <label class="form-check-label" for="hide">hide from course?</label>
-                        </div>
-                        <input type="submit" value="Add Series" class="btn btn-primary">
-                    </form>
+                        <% } %>
+                            <form action="/testseries/create" method="post">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="desc" class="form-label">Description</label>
+                                    <input type="text" class="form-control" id="desc" placeholder="Description"
+                                        name="desc">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="desc" class="form-label">Total time</label>
+                                    <input type="text" class="form-control" id="desc" placeholder="Total time in mins"
+                                        name="totalTime">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label" for="autoSizingSelect">Select Subject</label>
+                                    <select class="form-select  " id="autoSizingSelect" name="category">
+                                        <% subjects.forEach(course=> { %>
+                                            <option value="<%= course._id %>">
+                                                <%= course.title %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="hide" name="hidden">
+                                    <label class="form-check-label" for="hide">hide from course?</label>
+                                </div>
+                                <input type="submit" value="Add Series" class="btn btn-primary">
+                            </form>
                 </div>
             </div>
             </div>

@@ -1,4 +1,5 @@
 const express = require('express');
+const subjectCategoryModel = require('../models/subjectCategoryModel');
 const SubjectRoute = express.Router();
 var subjectCategory = require('../models/subjectCategoryModel');
 const testSeriesModel = require('../models/testSeriesModel');
@@ -46,15 +47,28 @@ SubjectRoute
             }
         })
     })
-    .post("/testseries/create/", (req, res) => {
+    .post("/testseries/create/", async (req, res) => {
         req.body.hidden = req.body.hidden ? 1 : 0
         console.log(req.body)
         var TestSeries = new testSeriesModel(req.body)
+        var SubjectCategories = await subjectCategoryModel.find({})
         TestSeries.save((err, data) => {
             if (!err) {
-                return res.json({ msg: `${data.title} created successfully!`, success: true })
+                data = {
+                    title: "Add Test Series",
+                    msg: "Added Successfully!",
+                    success: true
+                }
+                return res.render('admin/addSeries', { data, subjects: SubjectCategories })
+                // return res.json({ msg: `${data.title} created successfully!`, success: true })
             } else {
-                return res.json({ msg: err.message, success: false })
+                data = {
+                    title: "Add Test Series",
+                    msg: err,
+                    success: false
+                }
+                return res.render('admin/addSeries', { data, subjects: SubjectCategories })
+                // return res.json({ msg: err.message, success: false })
             }
         })
     })

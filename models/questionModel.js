@@ -19,6 +19,10 @@ const questionSchema = new Schema({
         required: true,
         default: null
     },
+    explaination: {
+        type: String,
+        default: null
+    },
     hidden: {
         type: Boolean,
         default: false
