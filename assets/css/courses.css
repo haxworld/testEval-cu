@@ -3,7 +3,24 @@
     min-width: 130px;
     cursor: pointer;
 }
-
+.size2
+{
+    min-width: 269px;
+    cursor: pointer;
+}
+.coloured-circles
+{
+  background-color: white;
+}
+.extra
+{
+  transform: scale(1);
+  transition: .3s ease-in-out;
+}
+.extra:hover
+{
+  transform: scale(0.9);
+}
 .incre {
     width: 100px;
     height: 100px;
@@ -17,6 +34,9 @@
   .round-corner
   {
     background-color: var(--highlight);
+    background-color: #f84f46;
+   
+    /* background-color: #66b0f0; */
   }
 
   .underline
@@ -42,11 +62,36 @@
 
   .show
   {
+    position: static;
     visibility: visible !important;
     /* display: block !important; */
   }
 
-  /* .colour-changer
+  p{
+    font-family: 'Poppins';
+    color: var(--secondary);
+  }
+
+  .styling
   {
-    background-color: red;
-  } */
+    font-family: 'Poppins';
+    font-weight: 600;
+  }
+
+  .neu
+  {
+    border-radius: 5%;
+    box-shadow:  -3px -3px 7px rgba(213, 208, 208, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
+  }
+  .neu2
+  {
+    box-shadow: -3px -3px 7px #ffffff73,3px 3px 5px rgb(94, 104, 121,.288) !important;
+    transform: scale(1);
+    /* transition: all .8s ease-in-out; */
+    /* cursor: pointer; */
+  }
+  .neu2:hover
+  {
+    transform: scale(1.1);
+    box-shadow: inset -3px -3px 7px #ffffff73,inset 3px 3px 5px rgb(94, 104, 121,.288) !important;
+  }
