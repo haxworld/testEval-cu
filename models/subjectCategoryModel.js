@@ -6,10 +6,6 @@ const subjectCategorySchema = new Schema({
         type: String,
         unique: true
     },
-    categoryId: {
-        type: String,
-        default: null
-    },
     desc: String,
     hidden: Boolean,
 }, {

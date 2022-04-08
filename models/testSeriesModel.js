@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const subjectSchema = new Schema({
+const testSeriesSchema = new Schema({
     title: {
         required: true,
         type: String,
@@ -8,11 +8,11 @@ const subjectSchema = new Schema({
     },
     category: {
         type: Schema.Types.ObjectId,
-        ref: 'TestCategory'
+        ref: 'SubjectCategory'
     },
     totalTime: {
-        type: Date,
-        default: null
+        type: Number,
+        default: 0
     },
     desc: String,
     hidden: Boolean,
@@ -20,4 +20,4 @@ const subjectSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('Subject', subjectSchema);
+module.exports = mongoose.model('TestSeries', testSeriesSchema);
