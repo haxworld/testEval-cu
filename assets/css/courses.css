@@ -51,15 +51,15 @@
   .view-topic-1
   {
     position: absolute;
-    visibility:hidden;
-    /* display: none !important; */
+    /* visibility:hidden; */
+    display: none !important;
   }
 
   .show
   {
     position: static;
-    visibility: visible !important;
-    /* display: block !important; */
+    /* visibility: visible !important; */
+    display: flex !important;
   }
 
   p{

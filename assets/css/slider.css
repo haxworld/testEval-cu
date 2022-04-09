@@ -1,6 +1,6 @@
 
 .course-img img{
-    height: 100%;
+    /* height: 50%; */
     width: 100%;
 }
 #slider
@@ -21,7 +21,8 @@
     background-position: center;
     background-size: cover;
     width: 320px;
-    box-shadow: 0 2px 8px var(--shadow);
+    /* box-shadow: 0 2px 8px var(--shadow); */
+    padding: 0 8px;
 }
 .swiper-slide-active
 {

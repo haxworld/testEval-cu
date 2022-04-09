@@ -59,9 +59,11 @@ const addQuestion = () => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
+            $(".status").append(`<div class='card border border-success'> <div class='card-body text-success'>${data.msg}</div></div>`);
         })
         .catch((error) => {
             console.error("Error:", error);
+            $(".status").append(`<div class='card border border-danger'> <div class='card-body text-danger'>${data.msg}</div></div>`);
         });
 }
 
