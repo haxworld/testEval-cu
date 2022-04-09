@@ -31,22 +31,6 @@ eyeBtn.addEventListener('click',()=>{
     }
 })
 
-// // username/email
-// function validate() {
-//     let field = document.getElementById('text1').value;
-
-//     // CHeck if email
-//     if (/\@/.test(field)) {
-//         field.type = 'email';
-//         field.name = 'email'
-//     }
-//     else {
-//         // Validate username
-        
-//         field.name = 'username'
-//     }
-// }
-
 // Toggling sign in and sign up
 
 const signUpBtn = document.querySelector('.sign-up-btn');
@@ -67,3 +51,15 @@ signInBtn.addEventListener('click',()=>{
 
     signInForm.classList.add('show');
 })
+
+// popup forgot password
+function popupToggle()
+{
+    
+    const popup = document.getElementById('popup');
+    popup.classList.toggle('live');
+
+    const signBox = document.getElementById('vanish');
+    signBox.classList.toggle('live')
+    
+}

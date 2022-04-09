@@ -16,16 +16,16 @@
 </head>
 
 <body>
-    Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a
-        href="https://icons8.com/illustrations">Ouch!</a>
+    <!-- Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a
+        href="https://icons8.com/illustrations">Ouch!</a> -->
     <!-- Sign in -->
-    <div class="form-container sign-in-form">
+    <div class="form-container sign-in-form" id="vanish">
         <div class="form-box sign-in-box">
             <h2>Login</h2>
             <form action="/login" method="post">
                 <div class="field">
                     <i class="fa-solid fa-at"></i>
-                    <input type="text" id="text1" name="email" placeholder="Email" required>
+                    <input type="email" id="text1" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="field">
@@ -36,27 +36,12 @@
                     </div>
                 </div>
                 <div class="forgot-link">
-                    <a href="">Forgot password?</a>
+                    <a onclick="popupToggle();" >Forgot password?</a>
                 </div>
+
+                
                 <input type="submit" class="submit-btn" value="Login">
             </form>
-
-            <div class="login-options">
-                <p class="text">
-                    Or, login with...
-                </p>
-                <div class="other-logins">
-                    <a href="">
-                        <img src="images/google.png" alt="">
-                    </a>
-                    <a href="">
-                        <img src="images/facebook.png" alt="">
-                    </a>
-                    <a href="">
-                        <img src="images/apple.png" alt="">
-                    </a>
-                </div>
-            </div>
 
         </div>
         <div class="imgBox sign-in-imgBox">
@@ -80,23 +65,7 @@
         </div>
         <div class="form-box sign-up-box">
             <h2>Sign up</h2>
-            <div class="login-options">
-
-                <div class="other-logins">
-                    <a href="">
-                        <img src="images/google.png" alt="">
-                    </a>
-                    <a href="">
-                        <img src="images/facebook.png" alt="">
-                    </a>
-                    <a href="">
-                        <img src="images/apple.png" alt="">
-                    </a>
-                </div>
-                <p class="text">
-                    Or, sign up with email...
-                </p>
-            </div>
+            
             <form action="/signup" method="post">
                 <div class="field">
                     <i class="fa-solid fa-at"></i>
@@ -130,7 +99,28 @@
 
     </div>
 
+    <!-- Send the email popup -->
+    <div id="popup">
+        <div class="content">
+            <img src="images/rocket.png" alt="" class="mb-4">
+             <h2>Password Recovery</h2>
+            
+            <form action="#" method="post">
+                <div class="field">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" name="fp-email" placeholder="Email" required>
+                </div>
 
+                <input type="submit" class="submit-btn" value="Send" style="background-color: #d53e4c;"> 
+            </form>
+
+        </div>
+
+        <a onclick="popupToggle();" class="close" >
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+
+    </div>
     <script src="/js/auth.js"></script>
 
 </body>
