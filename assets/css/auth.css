@@ -132,6 +132,20 @@ body
     visibility: hidden;
     transition: 1s;
 }
+.reset-box
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background: var(--ash);
+    width: 450px;
+    padding: 80px 50px 50px;
+    border-radius: 5px;
+    
+    box-shadow: 0 15px 30px rgb(70, 70, 71) !important;
+}
 #popup.live{
     
     visibility: visible;
@@ -144,7 +158,7 @@ body
 {
     border-bottom: 2px solid var(--secondary);
 }
-#popup .content
+.content
 {
     position: relative;
     width: 100%;
@@ -153,9 +167,7 @@ body
     align-items: center;
     flex-direction: column;
 }
-#popup .content img{
-    max-width: 80px;
-}
+
 
 .close
 {

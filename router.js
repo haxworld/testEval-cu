@@ -1,6 +1,7 @@
 const express = require('express');
 const { isSignedIn, isAdmin } = require('./helpers/verifyToken');
 const AuthRouter = require('./routes/AuthRoute');
+const ResetRouter = require('./routes/ResetPasswordRoute');
 const ProfileRouter = require('./routes/ProfileRoute');
 const QuestionRouter = require('./routes/QuestionRoute');
 const SubjectRouter = require('./routes/SubjectRoute');
@@ -69,7 +70,7 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
     res.render('demotest', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.uuid, subjectTitle: subject.title, timer: testStartTime, name });
 })
 
-router.get('/exam', (req, res) => {
+router.get('/exam',isSignedIn, (req, res) => {
     res.render('test');
 })
 router.get('/sadmin', (req, res) => {
@@ -81,6 +82,7 @@ router.get('/sadmin', (req, res) => {
 
 
 router.use(AuthRouter);
+router.use(ResetRouter);
 router.use(SubjectRouter);
 router.use(QuestionRouter);
 router.use(ExamRouter);
