@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
-const {google} = require('googleapis')
-const {OAuth2} = google.auth;
+const { google } = require('googleapis')
+const { OAuth2 } = google.auth;
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
 
 
@@ -12,28 +12,28 @@ const {
 } = process.env
 
 const oauth2Client = new OAuth2
-(
-    MAILING_SERVICE_CLIENT_ID,
-    MAILING_SERVICE_CLIENT_SECRET,
-    MAILING_SERVICE_REFRESH_TOKEN,
-    OAUTH_PLAYGROUND
-)
+    (
+        MAILING_SERVICE_CLIENT_ID,
+        MAILING_SERVICE_CLIENT_SECRET,
+        MAILING_SERVICE_REFRESH_TOKEN,
+        OAUTH_PLAYGROUND
+    )
 
 // send mail
-module.exports.sendEmail = (to,user_name,url)=>{
+module.exports.sendEmail = (to, user_name, url) => {
     oauth2Client.setCredentials({
-        refresh_token:MAILING_SERVICE_REFRESH_TOKEN
+        refresh_token: MAILING_SERVICE_REFRESH_TOKEN
     })
 
     const accessToken = oauth2Client.getAccessToken();
     const smtpTransport = nodemailer.createTransport({
-        service:'gmail',
-        auth:{
+        service: 'gmail',
+        auth: {
             type: 'OAuth2',
             user: SENDER_EMAIL_ADDRESS,
             clientId: MAILING_SERVICE_CLIENT_ID,
-            clientSecret:MAILING_SERVICE_CLIENT_SECRET,
-            refreshToken:MAILING_SERVICE_REFRESH_TOKEN,
+            clientSecret: MAILING_SERVICE_CLIENT_SECRET,
+            refreshToken: MAILING_SERVICE_REFRESH_TOKEN,
             accessToken
         }
     });
@@ -41,10 +41,9 @@ module.exports.sendEmail = (to,user_name,url)=>{
     const mailOptions = {
         from: `Grabitt ${SENDER_EMAIL_ADDRESS}`,
         to: to,
-        subject:`🔑 Reset Password`,
-        html:`<div style="width:60%;margin:auto;font-family:'Poppins';">
-        <h1 style = "font-family: 'merriweather'; color: #5463ff; font-style: italic;">Grabitt</h1>
-        
+        subject: `🔑 Reset Password`,
+        html: `<div style="width:60%;margin:auto;font-family:'Poppins';">
+        <img src="https://grabitt.haxworld.net/logo/logo.png" height="80" alt="Grabitt"/>
         <h2>Hi, ${user_name}</h2>
         <p style = "color:gray;">Forgot your password? Let&rsquo;s set up a new one!</p>
         <p style="color:black; font-weight:bold">Click this link: </p>
@@ -54,9 +53,8 @@ module.exports.sendEmail = (to,user_name,url)=>{
       </div>`
     }
 
-    smtpTransport.sendMail(mailOptions,(err,info)=>{
-        if(err)
-        {
+    smtpTransport.sendMail(mailOptions, (err, info) => {
+        if (err) {
             console.log(err.message);
             return;
         }

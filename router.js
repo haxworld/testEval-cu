@@ -58,7 +58,7 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
     })
 
     let formattedFirstQues = {
-        
+
         questionId: question[0]._id,
         question: question[0].title,
         subjectId: question[0].subjectId,
@@ -71,7 +71,7 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
     res.render('demotest', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.uuid, subjectTitle: subject.title, timer: testStartTime, name });
 })
 
-router.get('/exam',isSignedIn, (req, res) => {
+router.get('/exam', isSignedIn, (req, res) => {
     res.render('test');
 })
 router.get('/sadmin', (req, res) => {

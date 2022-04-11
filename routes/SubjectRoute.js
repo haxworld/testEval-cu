@@ -1,29 +1,43 @@
 const express = require('express');
+const questionModel = require('../models/questionModel');
 const subjectCategoryModel = require('../models/subjectCategoryModel');
 const SubjectRoute = express.Router();
-var subjectCategory = require('../models/subjectCategoryModel');
 const testSeriesModel = require('../models/testSeriesModel');
+
 SubjectRoute
-    .get("/subjectCategory", (req, res) => {
-        // subjectCategory.find({}, (err, data) => {
-        //     if (!err) {
-        //         return res.json({ subjects: data, success: true })
-        //     } else {
-        //         return res.json({ msg: err.message, success: false })
-        //     }
-        // })
-        subjectCategory.find({}, (err, data) => {
-            if (!err) {
-                return res.render('courses', {
-                    subjects: data,
-                    success: true
-                });
+    .get("/subjectCategory", async (req, res) => {
+        try {
+            let aptitude = await testSeriesModel.find({
+                category: '624f00ffd864bf25802c6042'
+            }).populate(
+                "count"
+            );
 
-            } else {
-                return res.json({ msg: err.message, success: false })
-            }
-        })
-
+            let core = await testSeriesModel.find({
+                category: '624f0114d864bf25802c6044'
+            }).populate(
+                "count"
+            );
+            let dsa = await testSeriesModel.find({
+                category: '624f011bd864bf25802c6046'
+            }).populate(
+                "count"
+            );
+            let verbal = await testSeriesModel.find({
+                category: '624f0130d864bf25802c6048'
+            }).populate(
+                "count"
+            );
+            return res.render('courses', {
+                aptitude,
+                core,
+                dsa,
+                verbal,
+                success: true
+            });
+        } catch (error) {
+            return res.json({ msg: error, success: false })
+        }
     })
     .post("/subjectCategory/create/", (req, res) => {
         req.body.hidden = req.body.hidden ? 1 : 0
@@ -38,14 +52,21 @@ SubjectRoute
     })
 
 SubjectRoute
-    .get("/testseries", (req, res) => {
-        testSeriesModel.find({}, (err, data) => {
-            if (!err) {
-                return res.json({ subjects: data, success: true })
-            } else {
-                return res.json({ msg: err.message, success: false })
-            }
-        })
+    .get("/testseries", async (req, res) => {
+        const products = await testSeriesModel.find({
+            category: '624f00ffd864bf25802c6042'
+        }).populate(
+            "count"
+        );
+
+        return res.json(products)
+        // testSeriesModel.find({}, (err, data) => {
+        //     if (!err) {
+        //         return res.json({ subjects: data, success: true })
+        //     } else {
+        //         return res.json({ msg: err.message, success: false })
+        //     }
+        // })
     })
     .post("/testseries/create/", async (req, res) => {
         req.body.hidden = req.body.hidden ? 1 : 0

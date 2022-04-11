@@ -102,793 +102,254 @@
         </div>
         <!--1st row ends-->
 
-        <div class="row d-flex justify-content-evenly view-topic-1 dsa card-topics">
-          <!--dsa-->
+        <!--dsa-->
+        <div class="row d-flex justify-content-start view-topic-1 dsa card-topics">
           <!-- cards -->
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5 ">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
+          <% if (dsa) { %>
+            <% dsa.forEach(element=> { %>
+              <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
+                <div class="w-100 h-100  bg-white d-flex flex-column neu">
 
 
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
+                  <div class="d-flex justify-content-start ">
+                    <div
+                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
+                      style="background-color: #ffd6cf;">
+                      <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                     </div>
                   </div>
 
-                  <a href="/exam">
 
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                  <div class="d-flex m-auto flex-column mx-3">
+                    <h5 class="styling">
+                      <%= element.title %>
+                    </h5>
+                    <p>
+                      <%= element.desc %>
+                    </p>
+
+                    <div class="d-flex mt-2">
+                      <div>
+                        <div class="d-flex justify-content-start align-items-center  ">
+                          <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.count %> MCQs
+                          </p>
+                        </div>
+
+                        <div class="d-flex justify-content-start align-items-center mb-4 ">
+                          <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.totalTime %> minutes
+                          </p>
+                        </div>
+                      </div>
+
+                      <a href="/exam">
+
+                        <div
+                          class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
+                          style="width: 40px; height: 40px;">
+                          <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                        </div>
+
+                      </a>
                     </div>
 
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
                   </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                 </div>
               </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
+              <% }) %>
+                <% } %>
+                  <!-- cards end -->
         </div>
         <!--dsa ends-->
-
-        <div class="row d-flex justify-content-evenly view-topic-1 core card-topics">
-          <!--core-->
+        <!--core-->
+        <div class="row d-flex justify-content-start view-topic-1 core card-topics">
           <!-- cards -->
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
+          <% if (core) { %>
+            <% core.forEach(element=> { %>
+              <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
+                <div class="w-100 h-100  bg-white d-flex flex-column neu">
 
 
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
+                  <div class="d-flex justify-content-start ">
+                    <div
+                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
+                      style="background-color: #ffd6cf;">
+                      <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                     </div>
                   </div>
 
-                  <a href="/exam">
 
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                  <div class="d-flex m-auto flex-column mx-3">
+                    <h5 class="styling">
+                      <%= element.title %>
+                    </h5>
+                    <p>
+                      <%= element.desc %>
+                    </p>
+
+                    <div class="d-flex mt-2">
+                      <div>
+                        <div class="d-flex justify-content-start align-items-center  ">
+                          <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.count %> MCQs
+                          </p>
+                        </div>
+
+                        <div class="d-flex justify-content-start align-items-center mb-4 ">
+                          <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.totalTime %> minutes
+                          </p>
+                        </div>
+                      </div>
+
+                      <a href="/exam">
+
+                        <div
+                          class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
+                          style="width: 40px; height: 40px;">
+                          <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                        </div>
+
+                      </a>
                     </div>
 
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
                   </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                 </div>
               </div>
+              <% }) %>
+                <% } %>
+                  <!-- cards end -->
 
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
         </div>
         <!--core ends-->
-        <div class="row d-flex justify-content-evenly view-topic-1 aptitude card-topics">
+        <div class="row d-flex justify-content-start view-topic-1 aptitude card-topics">
           <!--aptitude-->
           <!-- cards -->
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
+          <% if (aptitude) { %>
+            <% aptitude.forEach(element=> { %>
+              <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
+                <div class="w-100 h-100  bg-white d-flex flex-column neu">
 
 
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
+                  <div class="d-flex justify-content-start ">
+                    <div
+                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
+                      style="background-color: #ffd6cf;">
+                      <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                     </div>
                   </div>
 
-                  <a href="/exam">
 
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                  <div class="d-flex m-auto flex-column mx-3">
+                    <h5 class="styling">
+                      <%= element.title %>
+                    </h5>
+                    <p>
+                      <%= element.desc %>
+                    </p>
+
+                    <div class="d-flex mt-2">
+                      <div>
+                        <div class="d-flex justify-content-start align-items-center  ">
+                          <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.count %> MCQs
+                          </p>
+                        </div>
+
+                        <div class="d-flex justify-content-start align-items-center mb-4 ">
+                          <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.totalTime %> minutes
+                          </p>
+                        </div>
+                      </div>
+
+                      <a href="/exam">
+
+                        <div
+                          class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
+                          style="width: 40px; height: 40px;">
+                          <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                        </div>
+
+                      </a>
                     </div>
 
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
                   </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                 </div>
               </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
+              <% }) %>
+                <% } %>
+                  <!-- cards end -->
         </div>
         <!--aptitude ends-->
-        <div class="row d-flex justify-content-evenly view-topic-1 verbal card-topics">
-          <!--verbal-->
+        <!--verbal-->
+        <div class="row d-flex justify-content-start view-topic-1 verbal card-topics">
           <!-- cards -->
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
+          <% if (verbal) { %>
+            <% verbal.forEach(element=> { %>
+              <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
+                <div class="w-100 h-100  bg-white d-flex flex-column neu">
 
 
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
+                  <div class="d-flex justify-content-start ">
+                    <div
+                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
+                      style="background-color: #ffd6cf;">
+                      <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                     </div>
                   </div>
 
-                  <a href="/exam">
 
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                  <div class="d-flex m-auto flex-column mx-3">
+                    <h5 class="styling">
+                      <%= element.title %>
+                    </h5>
+                    <p>
+                      <%= element.desc %>
+                    </p>
+
+                    <div class="d-flex mt-2">
+                      <div>
+                        <div class="d-flex justify-content-start align-items-center  ">
+                          <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.count %> MCQs
+                          </p>
+                        </div>
+
+                        <div class="d-flex justify-content-start align-items-center mb-4 ">
+                          <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
+                          <p class="mb-0 ms-4 " style="font-weight: 600">
+                            <%= element.totalTime %> minutes
+                          </p>
+                        </div>
+                      </div>
+
+                      <a href="/exam">
+
+                        <div
+                          class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
+                          style="width: 40px; height: 40px;">
+                          <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
+                        </div>
+
+                      </a>
                     </div>
 
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
                   </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
                 </div>
               </div>
+              <% }) %>
+                <% } %>
+                  <!-- cards end -->
 
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 size2 mb-sm-3 mb-md-5">
-            <div class=" w-100 h-100  bg-white d-flex flex-column neu">
-
-
-              <div class="d-flex justify-content-start ">
-                <div
-                  class="rounded-circle d-flex justify-content-center align-items-center coloured-circles my-3 shadow ms-3 "
-                  style="background-color: #ffd6cf;">
-                  <i class="fa-solid fa-link" style="font-size: 30px; color: #ec4807"></i>
-                </div>
-              </div>
-
-
-              <div class="d-flex m-auto flex-column my-0 m-auto">
-                <h5 class="styling">Linked List</h5>
-                <p>Lorem ipsum dolor sit amet </p>
-
-                <div class="d-flex">
-                  <div>
-                    <div class="d-flex justify-content-start align-items-center  ">
-                      <img src="images/questions.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        45 MCQs
-                      </p>
-                    </div>
-
-                    <div class="d-flex justify-content-start align-items-center mb-4 ">
-                      <img src="images/timer.png" style="width: 20px; height: 20px;" class=""></img>
-                      <p class="mb-0 ms-4 " style="font-weight: 600">
-                        2 hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <a href="/exam">
-
-                    <div
-                      class="rounded-circle d-flex justify-content-center align-items-center coloured-circles shadow neu2 ms-5"
-                      style="width: 40px; height: 40px;">
-                      <img src="images/play.png" style="width: 20px; height: 20px;" class=""></img>
-                    </div>
-
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
         </div>
         <!--verbal ends-->
 
