@@ -12,6 +12,7 @@ const questionModel = require('./models/questionModel');
 const _ = require('lodash');
 const testSeriesModel = require('./models/testSeriesModel');
 const ExamRouter = require('./routes/ExamRoute');
+
 router.get('/', (req, res) => {
     return res.render('home', {
         title: 'Home',
@@ -29,7 +30,7 @@ router.get('/start', isSignedIn, async (req, res) => {
     let testId = uuid4();
     let user = req.user.id;
     let now = new Date();
-    let subjectId = '623d0acb9b90aa79ea9fb225'
+    let subjectId = '62516fcbd4a117301580828f'
     let update = {
         $set: {
             currentTestId: testId,

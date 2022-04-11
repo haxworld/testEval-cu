@@ -67,4 +67,5 @@ const addQuestion = () => {
         });
 }
 
+
 quillDisplay.root.innerHTML = '<p>What is the output of this code?</p><pre class="ql-syntax" spellcheck="false"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"hello world"</span>);\n<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"namnamnam"</span>);\n<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++){\n &nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);\n}\n</pre><p><br></p>'

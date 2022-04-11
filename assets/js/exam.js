@@ -51,6 +51,7 @@ function buttonclick(e) {
 
 //
 function onlyOne(e) {
+    $('input[type="checkbox"]').not(e).prop('checked', false);
     $('#reviewBtn').prop('disabled', false);
     let selectedAnswers = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
     const currentQuesId = localStorage.getItem('currentQuesId')
