@@ -35,14 +35,14 @@ body
     overflow: hidden;
 }
 
-.form-box h2{
+ h2{
     font-size: 2em;
     margin-bottom: 40px;
     font-weight: 700;
-
+    font-family: 'Merriweather';
 }
 
-.form-box .field
+.field
 {
     display: flex;
     justify-content: center;
@@ -50,12 +50,12 @@ body
     border-bottom: 2px solid #eee;
     margin-bottom: 25px;
 }
-.form-box .field.active
+.field.active
 {
     border-bottom: 2px solid var(--primary);
     transition: all 0.3s ease;
 }
-.form-box .field input
+.field input
 {
     border: none;
     outline: none;
@@ -65,7 +65,7 @@ body
     padding-bottom: 5px;
 }
 
-.form-box .field i{
+ .field i{
     color: #828da0;
     font-size: 1.3em;
     margin-right: 10px;
@@ -73,7 +73,7 @@ body
 
 }
 
-.form-box .field.active i{
+.field.active i{
     color:  var(--primary);
     transition: all 0.3s ease;
 }
@@ -97,17 +97,89 @@ body
 
 .forgot-link
 {
-    text-align: center;
+    /* text-align: center; */
     transform: translateY(-10px);
+    cursor: pointer;
 }
 
 .forgot-link a{
-    color: var(--primary);
+    color: var(--primary) !important;
     font-size: 0.8em;
     text-decoration: none;
     font-weight: 500;
 }
+#vanish.live 
+{
+    /* filter: blur(20px); */
+    display: none;
+    pointer-events: none;
+    user-select: none;
+}
+/* popup */
+#popup
+{
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background: var(--ash);
+    width: 450px;
+    padding: 80px 50px 50px;
+    border-radius: 5px;
+    
+    box-shadow: 0 15px 30px rgb(70, 70, 71) !important;
+    visibility: hidden;
+    transition: 1s;
+}
+.reset-box
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background: var(--ash);
+    width: 450px;
+    padding: 80px 50px 50px;
+    border-radius: 5px;
+    
+    box-shadow: 0 15px 30px rgb(70, 70, 71) !important;
+}
+#popup.live{
+    
+    visibility: visible;
+    top: 50%;
+}
+#popup .field.active i{
+    color: var(--secondary);
+}
+#popup .field.active
+{
+    border-bottom: 2px solid var(--secondary);
+}
+.content
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+
+.close
+{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+.close i{
+    font-size: 30px;
+    color: #d53e4c;
+}
 .submit-btn
 {
     background: var(--primary);

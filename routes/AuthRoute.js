@@ -1,6 +1,7 @@
 const express = require('express');
 const { signIn, register } = require('../controllers/auth');
 const { generateToken, generateRefreshToken } = require('../helpers/jwtTokens');
+const { isSignedIn } = require('../helpers/verifyToken');
 const refreshTokenModel = require('../models/refreshTokenModel');
 const AuthRoute = express.Router();
 
@@ -130,4 +131,6 @@ AuthRoute
         res.clearCookie('refreshToken', { path: '/' });
         return res.redirect('/')
     });
+
+
 module.exports = AuthRoute;
