@@ -39,6 +39,7 @@ function buttonclick(e) {
             quillOption2.root.innerHTML = data.questions.options[1]
             quillOption3.root.innerHTML = data.questions.options[2]
             quillOption4.root.innerHTML = data.questions.options[3]
+            //question
             quillDisplay.root.innerHTML = data.questions.question
             // 
             checkIfCheckboxChecked();

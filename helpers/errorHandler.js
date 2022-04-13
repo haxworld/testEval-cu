@@ -31,6 +31,8 @@ module.exports = async (err, req, res, next) => {
                 res.cookie('token', token)
                 return next()
             }
+            let redirect = req.headers.referer || req.originalUrl || req.url;
+            res.cookie('redirect', redirect, { maxAge: 50000, httpOnly: true });
             return res.status(401).redirect('/login')
         // return res.status(401).json({ message: 'Unauthorized' });
 

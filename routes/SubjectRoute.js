@@ -6,13 +6,13 @@ const testSeriesModel = require('../models/testSeriesModel');
 
 SubjectRoute
     .get("/subjectCategory", async (req, res) => {
+
         try {
             let aptitude = await testSeriesModel.find({
                 category: '624f00ffd864bf25802c6042'
             }).populate(
                 "count"
             );
-
             let core = await testSeriesModel.find({
                 category: '624f0114d864bf25802c6044'
             }).populate(
