@@ -74,6 +74,9 @@ router.get('/demo/:uuid', isSignedIn, async (req, res) => {
 router.get('/exam', isSignedIn, (req, res) => {
     res.render('test');
 })
+router.get('/result', isSignedIn, (req, res) => {
+    res.render('result');
+})
 router.get('/sadmin', (req, res) => {
     data = {
         title: "super admin menu"
