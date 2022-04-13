@@ -126,3 +126,18 @@ a {
 .activeques{
       border: 2px solid green;
 }
+
+/* The customed underline */
+.border-short {
+  position: relative;
+  display: inline-block;
+}
+.border-short::after {
+  content: "";
+  width: 8%;
+  height: 0.1rem;
+  background: var(--danger);
+  position: absolute;
+  left: calc(50% - 4%);
+  bottom: 0;
+}

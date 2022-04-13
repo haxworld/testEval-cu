@@ -15,63 +15,189 @@
 <body>
     <!-- Nav Bar -->
     <%- include('./partials/navbar'); %>
-        <section id="body-color">
+        <section id="body-color" class="pb-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-2 mt-3">
+                    <div class="col-lg-2 my-3">
                         <div class="bg-white text-center shadow-sm rounded h-100">
                             <img src="images/girl.jpg" alt="profile.pic" class="profile-pic shadow-sm m-3 mb-2">
-                            <h6 class="mb-3">Rashmi Prasad Roy</h6>
+                            <h6 class="mb-3 text-purple" style="font-weight: bold;">Rashmi Prasad Roy</h6>
                         </div>
                     </div>
-                    <div class="col-lg-10 mt-3">
+                    <div class="col-lg-10 my-3">
                         <div class="bg-white shadow-sm rounded h-100">
-                            <h6>Assestment Details</h6>
-                            <div class="row px-3 m-auto">
-                                <div class="col">
-                                    <div class="row text-purple">
-                                        <div class="col subjects mt-4">Test Id  </div>
-                                        <div class="col subjects mt-4">:&nbsp1567xy34sw</div>
+                            <h6 class="p-3 w-25  m-auto">Assestment Details</h6>
+                            <div class="row px-3 m-auto d-flex justify-content-center">
+                                <div class="px-3 d-flex flex-column">
+                                    <div class="d-flex justify-content-around change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="mt-3 sizing">Test Id </div>
+                                            <div class="mt-3 sizing">:&nbsp1567xy34sw</div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5">
+                                            <div class="mt-3 sizing">Topic Name </div>
+                                            <div class="mt-3 sizing">:&nbspTrees</div>
+                                        </div>
                                     </div>
-                                    <div class="row text-purple">
-                                        <div class="col subjects">Total Ques</div>
-                                        <div class="col subjects">:&nbsp45</div>
+                                    <div class="d-flex justify-content-around change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="mt-3 sizing">Total Questions </div>
+                                            <div class="mt-3 sizing">:&nbsp45</div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5">
+                                            <div class="mt-3 sizing">Total Time </div>
+                                            <div class="mt-3 sizing">:&nbsp01:00:00</div>
+                                        </div>
                                     </div>
-                                    <div class="row text-purple">
-                                        <div class="col subjects">Marks</div>
-                                        <div class="col subjects">:&nbsp80/90</div>
+                                    <div class="d-flex justify-content-around change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="my-3 sizing">Marks </div>
+                                            <div class="my-3 sizing">:&nbsp80/90</div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5">
+                                            <div class="my-3 sizing">Accuracy </div>
+                                            <div class="my-3 sizing">:&nbsp90%</div>
+                                        </div>
                                     </div>
+                                    
                                 </div>
-                                <div class="col">
-                                    <div class="row text-purple">
-                                        <div class="col subjects mt-4">Topic Name   </div>
-                                        <div class="col subjects mt-4">:&nbspTrees</div>
-                                    </div>
-                                    <div class="row text-purple">
-                                        <div class="col subjects">Total Time</div>
-                                        <div class="col subjects">:&nbsp01:00:00</div>
-                                    </div>
-                                    <div class="row text-purple">
-                                        <div class="col subjects">Accuracy</div>
-                                        <div class="col subjects">:&nbsp90 %</div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="bg-white shadow-sm rounded h-100 d-flex flex-column">
+                    
+                            <div class="d-flex p-3">
+                                <div class="">
+                                    <div class="rounded-circle border mx-4 d-flex justify-content-center coloured-circles shadow align-items-center" style = "font-weight:bold;">
+                                        1
+                                    </div>
+                                </div>
+                                <div class="" style = "font-weight:bold;">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit error illo
+                                    commodi, soluta aperiam dolorum natus minima quia, ut voluptatibus voluptas.
+                                    Doloremque corporis aut ducimus cumque facere esse veniam repellendus!
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-circle-check mx-5 px-5 py-2" style="font-size: 30px; color: rgb(75, 178, 20);"></i>
+                            
+                            <div class="mx-5 px-5" >
+                                <div class="row m-auto">
+                                    <div class="col-lg-6 table-border">
+                                        <span class="m-auto" style="min-width: 131px; font-weight: bold;">Your answer: </span>
+                                    </div>
+
+                                    <div class="col-lg-6 table-border ">
+                                        <p class="m-auto" style="min-width: 131px;">c. &nbsplorem ipsum </p>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col-lg-6 table-border ">
+                                        
+                                        <p class="m-auto" style="min-width: 131px; font-weight: bold;">Correct answer: </p>
+
+                                    </div>
+
+                                    <div class="col-lg-6 table-border ">
+                                        
+                                        <p class="m-auto" style="min-width: 131px;">c. &nbsplorem ipsum </p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="d-flex flex-column px-5 pt-2 mx-5">
+                                <p class="mt-2">Explanation:</p>
+                                <p> <mark>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, explicabo labore
+                                    inventore ullam nisi dignissimos ex magnam, quia laboriosam quibusdam vero porro
+                                    molestias sequi atque et eum dolorem nihil hic.</mark> </p>
+                            </div>
+                    
+                    
+                        </div>
+                    
+                    </div>
+                    <!-- <div class="col-lg-3">
+                        <div class="bg-white shadow-sm rounded h-100 d-flex justify-content-center align-items-center">
+                            
+                                <i class="fa-solid fa-circle-check" style="font-size: 35px; color: rgb(75, 178, 20);"></i>
+                                <p class="m-auto mx-2">Correct</p>
+                            
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="bg-white shadow-sm rounded h-100 d-flex flex-column">
+                    
+                            <div class="d-flex p-3">
+                                <div class="">
+                                    <div class="rounded-circle border mx-4 d-flex justify-content-center coloured-circles shadow align-items-center" style = "font-weight:bold;">
+                                       2
+                                    </div>
+                                </div>
+                                <div class="" style = "font-weight:bold;">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit error illo
+                                    commodi, soluta aperiam dolorum natus minima quia, ut voluptatibus voluptas.
+                                    Doloremque corporis aut ducimus cumque facere esse veniam repellendus!
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-circle-xmark mx-5 px-5 py-2" style="font-size: 30px; color: rgb(230, 59, 59);"></i>
+                            
+                            <div class="mx-5 px-5" >
+                                <div class="row m-auto">
+                                    <div class="col-lg-6 table-border">
+                                        <span class="m-auto" style="min-width: 131px; font-weight: bold;">Your answer: </span>
+                                    </div>
+
+                                    <div class="col-lg-6 table-border ">
+                                        <p class="m-auto" style="min-width: 131px;">a. &nbsplorem ipsum </p>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col-lg-6 table-border ">
+                                        
+                                        <p class="m-auto" style="min-width: 131px; font-weight: bold;">Correct answer: </p>
+
+                                    </div>
+
+                                    <div class="col-lg-6 table-border ">
+                                        
+                                        <p class="m-auto" style="min-width: 131px;">c. &nbsplorem ipsum </p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="d-flex flex-column px-5 pt-2 mx-5">
+                                <p class="mt-2">Explanation:</p>
+                                <p> <mark>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, explicabo labore
+                                    inventore ullam nisi dignissimos ex magnam, quia laboriosam quibusdam vero porro
+                                    molestias sequi atque et eum dolorem nihil hic.</mark> </p>
+                            </div>
+                    
+                    
+                        </div>
+                    
+                    </div>
+                    <!-- <div class="col-lg-3">
+                        <div class="bg-white shadow-sm rounded h-100 d-flex justify-content-center align-items-center">
+                            
+                                <i class="fa-solid fa-circle-check" style="font-size: 35px; color: rgb(75, 178, 20);"></i>
+                                <p class="m-auto mx-2">Correct</p>
+                            
+                        </div>
+                    </div> -->
+                </div>
             </div>
 
         </section>
-
-
-
-
-
-
-
-
-
 
 
 

@@ -12,3 +12,47 @@
     width: 90px;
     border: 8px solid #e0f1ff;
 }
+
+.coloured-circles
+{
+    width: 30px;
+    height: 30px;
+}
+
+.table-border
+{
+    border: 2px solid var(--primary);
+    /* margin: 0.2px; */
+}
+
+.border-short::after
+{
+  left: calc(36% - 4%);
+  width: 30%;
+}
+
+.sizing
+{
+    min-width: 128px;
+}
+
+@media screen and (max-width:795px) {
+   .change-dir
+   {
+       flex-direction: column;
+   
+   }
+
+   .change-dir div div{
+        /* border: 2px solid black; */
+        /* text-align: center; */
+   }
+   .sizing
+   {
+       width: 100%;
+   }
+   .ms-5
+   {
+        margin: 0 !important;
+   }
+}
