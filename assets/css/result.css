@@ -1,3 +1,14 @@
-h1{
-    color: blue;
+#body-color {
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #535353;
+}
+
+.profile-pic {
+    clip-path: circle();
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    border: 8px solid #e0f1ff;
 }
