@@ -36,7 +36,7 @@ AuthRoute
     .post("/login", (req, res) => {
         let email = req.body.email
         let password = req.body.password
-
+        var redirectionUrl = req.cookies.redirect || '/profile';
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {
@@ -48,7 +48,7 @@ AuthRoute
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
                     // });
-                    return res.redirect('/profile')
+                    return res.redirect(redirectionUrl)
                 }
                 return res.send("Unknown error occoured!")
             })

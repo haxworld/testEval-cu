@@ -42,9 +42,9 @@ const UserSchema = new Schema({
         type: String,
         default: null
     },
-    currentTestSubjectId: {
+    currentTestSeriesId: {
         type: Schema.Types.ObjectId,
-        ref: 'Subject',
+        ref: 'TestSeries',
         default: null
     },
     testStartTime: {
