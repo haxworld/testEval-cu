@@ -15,6 +15,12 @@ router.get('/', (req, res) => {
 
 
 
+router.get('/p', isSignedIn, (req, res) => {
+    data = {
+        title: "Profile"
+    }
+    res.render('admin/profile_n', { data });
+})
 router.get('/result', isSignedIn, (req, res) => {
     res.render('result');
 })
