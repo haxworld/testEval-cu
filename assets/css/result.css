@@ -35,17 +35,16 @@
 {
     min-width: 128px;
 }
-
+.table-border + .table-border
+{
+    border-left: 1px solid transparent;
+    
+}
 @media screen and (max-width:795px) {
    .change-dir
    {
        flex-direction: column;
-   
-   }
-
-   .change-dir div div{
-        /* border: 2px solid black; */
-        /* text-align: center; */
+        
    }
    .sizing
    {
@@ -55,4 +54,23 @@
    {
         margin: 0 !important;
    }
+}
+
+@media screen and (max-width:991px) {
+    .table-border
+    {
+        border: 2px solid var(--primary) !important;
+        border-bottom: 1px solid transparent !important ;
+    }
+
+    /* .table-border:nth-child(2)
+    {
+        border-bottom: 2px solid var(--primary) !important ;
+    } */
+    .except
+    {
+        border-bottom: 2px solid var(--primary) !important ;
+    }
+    
+
 }
