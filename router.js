@@ -27,11 +27,17 @@ router.get('/result', isSignedIn, (req, res) => {
 router.get('/test', isSignedIn, (req, res) => {
     res.render('test');
 })
-router.get('/sadmin', (req, res) => {
+router.get('/sadmin', isSignedIn, (req, res) => {
     data = {
         title: "super admin menu"
     }
     res.render('admin/superAdmin', data);
+})
+router.get('/viewresult', isSignedIn, (req, res) => {
+    data = {
+        title: "View Result"
+    }
+    res.render('admin/view_result', { data });
 })
 
 

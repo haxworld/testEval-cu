@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300;700&family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --primary: #5463ff;
+  --ash: #f5f5f5;
+  --highlight: #ffc300;
+  --secondary: #2f2e41;
+  --headings: #5e5e5e;
+  --danger: #ff1818;
+  --shadow: #707070;
+}
+body{
+    font-family: "Poppins", sans-serif;
+     color: #080880;
+}
+p{
+    font-size:14px ;
+    
+}
+.header-tag{
+  font-size: 15px;
+}
+.btn{
+    font-size: 10px;
+    margin: 5px;
+    padding: 9px 5px;
+    text-align: center;
+    text-transform:none;
+}
+
+.fa-book{
+  font-size: 7px;
+}
