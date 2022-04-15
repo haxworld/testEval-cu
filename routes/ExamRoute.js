@@ -43,11 +43,17 @@ ExamRoute
     .get('/start/:seriesId', async (req, res) => {
         let testId = uuid4();
         let seriesId = req.params.seriesId
+        
+        
+        let series = await testSeriesModel.find({_id:seriesId})
+        .populate('category');
+        
+        
 
         data = {
             title: "Exam Instructions",
             testId,
-            seriesId
+            series
         }
         return res.render('pre_exam_info', {
             data
