@@ -16,10 +16,30 @@ const testResultSchema = new Schema({
         ref: 'SubjectCategory',
         required: true
     },
-    result: [{
+    // quesid, userchoice, outcome [array of objects]
+    // example:
+    //     [
+    //         {
+    //             "quesid": "6250666180a4cac53d76ef72",
+    //             "userchoice": "answer",
+    //             "outcome": 1
+    //         }
+    //     ] 
+    resultmeta: [{
         type: String,
         required: true
     }],
+    score: {
+        type: Number,
+        required: true
+    },
+    accuracy: {
+        type: String,
+        required: true
+    },
+    timetaken: {
+        type: Number //time taken by user in mins
+    },
     hidden: Boolean,
 }, {
     timestamps: true,
