@@ -48,8 +48,8 @@ AuthRoute
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
                     // });
-                    // return res.redirect(redirectionUrl)
-            return res.redirect('/profile')
+                    return res.redirect(redirectionUrl)
+            
 
                 }
                 return res.send("Unknown error occoured!")

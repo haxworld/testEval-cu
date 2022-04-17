@@ -6,6 +6,10 @@ const testResultSchema = new Schema({
         ref: 'User',
         required: true
     },
+    testid: {
+        type: String,
+        required: true
+    },
     testseriesid: {
         type: Schema.Types.ObjectId,
         ref: 'TestSeries',
@@ -18,24 +22,24 @@ const testResultSchema = new Schema({
     },
     // quesid, userchoice, outcome [array of objects]
     // example:
-        // [
-            // {
-            //     "quesid": "6250666180a4cac53d76ef72",
-            //     "userchoice": "answer",
-            //     "outcome": 1
-            // }
-        // ] 
-        resultmeta: [{
-            quesid: String,
-            userchoice: String,
-            outcome: String,
-        }],
+    //     [
+    //         {
+    //             "quesid": "6250666180a4cac53d76ef72",
+    //             "userchoice": "answer",
+    //             "outcome": 1
+    //         }
+    //     ] 
+    resultmeta: [{
+        quesid: String,
+        userchoice: String,
+        outcome: String,
+    }],
     score: {
         type: Number,
         required: true
     },
     accuracy: {
-        type: String,
+        type: Number,
         required: true
     },
     timetaken: {
