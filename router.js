@@ -9,9 +9,10 @@ const SubjectRouter = require('./routes/SubjectRoute');
 const SuperAdminRoute = require('./routes/SuperAdminRoute');
 const router = express.Router();
 const ExamRouter = require('./routes/ExamRoute');
+const resultModel = require('./models/resultModel');
 
 router.get('/', (req, res) => {
-    return res.render('home', { 
+    return res.render('home', {
         title: 'Home | Grabitt'
     });
 })
@@ -26,7 +27,7 @@ router.get('/p', isSignedIn, (req, res) => {
 })
 
 router.get('/test', isSignedIn, (req, res) => {
-    res.render('test');
+    res.render('demotest');
 })
 router.get('/sadmin', isSignedIn, (req, res) => {
     data = {
@@ -39,6 +40,22 @@ router.get('/viewresult', isSignedIn, (req, res) => {
         title: "View Result"
     }
     res.render('admin/view_result', { data });
+})
+router.post('/fetch', async (req, res) => {
+    console.log(req.body);
+    let result = new resultModel(req.body);
+    result.save()
+    res.end("jyhtgfd")
+    // let result = await resultModel.find({ _id: '62587def06320db5f07c087c' })
+    // console.log(result[0].resultmeta[0].quesid)
+})
+router.get('/fetch', async (req, res) => {
+    // console.log(req.body);
+    // let result = new resultModel(req.body);
+    // result.save()
+    // res.end("jyhtgfd")
+    let result = await resultModel.find({ _id: '625ad36f21d695bf3a6ec205' })
+    console.log(result[0].resultmeta[0].quesid)
 })
 
 

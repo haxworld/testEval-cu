@@ -6,6 +6,9 @@ const checkIfCheckboxChecked = () => {
             if (checkbox.review === 1) {
                 $('#reviewBtn').prop('disabled', true);
                 document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
+            } else if (checkbox.skip === 1) {
+                $('#reviewBtn').prop('disabled', true);
+                document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#E8630A';
             } else {
                 $('#reviewBtn').prop('disabled', false);
                 document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#A0E6B7';
@@ -17,18 +20,25 @@ const checkIfCheckboxChecked = () => {
 }
 //button
 function buttonclick(e) {
-    // console.log(e.value);
+    $('#reviewBtn').attr('onClick', 'skip()');
+    $('#reviewBtn').text('Skip');
     $("button").removeClass("activeques")
     $(e).addClass("activeques");
+    // check for last question
+    if ($(e).next().length > 0) {
+        $('#nextBtn').attr('onClick', 'saveandnext()');
+        $('#nextBtn').text('Save & next');
+    } else {
+        $('#nextBtn').attr('onClick', 'submittest()');
+        $('#nextBtn').text('Submit');
+    }
     fetch(`/question?s=${e.value}`, {
         method: "GET"
     })
         .then((response) => response.json())
         .then((data) => {
-            //
-            var clist = document.getElementsByTagName("input");
-            for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-
+            // 
+            $('input[type="checkbox"]').prop('checked', false);
             // console.log(data) 
             localStorage.setItem('currentQuesId', data.questions.questionId)
             document.getElementById('option1').value = data.questions.options[0]
@@ -54,6 +64,8 @@ function buttonclick(e) {
 function onlyOne(e) {
     $('input[type="checkbox"]').not(e).prop('checked', false);
     $('#reviewBtn').prop('disabled', false);
+    $('#reviewBtn').attr('onClick', 'reviewLater()');
+    $('#reviewBtn').text('Review');
     let selectedAnswers = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
     const currentQuesId = localStorage.getItem('currentQuesId')
 
@@ -66,17 +78,17 @@ function onlyOne(e) {
             id: localStorage.getItem('currentQuesId'),
             choice: e.value || "",
             review: 0,
+            skip: 0,
         };
         document.querySelector(`button[value="${answer.id}"]`).style.backgroundColor = '#A0E6B7';
         removeObj();
         selectedAnswers.push(answer);
     } else {
-        $('#reviewBtn').prop('disabled', true);
+        $('#reviewBtn').prop('disabled', false);
+        $('#reviewBtn').attr('onClick', 'skip()');
+        $('#reviewBtn').text('Skip');
         removeObj();
         document.querySelector(`button[value="${localStorage.getItem('currentQuesId')}"]`).style.backgroundColor = '#F7B2B2';
     }
     localStorage.setItem("selectedAnswers", JSON.stringify(selectedAnswers));
 }
-
-// TODO:
-// push and fetch from db (initial data)

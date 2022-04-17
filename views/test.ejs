@@ -79,21 +79,37 @@
                     </div>
                     <div class="row mt-5 justify-content-center">
                         <div class="row">
-                            <div class="col-md-6">
-                                <input type="checkbox" name="option" id="option1" onclick="onlyOne(this)" />
-                                <label for="option1" id="optionEditor1">Disabled checkbox</label>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm">
+                                    <input type="checkbox" name="option" id="option1" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" />
+                                    <label class="form-check-label" for="option1" id="optionEditor1">Disabled
+                                        checkbox</label>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="checkbox" name="option" id="option2" onclick="onlyOne(this)" />
-                                <label for="option2" id="optionEditor2"></label>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm">
+                                    <input type="checkbox" name="option" id="option2" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" />
+                                    <label class="form-check-label" for="option2" id="optionEditor2">Disabled
+                                        checkbox</label>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="checkbox" name="option" id="option3" onclick="onlyOne(this)" />
-                                <label for="option3" id="optionEditor3"></label>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm">
+                                    <input type="checkbox" name="option" id="option3" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" />
+                                    <label class="form-check-label" for="option3" id="optionEditor3">Disabled
+                                        checkbox</label>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="checkbox" name="option" id="option4" onclick="onlyOne(this)" />
-                                <label for="option4" id="optionEditor4"></label>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm">
+                                    <input type="checkbox" name="option" id="option4" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" />
+                                    <label class="form-check-label" for="option4" id="optionEditor4">Disabled
+                                        checkbox</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,21 +147,21 @@
                         <div class="row  m-auto">
                             <div class="col">
                                 <div class="mb-3">
-                                    <button class="btn btn-for-view shadow px-2" onclick="saveandprevious()">Save
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="saveandprevious()">Save
                                         &
                                         prev.</button>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class=" mb-3">
-                                    <button class="btn btn-for-view shadow px-2" onclick="reviewLater()"
-                                        id="reviewBtn">Review
-                                        Later</button>
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="skip()"
+                                        id="reviewBtn">Skip</button>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class=" mb-3">
-                                    <button class="btn btn-for-view shadow px-2" onclick="saveandnext()">Save &
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="saveandnext()"
+                                        id="nextBtn">Save &
                                         next</button>
                                 </div>
                             </div>
@@ -170,6 +186,40 @@
         </div>
     </section>
 
+    <script>
+        function submittest() {
+            let testId = '<%= testId %>';
+            let seriesId = localStorage.getItem('seriesId');
+            let subjectId = localStorage.getItem('subjectId');
+            let selectedAnswers = localStorage.getItem('selectedAnswers')
+
+            const data = { testId, seriesId, subjectId, selectedAnswers };
+            fetch("/submittest", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => {
+                    if (response.status == 200) {
+                        localStorage.removeItem('seriesId');
+                        localStorage.removeItem('subjectId');
+                        localStorage.removeItem('currentQuesId');
+                        localStorage.removeItem('selectedAnswers');
+                        window.location.replace("/success");
+                    }
+                    // response.json()
+                    //     .then((data) => {
+                    //         console.log(data);
+                    //     })
+                    //     .catch((error) => {
+                    //         console.error("Error:", error);
+                    //     });
+                })
+
+        }
+    </script>
     <script>
         function speak(params) {
             let text = $('#editorDisplay').text()
@@ -204,7 +254,8 @@
 
     <script>
         $(document).ready(function () {
-            $('#reviewBtn').prop('disabled', true);
+            localStorage.setItem('seriesId', '<%- firstdata.seriesId%>');
+            localStorage.setItem('subjectId', '<%- firstdata.subjectId %>');
             $(`button[value="${localStorage.getItem('currentQuesId')}"]`).addClass("activeques");
             let buttonclr = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
             buttonclr.forEach(function (checkbox) {
@@ -215,10 +266,13 @@
                             $('#reviewBtn').prop('disabled', true);
                         }
                     }
-
                     if (checkbox.review == 1) {
                         document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
+                    } else if (checkbox.skip === 1) {
+                        $('#reviewBtn').prop('disabled', true);
+                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#E8630A';
                     } else {
+                        $('#reviewBtn').prop('disabled', false);
                         document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#A0E6B7';
                     }
                 } catch {
@@ -244,6 +298,26 @@
         }
 
         const saveandnext = () => {
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const skip = () => {
+            // if not exist in array add new array
+            let skip = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
+            const currentQuesId = localStorage.getItem('currentQuesId');
+            const removeObj = () => {
+                const findIndex = skip.findIndex(a => a.id === currentQuesId)
+                findIndex !== -1 && skip.splice(findIndex, 1)
+            }
+            removeObj();
+            var answer = {
+                id: currentQuesId,
+                choice: "",
+                review: 0,
+                skip: 1,
+            };
+            document.querySelector(`button[value="${currentQuesId}"]`).style.backgroundColor = '#E8630A';
+            skip.push(answer);
+            localStorage.setItem("selectedAnswers", JSON.stringify(skip));
             $("button.btn.btn-circle.m-1.activeques").next().click();
         }
         const saveandprevious = () => {
@@ -279,6 +353,7 @@
             if (distance < 0) {
                 clearInterval(timer);
                 document.getElementById('timer').innerHTML = 'EXPIRED!';
+                setTimeout(submittest(), 10000);
                 return;
             }
             var hours = Math.floor((distance % _day) / _hour);

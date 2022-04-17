@@ -5,6 +5,7 @@ const uuid4 = require('uuid4');
 const userModel = require('../models/userModel');
 const testSeriesModel = require('../models/testSeriesModel');
 const _ = require('lodash');
+const resultModel = require('../models/resultModel');
 ExamRoute
     // .get('/profile', async (req, res) => {
     //     try {
@@ -15,41 +16,76 @@ ExamRoute
     //         return res.json("redirect to login")
     //     }
     // })
+    .get('/success', (req, res) => {
+        return res.render('testSubmitted')
+    })
     .post('/submittest', async (req, res) => {
-        console.log(req.body.length)
-        let allquestions = await questionModel.find({ subjectId: req.body[0].subjectId })
-        let analysis = []
-        allquestions.forEach((element) => {
-            for (let i = 0; i < req.body.length; i++) {
-                if ((element._id).toString() == req.body[i].quesid) {
-                    data = {
-                        quesid: req.body[i].quesid,
-                        correctAnswer: element.correctAnswer,
-                        choosen: req.body[i].choice,
-                    }
-                    if ((element.correctAnswer == req.body[i].choice)) {
-                        data.result = "correct"
-                        analysis.push(data)
-                    } else {
-                        data.result = "incorrect"
-                        analysis.push(data)
+        try {
+            let userSubmission = JSON.parse(req.body.selectedAnswers)
+            let allquestions = await questionModel.find({ subjectId: req.body.seriesId })
+            let analysis = {
+                "userid": req.user.id,
+                "testid": req.body.testId,
+                "testseriesid": req.body.seriesId,
+                "subjectid": "624f0130d864bf25802c6048",
+                "resultmeta": [],
+                "score": 0
+            }
+            allquestions.forEach((element) => {
+                for (let i = 0; i < userSubmission.length; i++) {
+                    if ((element._id).toString() == userSubmission[i].id) {
+                        resultmeta = {
+                            quesid: userSubmission[i].id,
+                            userchoice: userSubmission[i].choice
+                        }
+                        if ((element.correctAnswer == userSubmission[i].choice)) {
+                            resultmeta.outcome = 1
+                            analysis.resultmeta.push(resultmeta);
+                            analysis.score += 1
+                        } else {
+                            resultmeta.outcome = 0
+                            analysis.resultmeta.push(resultmeta)
+                        }
                     }
                 }
-            }
-        });
-        return res.json(analysis)
+            });
+            let accuracyCal = analysis.score / allquestions.length * 100
+            analysis.accuracy = accuracyCal.toFixed(2);
+            let { testStartTime } = await userModel.findById({ _id: req.user.id })
+            let now = new Date();
+            let timeTakenCal = now - testStartTime
+            var _second = 1000;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var minutes = Math.ceil((timeTakenCal % _hour) / _minute);
+            analysis.timetaken = minutes
+            // update user db
+            let update = {
+                $set: {
+                    currentTestId: null,
+                    isTestOn: false,
+                    testStartTime: null,
+                    currentTestSeriesId: null,
+                }
+            };
+            await userModel.updateMany({ _id: req.user.id }, update);
+            let result = new resultModel(analysis);
+            result.save()
+            return res.status(200).json(analysis)
+        } catch (error) {
+            return res.status(404).json("error")
+        }
 
     })
     .get('/start/:seriesId', async (req, res) => {
         let testId = uuid4();
         let seriesId = req.params.seriesId
-        
-        
-        let series = await testSeriesModel.find({_id:seriesId})
-        .populate('category');
-        
-        
-
+        let series = await testSeriesModel.find({ _id: seriesId })
+            .populate('category');
+        let { isTestOn, currentTestSeriesId, currentTestId } = await userModel.findById({ _id: req.user.id })
+        if (isTestOn) {
+            return res.json(`complete or submit previous test first before proceeding for the new one! http://localhost:3000/exam/${currentTestSeriesId}/${currentTestId}`)
+        }
         data = {
             title: "Exam Instructions",
             testId,
@@ -59,20 +95,28 @@ ExamRoute
             data
         })
     })
+
     .get('/exam/:seriesId/:testId', async (req, res) => {
         let user = req.user.id;
+        let oldResult = await resultModel.findOne({ testid: req.params.testId })
+        if (oldResult) {
+            return res.send("Either the test is already complete or expired! try again")
+        }
+        let { isTestOn } = await userModel.findById({ _id: user })
         let now = new Date();
-        let update = {
-            $set: {
-                currentTestId: req.params.testId,
-                isTestOn: true,
-                testStartTime: now,
-                currentTestSeriesId: req.params.seriesId,
-            }
-        };
-        await userModel.updateMany({ _id: user }, update)
-        let { currentTestSeriesId, testStartTime, isTestOn, name } = await userModel.findById({ _id: user })
-        testStartTime.setMinutes(testStartTime.getMinutes() + 60);
+        if (isTestOn === false) {
+            let update = {
+                $set: {
+                    currentTestId: req.params.testId,
+                    isTestOn: true,
+                    testStartTime: now,
+                    currentTestSeriesId: req.params.seriesId,
+                }
+            };
+            await userModel.updateMany({ _id: user }, update)
+        }
+        let { currentTestSeriesId, testStartTime, name } = await userModel.findById({ _id: user })
+        testStartTime.setMinutes(testStartTime.getMinutes() + 60); //set one hour TODO dynamic
         let question = await questionModel.find({ subjectId: currentTestSeriesId })
         let subject = await testSeriesModel.findOne({ _id: currentTestSeriesId })
         const questionData = question.map((e) => {
@@ -84,18 +128,18 @@ ExamRoute
         })
 
         let formattedFirstQues = {
-
             questionId: question[0]._id,
             question: question[0].title,
-            subjectId: question[0].subjectId,
+            seriesId: question[0].subjectId,
+            subjectId: subject.category,
             hidden: question[0].hidden,
             options: question[0].incorrectOptions
         }
         let anschoice = _.random(1, 4);
         formattedFirstQues.options.splice(anschoice - 1, 0, question[0].correctAnswer)
 
-        res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, subjectTitle: subject.title, timer: testStartTime, name });
-        // res.render('test');
+        res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, seriesId: req.params.seriesId, subjectTitle: subject.title, timer: testStartTime, name });
     });
+
 
 module.exports = ExamRoute

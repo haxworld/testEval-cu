@@ -6,6 +6,10 @@ const testResultSchema = new Schema({
         ref: 'User',
         required: true
     },
+    testid: {
+        type: String,
+        required: true
+    },
     testseriesid: {
         type: Schema.Types.ObjectId,
         ref: 'TestSeries',
@@ -26,15 +30,16 @@ const testResultSchema = new Schema({
     //         }
     //     ] 
     resultmeta: [{
-        type: String,
-        required: true
+        quesid: String,
+        userchoice: String,
+        outcome: String,
     }],
     score: {
         type: Number,
         required: true
     },
     accuracy: {
-        type: String,
+        type: Number,
         required: true
     },
     timetaken: {
