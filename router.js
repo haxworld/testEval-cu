@@ -35,12 +35,6 @@ router.get('/sadmin', isSignedIn, (req, res) => {
     }
     res.render('admin/superAdmin', data);
 })
-router.get('/viewresult', isSignedIn, (req, res) => {
-    data = {
-        title: "View Result"
-    }
-    res.render('admin/view_result', { data });
-})
 
 
 router.use(AuthRouter);

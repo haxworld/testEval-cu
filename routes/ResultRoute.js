@@ -3,6 +3,26 @@ const ResultRoute = express.Router();
 const resultModel = require('../models/resultModel');
 const questionModel = require('../models/questionModel')
 
+ResultRoute.get('/viewresult',async(req,res)=>{
+    let user = await req.user.id;
+    // console.log(user);
+
+    let testTakenList = await resultModel.find({userid:user})
+    .sort('-createdAt')
+    .populate('userid')
+    .populate('testseriesid')
+    .populate('subjectid')
+    
+
+    console.log(testTakenList);
+    
+
+    data = {
+        title: "View Result"
+    }
+    res.render('admin/view_result', { data });
+})
+
 
 ResultRoute.get('/result/:id',async(req, res) => {
     let id = req.params.id
@@ -58,12 +78,11 @@ ResultRoute.get('/result/:id',async(req, res) => {
                 subject: result[0].subjectid,
                 result_parameters:result[0].resultmeta,
                 Questions:quesList,
-                Qid:quesidList,
                 choiceList:choiceList,
                 outcomeList:outcomeList,
                 others: result[0],
             }
-            console.log(data.Questions)
+            
             return res.render('result',{data});
             
         }).catch(err => {
