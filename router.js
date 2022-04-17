@@ -44,7 +44,7 @@ router.use(AuthRouter);
 router.use(ResetRouter);
 router.use(SubjectRouter);
 router.use(QuestionRouter);
-router.use(isSignedIn ,ExamRouter);
+router.use(isSignedIn, ExamRouter);
 router.use(isSignedIn, ProfileRouter);
 router.use(isSignedIn, ResultRouter);
 router.use(isSignedIn, isAdmin, SuperAdminRoute);
