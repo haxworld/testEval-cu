@@ -4,6 +4,7 @@ const ExamRoute = express.Router();
 const uuid4 = require('uuid4');
 const userModel = require('../models/userModel');
 const testSeriesModel = require('../models/testSeriesModel');
+
 const _ = require('lodash');
 const resultModel = require('../models/resultModel');
 ExamRoute
@@ -135,11 +136,18 @@ ExamRoute
             hidden: question[0].hidden,
             options: question[0].incorrectOptions
         }
+        console.log(formattedFirstQues)
         let anschoice = _.random(1, 4);
         formattedFirstQues.options.splice(anschoice - 1, 0, question[0].correctAnswer)
 
         res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, seriesId: req.params.seriesId, subjectTitle: subject.title, timer: testStartTime, name });
     });
-
+    // ExamRoute.post('/fetch', (req, res) => {
+    //     console.log(req.body)
+    //     const result = new resultModel(req.body);
+    //     result.save();
+        
+    //  res.end("sUCCESS")
+    // })
 
 module.exports = ExamRoute

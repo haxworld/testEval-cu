@@ -49,6 +49,8 @@ AuthRoute
                     //     token, refreshToken: refreshToken.token
                     // });
                     return res.redirect(redirectionUrl)
+            
+
                 }
                 return res.send("Unknown error occoured!")
             })

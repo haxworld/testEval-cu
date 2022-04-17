@@ -5,7 +5,7 @@ const SubjectRoute = express.Router();
 const testSeriesModel = require('../models/testSeriesModel');
 
 SubjectRoute
-    .get("/subjectCategory", async (req, res) => {
+    .get("/subject", async (req, res) => {
 
         try {
             let aptitude = await testSeriesModel.find({
