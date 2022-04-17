@@ -41,22 +41,6 @@ router.get('/viewresult', isSignedIn, (req, res) => {
     }
     res.render('admin/view_result', { data });
 })
-router.post('/fetch', async (req, res) => {
-    console.log(req.body);
-    let result = new resultModel(req.body);
-    result.save()
-    res.end("jyhtgfd")
-    // let result = await resultModel.find({ _id: '62587def06320db5f07c087c' })
-    // console.log(result[0].resultmeta[0].quesid)
-})
-router.get('/fetch', async (req, res) => {
-    // console.log(req.body);
-    // let result = new resultModel(req.body);
-    // result.save()
-    // res.end("jyhtgfd")
-    let result = await resultModel.find({ _id: '625ad36f21d695bf3a6ec205' })
-    console.log(result[0].resultmeta[0].quesid)
-})
 
 
 router.use(AuthRouter);
