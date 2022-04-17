@@ -11,23 +11,26 @@
 }
 body{
     font-family: "Poppins", sans-serif;
-     color: #080880;
-}
-p{
-    font-size:14px ;
-    
-}
-.header-tag{
-  font-size: 15px;
+     color: #000000ab;
 }
 .btn{
-    font-size: 10px;
+    font-size: 12px;
     margin: 5px;
     padding: 9px 5px;
     text-align: center;
     text-transform:none;
 }
-
 .fa-book{
-  font-size: 7px;
+  font-size: 10px;
+}
+.table{
+  font-size: 15px;
+  color: #150d7e;
+  
+}
+.content-tag{
+  font-family: "Poppins", sans-serif;
+  color: #000000bf;
+  font-size:14px ;
+  font-weight: 600;
 }
