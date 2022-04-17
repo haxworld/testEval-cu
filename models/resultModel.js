@@ -18,17 +18,18 @@ const testResultSchema = new Schema({
     },
     // quesid, userchoice, outcome [array of objects]
     // example:
-    //     [
-    //         {
-    //             "quesid": "6250666180a4cac53d76ef72",
-    //             "userchoice": "answer",
-    //             "outcome": 1
-    //         }
-    //     ] 
-    resultmeta: [{
-        type: String,
-        required: true
-    }],
+        // [
+            // {
+            //     "quesid": "6250666180a4cac53d76ef72",
+            //     "userchoice": "answer",
+            //     "outcome": 1
+            // }
+        // ] 
+        resultmeta: [{
+            quesid: String,
+            userchoice: String,
+            outcome: String,
+        }],
     score: {
         type: Number,
         required: true
