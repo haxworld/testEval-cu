@@ -36,7 +36,8 @@ AuthRoute
     .post("/login", (req, res) => {
         let email = req.body.email
         let password = req.body.password
-        var redirectionUrl = req.cookies.redirect || '/profile';
+        var redirectionUrl = req.cookies.redirect || '/p';
+        // var redirectionUrl = req.cookies.redirect || '/profile';
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {

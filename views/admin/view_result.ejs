@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
-        <%=data.title%>
+        <%=title%>
     </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +36,14 @@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
+           <a href="/profile">
             <div class="header_img">
                 <img src="images/girl.jpg" alt="" />
             </div>
-            <span class="px-2">Rashmi Roy</span>
+           </a>
+           <a href="/profile">
+            <span class="px-2" style="color: var(--secondary);"><%= userName %></span>
+           </a>
         </div>
 
     </header>
@@ -86,81 +90,87 @@
     <div class="row px-0">
 
         <!-- ------------------------------------------------------------ -->
-        <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
+        <% if (testTakenList.length>=1) { %>
+            <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
 
-            <div class="d-flex align-items-center mt-3">
-                <div class="ps-2 search-box shadow">
-                    <!-- <button class="btn shadow-sm px-3 text-clack ">
-                        <i class="fa-solid fa-search pe-2"></i>Search</button> -->
-                    <input class="search-txt" type="text" name="" placeholder="Search" style="border: none;">
-                    <a class="search-btn" href="#"></a>
-                    <i class="fa-solid fa-search pe-2"></i>
-
+                <div class="d-flex align-items-center mt-3">
+                    <div class="ps-2 search-box shadow">
+                        <!-- <button class="btn shadow-sm px-3 text-clack ">
+                            <i class="fa-solid fa-search pe-2"></i>Search</button> -->
+                        <input class="search-txt" type="text" name="" placeholder="Search" style="border: none;">
+                        <a class="search-btn" href="#"></a>
+                        <i class="fa-solid fa-search pe-2"></i>
+    
+                    </div>
+    
+                    <div class="dropdown">
+                        <a class="btn shadow btn-sm fs-6 py-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter
+                        </a>
+    
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Date</a></li>
+                            <li><a class="dropdown-item" href="#">Topic Name</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="dropdown">
-                    <a class="btn shadow btn-sm fs-6 py-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Date</a></li>
-                        <li><a class="dropdown-item" href="#">Topic Name</a></li>
-                    </ul>
+    
+               
+                <div>
+                    
+                    <table class="table mt-4">
+                        <thead >
+                            <tr>
+                                <th scope="col">Series Name</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Total Score</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let i = 0 %>
+                            <% for(test of testTakenList){%>
+                            
+                                <tr onclick="window.location='/result/<%=test._id%>';" style="cursor: pointer;" class="effect">
+                                    
+                                    <td scope="row" class="content-tag"> <p style="font-weight: bold;"><%=test.subjectid.title%></p>  <p class="fs-7"><%=test.testid%></p></td>
+                                    <td class="content-tag py-4 new"><%=test.testseriesid.title%></td>
+                                    <td class="content-tag py-4 date"></td>
+                                    
+                                    <td class="content-tag py-4"><%=test.score%>/<%=list[i++].length%></td>
+                                    
+                                </tr>
+                            
+                            <%}%>
+                        </tbody>
+                    </table>
+    
                 </div>
-            </div>
+                <!-- ajax ggogle api -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    
+                    var unformatedDate = new Date(`<%- test.createdAt%>`);
+            
+                    $(".date").append(formatDate(unformatedDate));
+                    function formatDate(nowDate) {
+                        return nowDate.getDate() +"/"+ (nowDate.getMonth() + 1) + '/'+ nowDate.getFullYear();
+                    }
 
-           
-            <div>
+                    
                 
-                <table class="table mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Series Name</th>
-                            <th scope="col">Subject Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Total Score</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="">
-                            <td scope="row" class="content-tag">DSA <p class="fs-7">156tyhnhdulsljskk890</p></td>
-                            <td class="content-tag py-4">Trees</td>
-                            <td class="content-tag py-4">14/4/22</td>
-                            <td class="content-tag py-4">80/90</td>
-                            
-                        </tr>
-                        <tr class="">
-                            <td scope="row" class="content-tag">DSA <p class="fs-7">156tyhnhdulsljskk890</p></td>
-                            <td class="content-tag py-4">Trees</td>
-                            <td class="content-tag py-4">14/4/22</td>
-                            <td class="content-tag py-4">80/90</td>
-                            
-                        </tr>
-                        <tr class="">
-                            <td scope="row" class="content-tag">DSA <p class="fs-7">156tyhnhdulsljskk890</p></td>
-                            <td class="content-tag py-4">Trees</td>
-                            <td class="content-tag py-4">14/4/22</td>
-                            <td class="content-tag py-4">80/90</td>
-                            
-                        </tr>
-                        <tr class="colr" >
-                            <td scope="row" class="content-tag">DSA <p class="fs-7">156tyhnhdulsljskk890</p></td>
-                            <td class="content-tag py-4">Coding and Encoding</td>
-                            <td class="content-tag py-4">14/4/22</td>
-                            <td class="content-tag py-4">80/90</td>
-                            
-                        </tr>
-
-                    </tbody>
-                </table>
-
+                </script>
             </div>
+        <%}else{%>
+            <div class="col-lg-12 px-4 shadow-sm my-4 rounded text-center ">
+                <img src="/images/kingdom-list-is-empty.png" alt="Empty bin" style="max-width: 400px;" class="empty">
+                <p style="font-weight: 500;">Waiting for you to take down a test</p>
+            </div>
+        <%}%>
 
-        </div>
-
+        
     </div>
     </div>
 
@@ -177,6 +187,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="/js/profile_n.js"></script>
+    
     <footer id="footer">
         <p class="text-center pt-3">&copy;2022. Copyright GrabItt</p>
     </footer>

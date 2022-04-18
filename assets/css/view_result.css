@@ -34,3 +34,22 @@ body{
   font-size:14px ;
   font-weight: 600;
 }
+.effect
+{
+  transform: scale(1);
+  transition: all 0.4s ease-in-out;
+}
+.effect:hover
+{
+  /* background: var(--primary); */
+  box-shadow:  -3px -3px 7px rgba(213, 208, 208, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
+
+  transform: scale(1.002);
+}
+@media screen and (max-width: 580px)
+{
+  .empty
+  {
+    width: 80%;
+  }
+}
