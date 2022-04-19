@@ -1,6 +1,6 @@
 const express = require('express');
 const userModel = require('../models/userModel');
-const ProfileRoute = express.Router();
+const DashboardRoute = express.Router();
 
 // ProfileRoute
 //     .get('/profile', async (req, res) => {
@@ -13,11 +13,20 @@ const ProfileRoute = express.Router();
 //         }
 //     })
 
-ProfileRoute
-    .get('/profile', (req, res) => {
+DashboardRoute
+    .get('/dashboard', async (req, res) => {
+        let user = await userModel.findOne({ _id: req.user.id });
+        const { name, email, username, photo, collegeName, graduationYear, createdAt } = user;
         const data = {
-            title: 'Profile',
+            title: 'Dashboard',
+            name,
+            email,
+            username,
+            photo,
+            collegeName,
+            graduationYear,
+            createdAt,
         }
-        return res.render('admin/profile', { data });
+        return res.render('admin/user_dashboard', { data });
     })
-module.exports = ProfileRoute
+module.exports = DashboardRoute

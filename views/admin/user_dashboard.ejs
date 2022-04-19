@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<head>
+    <%- include('./partials/head'); %>
+        <title>
+            <%=data.title%>
+        </title>
+
+        <!-- chart -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+            integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body id="body-pd">
+    <%- include('./partials/header'); %>
+        <!--Container Main start-->
+        <div class="bg-light p-2">
+            <div class="row pb-2">
+                <div class="col-12 col-sm-6 col-lg-9">
+                    <div class="shadow-sm rounded h-100 hero-container">
+                        <div class="me-2  w-100 px-4">
+                            <div class="d-flex py-2">
+                                <img src="images/girl.jpg" alt="profile"
+                                    class="m-auto rounded-circle border border-3 border-white" height="120" width="120">
+                            </div>
+                            <div class=" text-center">
+                                <h5 class="text-center fw-bold mb-0">
+                                    <%= data.name %>
+                                </h5>
+                                <p class="text-center pt-0 mb-1">
+                                    <%= data.collegeName %>
+                                </p>
+                                <button class="btn btn-for-new-test shadow-sm px-3 text-white btn-grad">
+                                    <i class="fa-solid fa-pencil pe-2"></i> Edit
+                                    Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- start statis -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="panel no-border bg-white shadow-sm">
+                        <div class="p-3 shadow-sm bg-white">
+                            <div class="">
+                                <!-- accuracy -->
+                                <div class="d-flex border border-dark rounded-3 py-2 my-2 bg-hover">
+                                    <!-- <img src="/images/accurate.png" alt="" srcset="" height="40" class="my-auto ms-2 me-4"> -->
+                                    <i class='bx bxs-badge-check my-auto ms-2 me-4 fs-1 text-success'></i>
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">Badges</h5>
+                                        <p class="mb-0">Complete 5 tests</p>
+                                    </div>
+                                </div>
+                                <!-- accuracy -->
+                                <div class="d-flex border border-dark rounded-3 py-2 my-2">
+                                    <!-- <img src="/images/accurate.png" alt="" srcset="" height="40" class="my-auto ms-2 me-4"> -->
+                                    <i class='bx bxs-book-add my-auto ms-2 me-4 fs-1 text-danger'></i>
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">Total Test Attempted</h5>
+                                        <p class="mb-0">2</p>
+                                    </div>
+                                </div>
+                                <!-- accuracy -->
+                                <div class="d-flex border border-dark rounded-3 py-2 my-2">
+                                    <img src="/images/accurate.png" alt="" srcset="" height="40"
+                                        class="my-auto ms-2 me-4">
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">Accuracy Level</h5>
+                                        <p class="mb-0">82%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end statis -->
+            </div>
+            <div class="row pb-4">
+                <div class="col-12 col-sm-6 col-lg-4 ">
+                    <div class="panel no-border bg-white shadow-sm">
+                        <div class="table_banner">
+                            <h5 class="table_banner_title border-short">Test Score</h5>
+                        </div>
+                        <div style="position: relative;" class="p-4">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="panel no-border no-bgc">
+                        <div class="table_banner">
+                            <h5 class="table_banner_title border-short">Start new test</h5>
+                        </div>
+                        <div class="shadow-sm bg-white">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- single -->
+                                    <div class="col-6 py-4" style="background-color: rgba(255, 206, 86, 0.2);">
+                                        <div class="py-2">
+                                            <div class="d-flex justify-content-center mt-2  m-auto">
+                                                <img src="images/dsa.png">
+                                            </div>
+                                            <div class="px-3 pt-2">
+                                                <p class="text-center mb-1" style="font-weight: bold">
+                                                    DSA
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- single -->
+                                    <div class="col-6 py-4" style="background-color: rgba(54, 162, 235, 0.2);">
+                                        <div class="py-2">
+                                            <div class="d-flex justify-content-center mt-2  m-auto">
+                                                <img src="images/core.png">
+                                            </div>
+                                            <div class="px-3 pt-2">
+                                                <p class="text-center mb-1" style="font-weight: bold">
+                                                    Core
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- single -->
+                                    <div class="col-6 py-4" style="background-color: rgba(255, 99, 132, 0.2);">
+                                        <div class="py-2">
+                                            <div class="d-flex justify-content-center mt-2  m-auto">
+                                                <img src="images/aptitude.png">
+                                            </div>
+                                            <div class="px-3 pt-2">
+                                                <p class="text-center mb-1" style="font-weight: bold">
+                                                    Aptitude
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- single -->
+                                    <div class="col-6 py-4" style="background-color: rgba(75, 192, 192, 0.2);">
+                                        <div class="py-2">
+                                            <div class="d-flex justify-content-center mt-2  m-auto">
+                                                <img src="images/verbal.png">
+                                            </div>
+                                            <div class="px-3 pt-2">
+                                                <p class="text-center mb-1" style="font-weight: bold">
+                                                    Verbal
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="panel no-border no-bgc clearfix shadow-sm">
+                        <div class="table_banner clearfix">
+                            <h5 class="table_banner_title border-short">Quick notes</h5>
+                        </div>
+                        <div class="bg-white">
+                            <div class="slimScrollDiv"
+                                style="position: relative; overflow: hidden; width: auto; height: 310px;">
+                                <div class="slimScrollNote" style="overflow: hidden; width: auto; height: 310px;">
+                                    <div class="todo-box-wrap">
+                                        <ul class="todo-list">
+                                            <!-- 1st Item -->
+                                            <li class="todo-item">
+                                                <div class="checkbox checkbox-default">
+                                                    <input class="to-do" data-id="0" data-value="1" type="checkbox"
+                                                        id="0" checked="">
+                                                    <label for="0">jbdfgdfg</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="light-grey-hr">
+                                            </li>
+                                            <!-- 2nd Item -->
+                                            <li class="todo-item">
+                                                <div class="checkbox checkbox-default">
+                                                    <input class="to-do" data-id="0" data-value="2" type="checkbox"
+                                                        id="1">
+                                                    <label for="1">jbdfgdfg</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="light-grey-hr">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="slimScrollBar"
+                                    style="background: rgb(135, 135, 135); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 0px; z-index: 99; right: 1px; height: 325px;">
+                                </div>
+                                <div class="slimScrollRail"
+                                    style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-todo">
+                            <form method="post" enctype="multipart/form-data" id="add_todo" novalidate="novalidate"
+                                _lpchecked="1">
+                                <div class="input-group">
+                                    <input type="text" id="todo_data" name="todo_data" class="form-control"
+                                        style="border: 1px solid bg-light !IMPORTANT;" placeholder="Add new task">
+                                    <span class="input-group-btn">
+
+                                        <input type="hidden" name="userid" id="userid" value="U214">
+
+                                        <button type="submit" class="btn btn-primary todo-submit"
+                                            style="background-color: var(--first-color);"><i
+                                                class="fa fa-plus"></i></button>
+                                    </span>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Aptitude', 'Core', 'DSA', 'Verbal'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+        <!--Container Main end-->
+        <%- include('./partials/footer'); %>
+</body>
+
+</html>

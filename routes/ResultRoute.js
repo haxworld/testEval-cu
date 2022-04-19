@@ -4,38 +4,39 @@ const resultModel = require('../models/resultModel');
 const questionModel = require('../models/questionModel')
 const userModel = require('../models/userModel')
 
-ResultRoute.get('/viewresult',async(req,res)=>{
+ResultRoute.get('/viewresult', async (req, res) => {
     let user = await req.user.id;
-    let currentUser = await userModel.find({_id:user});
+    let currentUser = await userModel.find({ _id: user });
     let userName = currentUser[0].name
-    
 
-    let testTakenList = await resultModel.find({userid:user})
-    .sort('-createdAt')
-    .populate('userid')
-    .populate('testseriesid')
-    .populate('subjectid')
-    
+
+    let testTakenList = await resultModel.find({ userid: user })
+        .sort('-createdAt')
+        .populate('userid')
+        .populate('testseriesid')
+        .populate('subjectid')
+
 
     // console.log(testTakenList);
 
     let quesidList = [];
     let list = [];
-    
+
     testTakenList.forEach(element => {
         arr = element.resultmeta
         quesidList = arr.map(item => item.quesid)
         list.push(quesidList)
     });
-    console.log(list)
+    // console.log(list)
 
-    
-    res.render('admin/view_result', { 
+    data = {
         title: "View Result",
-        testTakenList:testTakenList,
-        userName:userName,
-        list:list
-     });
+    }
+    res.render('admin/view_result', {
+        testTakenList: testTakenList,
+        userName: userName,
+        list: list
+    });
 })
 
 
@@ -98,7 +99,7 @@ ResultRoute.get('/result/:id', async (req, res) => {
                 others: result[0],
             }
             // console.log(data.Questions)
-            return res.render('result', { data });
+            return res.render('admin/result', { data });
 
         }).catch(err => {
             // process error here

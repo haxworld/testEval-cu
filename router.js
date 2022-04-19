@@ -2,7 +2,7 @@ const express = require('express');
 const { isSignedIn, isAdmin } = require('./helpers/verifyToken');
 const AuthRouter = require('./routes/AuthRoute');
 const ResetRouter = require('./routes/ResetPasswordRoute');
-const ProfileRouter = require('./routes/ProfileRoute');
+const DashboardRouter = require('./routes/DashboardRoute');
 const ResultRouter = require('./routes/ResultRoute');
 const QuestionRouter = require('./routes/QuestionRoute');
 const SubjectRouter = require('./routes/SubjectRoute');
@@ -11,25 +11,22 @@ const router = express.Router();
 const ExamRouter = require('./routes/ExamRoute');
 
 router.get('/', (req, res) => {
-    return res.render('home', {
-        title: 'Home | Grabitt'
-    });
-})
-
-router.get('/p', isSignedIn, (req, res) => {
     data = {
-        title: "Profile"
+        title: 'Home | Grabitt',
+        isLoggedIn: false
     }
-    res.render('admin/profile_n', { data });
+    if (req.cookies.token) {
+        data.isLoggedIn = true;
+    }
+    return res.render('home', data);
 })
 
-router.get('/test', isSignedIn, (req, res) => {
-    res.render('demotest');
-})
-
-router.get('/sadmin', isSignedIn, (req, res) => {
+// router.get('/test', isSignedIn, (req, res) => {
+//     res.render('demotest');
+// })
+router.get('/admin', isSignedIn, (req, res) => {
     data = {
-        title: "super admin menu"
+        title: "Admin Menu"
     }
     res.render('admin/superAdmin', data);
 })
@@ -46,7 +43,7 @@ router.use(ResetRouter);
 router.use(SubjectRouter);
 router.use(QuestionRouter);
 router.use(isSignedIn, ExamRouter);
-router.use(isSignedIn, ProfileRouter);
+router.use(isSignedIn, DashboardRouter);
 router.use(isSignedIn, ResultRouter);
 router.use(isSignedIn, isAdmin, SuperAdminRoute);
 
