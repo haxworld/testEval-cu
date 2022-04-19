@@ -9,7 +9,10 @@ module.exports = async (err, req, res, next) => {
             const statusCode = is404 ? 404 : 400;
             return res.status(statusCode).json({ message: err });
         case err.name === 'ValidationError':
-            return res.status(400).json({ message: err.message });
+            // return res.status(400).json({ message: err.message });
+            redirect = req.headers.referer || req.originalUrl || req.url;
+            res.cookie('redirect', redirect, { maxAge: 50000, httpOnly: true });
+            return res.status(401).redirect('/login')
         case err.name === 'UnauthorizedError':
             if (req.cookies && req.cookies.token && req.cookies.refreshToken) {
                 let refreshToken = ''

@@ -28,7 +28,7 @@ ExamRoute
                 "userid": req.user.id,
                 "testid": req.body.testId,
                 "testseriesid": req.body.seriesId,
-                "subjectid": "624f0130d864bf25802c6048",
+                "subjectid": req.body.subjectId,
                 "resultmeta": [],
                 "score": 0
             }
@@ -105,7 +105,7 @@ ExamRoute
         }
         let { isTestOn } = await userModel.findById({ _id: user })
         let now = new Date();
-        if (isTestOn === false) {
+        if (!isTestOn) {
             let update = {
                 $set: {
                     currentTestId: req.params.testId,
@@ -136,18 +136,18 @@ ExamRoute
             hidden: question[0].hidden,
             options: question[0].incorrectOptions
         }
-        console.log(formattedFirstQues)
+        // console.log(formattedFirstQues)
         let anschoice = _.random(1, 4);
         formattedFirstQues.options.splice(anschoice - 1, 0, question[0].correctAnswer)
 
         res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, seriesId: req.params.seriesId, subjectTitle: subject.title, timer: testStartTime, name });
     });
-    // ExamRoute.post('/fetch', (req, res) => {
-    //     console.log(req.body)
-    //     const result = new resultModel(req.body);
-    //     result.save();
-        
-    //  res.end("sUCCESS")
-    // })
+// ExamRoute.post('/fetch', (req, res) => {
+//     console.log(req.body)
+//     const result = new resultModel(req.body);
+//     result.save();
+
+//  res.end("sUCCESS")
+// })
 
 module.exports = ExamRoute

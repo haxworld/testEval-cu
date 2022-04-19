@@ -7,6 +7,7 @@ const AuthRoute = express.Router();
 
 AuthRoute
     .get("/login", async (req, res) => {
+        res.cookie('redirect', req.headers.referer, { maxAge: 50000, httpOnly: true });
         if (req.cookies && req.cookies.token && req.cookies.refreshToken) {
             const findtoken = await refreshTokenModel.findOne({ token: req.cookies.refreshToken })
             if (!findtoken) {
@@ -27,7 +28,7 @@ AuthRoute
 
             res.cookie('refreshToken', refreshToken.token)
             res.cookie('token', token)
-            return res.redirect('/profile')
+            return res.redirect('/dashboard')
         }
         return res.render('auth', {
             title: 'Sign-In',
@@ -36,8 +37,7 @@ AuthRoute
     .post("/login", (req, res) => {
         let email = req.body.email
         let password = req.body.password
-        var redirectionUrl = req.cookies.redirect || '/p';
-        // var redirectionUrl = req.cookies.redirect || '/profile';
+        var redirectionUrl = req.cookies.redirect || req.headers.referer || '/dashboard';
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {
@@ -45,13 +45,12 @@ AuthRoute
                     const refreshToken = await generateRefreshToken(user);
                     res.cookie('refreshToken', refreshToken.token);
                     res.cookie('token', token);
+                    res.cookie('name', user.name);
                     // // POSTMAN
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
                     // });
                     return res.redirect(redirectionUrl)
-            
-
                 }
                 return res.send("Unknown error occoured!")
             })
@@ -132,6 +131,7 @@ AuthRoute
     .get('/logout', function (req, res) {
         res.clearCookie('token', { path: '/' })
         res.clearCookie('refreshToken', { path: '/' });
+        res.clearCookie('name', { path: '/' });
         return res.redirect('/')
     });
 

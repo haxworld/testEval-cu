@@ -1,12 +1,17 @@
 const express = require('express');
-const questionModel = require('../models/questionModel');
 const subjectCategoryModel = require('../models/subjectCategoryModel');
 const SubjectRoute = express.Router();
 const testSeriesModel = require('../models/testSeriesModel');
 
 SubjectRoute
     .get("/subject", async (req, res) => {
-
+        data = {
+            title: 'Home | Grabitt',
+            isLoggedIn: false
+        }
+        if (req.cookies.token) {
+            data.isLoggedIn = true;
+        }
         try {
             let aptitude = await testSeriesModel.find({
                 category: '624f00ffd864bf25802c6042'
@@ -29,6 +34,7 @@ SubjectRoute
                 "count"
             );
             return res.render('courses', {
+                data,
                 aptitude,
                 core,
                 dsa,
