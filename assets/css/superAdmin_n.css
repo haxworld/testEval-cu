@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300;700&family=Poppins:wght@400;600;700&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #000000b9;
+}
+.features{
+    padding:1% 15%;
+    padding-left: 2%;
+    background-color:#fff;
+   
+}
+.feature-box{
+    text-align: center;
+    padding:3%;
+    padding-top: 2%;
+}
+.icon {
+    color: #4153a1;
+    margin-bottom: 1rem;
+}
+.icon:hover{
+    color:#ff4c68;
+}
+
+h6,h5{
+    font-weight: 700;
+}

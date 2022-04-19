@@ -26,6 +26,7 @@ router.get('/p', isSignedIn, (req, res) => {
 router.get('/test', isSignedIn, (req, res) => {
     res.render('demotest');
 })
+
 router.get('/sadmin', isSignedIn, (req, res) => {
     data = {
         title: "super admin menu"
@@ -33,6 +34,12 @@ router.get('/sadmin', isSignedIn, (req, res) => {
     res.render('admin/superAdmin', data);
 })
 
+router.get('/s', isSignedIn, (req, res) => {
+    data = {
+        title: "super admin menu"
+    }
+    res.render('admin/superAdmin_n', data);
+})
 
 router.use(AuthRouter);
 router.use(ResetRouter);
