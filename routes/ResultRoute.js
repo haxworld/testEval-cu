@@ -21,11 +21,20 @@ ResultRoute.get('/viewresult', async (req, res) => {
 
     let quesidList = [];
     let list = [];
+    let dateList = []
 
     testTakenList.forEach(element => {
+        let date = new Date(element.createdAt).toLocaleDateString('en-us',{day: 'numeric'})
+        let month = new Date(element.createdAt).toLocaleDateString('en-us',{month: 'numeric'})
+        let year = new Date(element.createdAt).toLocaleDateString('en-us',{year: 'numeric'})
+        const FormattedDate = `${date}/${month}/${year}`
+        dateList.push(FormattedDate);
+        
+
         arr = element.resultmeta
         quesidList = arr.map(item => item.quesid)
         list.push(quesidList)
+        
     });
     // console.log(list)
 
@@ -35,7 +44,8 @@ ResultRoute.get('/viewresult', async (req, res) => {
     res.render('admin/view_result', {
         testTakenList: testTakenList,
         userName: userName,
-        list: list
+        list: list,
+        dateList:dateList
     });
 })
 
