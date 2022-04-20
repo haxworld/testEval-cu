@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="d-flex text-purple ms-5">
                                             <div class="mt-3 sizing">Total marks </div>
-                                            <div class="mt-3 sizing">:&nbsp;<%=data.result_parameters.length%>
+                                            <div class="mt-3 sizing">:&nbsp;<%=data.allquestions.length%>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                 </div>
                 <% let i=0%>
 
-                    <% for(Question of data.Questions){%>
+                    <% for(Question of data.allquestions){%>
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -108,7 +108,7 @@
                                             </div>
                                         </div>
                                         <div class="" style="font-weight:bold;" id="editorDisplay">
-                                            <%- Question[0].title%>
+                                            <%- Question.title%>
                                         </div>
 
                                     </div>
@@ -117,10 +117,11 @@
                                             style="font-size: 30px; color: rgb(75, 178, 20);"></i>
 
                                         <%}else{%>
+                                            <%if(data.choiceList[i] != `<p>Unanswered</p>`){%>
                                             <i class="fa-solid fa-circle-xmark mx-5 px-5 py-2"
                                                 style="font-size: 30px; color: rgb(230, 59, 59);"></i>
-
                                             <%}%>
+                                        <%}%>
                                                 <div class="mx-5 px-5">
                                                     <div class="row m-auto">
                                                         <div class="col-lg-6 table-border">
@@ -132,38 +133,41 @@
                                                         <div class="col-lg-6 table-border">
                                                             <p class="m-auto" style="min-width: 131px;"
                                                                 id="choiceDisplay">
-                                                                <%-data.choiceList[i]%>
+                                                                <%-data.choiceList[i] %>
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="row m-auto">
-                                                        <div class="col-lg-6 table-border "
-                                                            style="border-top: 1px solid transparent;">
-
-                                                            <p class="m-auto"
-                                                                style="min-width: 131px; font-weight: bold;">Correct
-                                                                answer: </p>
-
+                                                    <%if(data.choiceList[i] != `<p>Unanswered</p>`){%>
+                                                        <div class="row m-auto">
+                                                            <div class="col-lg-6 table-border "
+                                                                style="border-top: 1px solid transparent;">
+    
+                                                                <p class="m-auto"
+                                                                    style="min-width: 131px; font-weight: bold;">Correct
+                                                                    answer: </p>
+    
+                                                            </div>
+    
+                                                            <div class="col-lg-6 table-border except "
+                                                                style="border-top: 1px solid transparent;">
+    
+                                                                <p class="m-auto" style="min-width: 131px;"
+                                                                    id="correctAnsDisplay">
+                                                                    <%- Question.correctAnswer%>
+                                                                </p>
+    
+                                                            </div>
                                                         </div>
-
-                                                        <div class="col-lg-6 table-border except "
-                                                            style="border-top: 1px solid transparent;">
-
-                                                            <p class="m-auto" style="min-width: 131px;"
-                                                                id="correctAnsDisplay">
-                                                                <%- Question[0].correctAnswer%>
-                                                            </p>
-
-                                                        </div>
-                                                    </div>
+                                                    <%}%>
                                                 </div>
-
+                                                <%if(data.choiceList[i] != `<p>Unanswered</p>`){%>
                                                 <div class="d-flex flex-column px-5 pt-2 mx-5">
                                                     <p class="mt-2">Explanation:</p>
                                                     <mark id="expDisplay">
-                                                        <%-Question[0].explaination%>
+                                                        <%-Question.explaination%>
                                                     </mark>
                                                 </div>
+                                                <%}%>
 
 
                                 </div>
