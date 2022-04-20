@@ -44,7 +44,7 @@
                     <div class="">
                         <div class="d-flex rounded p-2">
                             <div class="col-4 m-auto">
-                                <img src="images/girl.jpg" alt="profile.pic" class="profile-pic shadow-sm">
+                                <img src="images/profile.png" alt="profile.pic" class="profile-pic shadow-sm">
                             </div>
                             <div class="col-8 m-auto">
                                 <h6>Rashmi Prasad Roy</h6>

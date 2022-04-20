@@ -17,34 +17,36 @@ ResultRoute.get('/viewresult', async (req, res) => {
         .populate('subjectid')
 
 
-    // console.log(testTakenList);
-
-    let quesidList = [];
-    let list = [];
     let dateList = []
-
+    let List = []
+    
     testTakenList.forEach(element => {
         let date = new Date(element.createdAt).toLocaleDateString('en-us',{day: 'numeric'})
         let month = new Date(element.createdAt).toLocaleDateString('en-us',{month: 'numeric'})
         let year = new Date(element.createdAt).toLocaleDateString('en-us',{year: 'numeric'})
         const FormattedDate = `${date}/${month}/${year}`
         dateList.push(FormattedDate);
-        
-
-        arr = element.resultmeta
-        quesidList = arr.map(item => item.quesid)
-        list.push(quesidList)
-        
+        List.push(element.testseriesid._id)
+    
     });
-    // console.log(list)
+    
+    
+    let  len = [];
+    // let allquestions = []
+    // List.forEach( async item=>{
+        
+    //     allquestions = await questionModel.find({ subjectId: item })
+    //     len.push(allquestions.length)
+    // })
 
+    // console.log(len)
     data = {
         title: "View Result",
     }
     res.render('admin/view_result', {
         testTakenList: testTakenList,
         userName: userName,
-        list: list,
+        len:len,
         dateList:dateList
     });
 })
@@ -52,7 +54,7 @@ ResultRoute.get('/viewresult', async (req, res) => {
 
 ResultRoute.get('/result/:id', async (req, res) => {
     let id = req.params.id
-    // console.log(id)
+    
     let result = await resultModel.find({ _id: id })
         .sort('-createdAt')
         .populate('userid')
@@ -61,65 +63,60 @@ ResultRoute.get('/result/:id', async (req, res) => {
 
     if (result) {
         var quesidList = [];
-        // var quesList = [];
         var choiceList = [];
         var outcomeList = [];
         let element = result[0].resultmeta;
-        // console.log('Result',result[0])
-
-
+       
+        
+        let allquestions = await questionModel.find({ subjectId: result[0].testseriesid._id })
         quesidList = element.map(item => item.quesid)
-        //    console.log(quesidList)
-        // quesidList.forEach(async(element) => {
-        //     console.log(element)
-        //         var question = await questionModel.find({_id:element})
-
-        //     quesList.push(question[0])
-        //     console.log("I am ",question)
-        // });
-        // console.log("Hola ",quesList)
+        // console.log(quesidList.length)
+        let i = 0;
+        
+        let choiceBucket = []
+        let outcomeBucket = []
 
         choiceList = element.map(item => item.userchoice)
         outcomeList = element.map(item => item.outcome)
-        async function lookForQuestions(quesidList) {
-            let quesList = [];
-            for (let ques of quesidList) {
-                try {
-                    let found = await questionModel.find({ _id: ques }).exec();
-                    quesList.push(found);
-                } catch (e) {
-                    console.log(`did not find it in database`);
+        
+        allquestions.forEach(element => {
+           if(i<quesidList.length)
+           {
+                if(element._id == quesidList[i])
+                {
+                    
+                    choiceBucket.push(choiceList[i])
+                    outcomeBucket.push(outcomeList[i])
+                    i++;
                 }
-            }
-            // console.log(quesList[0][0]);
-            return quesList;
-        }
-
-        lookForQuestions(quesidList).then(quesList => {
-            // process results here
+                else
+                {
+                    choiceBucket.push(`<p>Unanswered</p>`);
+                    outcomeBucket.push(`0`);
+                }
+                
+           }
+        });
+           
+        
             let data = {
 
                 testSeries: result[0].testseriesid,
                 subject: result[0].subjectid,
-                result_parameters: result[0].resultmeta,
-                Questions: quesList,
-                Qid: quesidList,
-                choiceList: choiceList,
-                outcomeList: outcomeList,
+               
+                allquestions:allquestions,
+                
+                choiceList: choiceBucket,
+                outcomeList: outcomeBucket,
                 others: result[0],
             }
-            // console.log(data.Questions)
-            return res.render('admin/result', { data });
-
-        }).catch(err => {
-            // process error here
-        })
-
+            
+            return res.render('admin/result', { data });  
 
     }
-    // else{
-    //     return res.end('Wrong id');
-    // }
+    else{
+        return res.end('Wrong id');
+    }
 
 })
 module.exports = ResultRoute;

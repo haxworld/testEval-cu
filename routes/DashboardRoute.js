@@ -29,4 +29,8 @@ DashboardRoute
         }
         return res.render('admin/user_dashboard', { data });
     })
+
+DashboardRoute.get('/edit-profile',(req,res)=>{
+    return res.render('admin/editProfile');
+})
 module.exports = DashboardRoute
