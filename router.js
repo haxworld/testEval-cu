@@ -45,7 +45,7 @@ router.use(QuestionRouter);
 router.use(isSignedIn, ExamRouter);
 router.use(isSignedIn, DashboardRouter);
 router.use(isSignedIn, ResultRouter);
-router.use(isSignedIn, isAdmin, SuperAdminRoute);
+router.use(('/admin'), isSignedIn, isAdmin, SuperAdminRoute);
 
 
 module.exports = router;

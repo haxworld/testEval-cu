@@ -6,10 +6,8 @@
         <%=data.title%>
     </title>
 
-    <%- include('../partials/styles'); %>
+    <%- include('../partials/head'); %>
 
-        <!-- external css link / -->
-        <link rel="stylesheet" href="/css/dashboard.css" />
         <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs.min.css"> -->
         <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark.min.css"> -->
         <link rel="stylesheet"
@@ -36,11 +34,11 @@
 
 </head>
 
-<body>
+<body id="body-pd">
 
     <section>
         <!-- Nav Bar -->
-        <%- include('../admin/partials/navbar'); %>
+        <%- include('../partials/header'); %>
             <div class="container">
                 <div class="container-fluid">
                     <h2 class="text-center">Add Question</h2>
@@ -94,7 +92,7 @@
             </div>
             </div>
     </section>
-    <%- include('../admin/partials/footer'); %>
+    <%- include('../partials/footer'); %>
         <script src="../js/addQuestion.js"></script>
         <script>
 
