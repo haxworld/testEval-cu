@@ -42,7 +42,7 @@ h6,h5{
   
   .effect:hover {
     /* background: var(--primary); */
-    box-shadow: -3px -3px 7px rgba(213, 208, 208, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
+    box-shadow: -3px -3px 7px rgba(200, 195, 195, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
   
     transform: scale(1.002);
   }
