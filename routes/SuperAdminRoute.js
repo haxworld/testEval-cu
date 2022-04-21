@@ -1,11 +1,61 @@
 const express = require('express');
 const questionModel = require('../models/questionModel');
+const resultModel = require('../models/resultModel');
 const subjectCategoryModel = require('../models/subjectCategoryModel');
 const testSeriesModel = require('../models/testSeriesModel');
+const userModel = require('../models/userModel');
 const SuperAdminRoute = express.Router();
-
-
+var ejs = require('ejs');
+// ejs.openDelimiter = '{{';
+// ejs.closeDelimiter = '}}';
+// ejs.delimiter = '?';
 SuperAdminRoute
+    .get('/', async (req, res) => {
+        let aptitudeCount = await testSeriesModel.countDocuments({ category: '624f00ffd864bf25802c6042' })
+        let coreCount = await testSeriesModel.countDocuments({ category: '624f0114d864bf25802c6044' })
+        let dsaCount = await testSeriesModel.countDocuments({ category: '624f011bd864bf25802c6046' })
+        let verbalCount = await testSeriesModel.countDocuments({ category: '624f0130d864bf25802c6048' })
+        let usersCount = await userModel.countDocuments({})
+        let testsCount = await resultModel.countDocuments({})
+        let seriesCount = await testSeriesModel.countDocuments({})
+
+        // date
+        let datesub7 = new Date()
+        datesub7.setDate(datesub7.getDate() - 7);
+        let date = await resultModel.find({
+            createdAt: {
+                $gte: datesub7,
+                $lt: new Date()
+            }
+        }).sort({ createdAt: 'asc' })
+
+        const dateCounts = {};
+        date.forEach(item => {
+            let x = new Date(item.createdAt).toISOString().split('T')[0];
+            if (dateCounts[x]) {
+                dateCounts[x] = dateCounts[x] + 1
+            } else {
+                dateCounts[x] = 1;
+            }
+        })
+        const testCount = Object.values(dateCounts);
+        const dateCount = Object.keys(dateCounts);
+        // end date
+        data = {
+            title: "Admin Menu",
+            aptitudeCount,
+            coreCount,
+            dsaCount,
+            verbalCount,
+            usersCount,
+            testsCount,
+            seriesCount,
+            testCount,
+            dateCount
+        }
+        res.render('admin/superAdmin', data);
+    })
+
     .get("/question/add", async (req, res) => {
         const data = {
             title: 'Add Question',

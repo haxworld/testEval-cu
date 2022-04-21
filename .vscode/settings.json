@@ -1,3 +1,15 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "html.validate.scripts": false,
+        "[html]": { // custom settings for the language « ejs »
+            "editor.formatOnSave": false
+        },
+    // "files.associations": {
+    //     "*.ejs": "html"
+    // },
+    // "emmet.includeLanguages": {
+    //     "ejs": "html",
+    // },
+    // "html.format.templating": true
+    
 }
