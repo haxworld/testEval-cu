@@ -46,7 +46,9 @@
                                     </div>
                                     <span class="px-2">
                                         <h6>Total Users till date</h6>
-                                        <h5>50+</h5>
+                                        <h5>
+                                            <%= data.usersCount-1 %>+
+                                        </h5>
                                     </span>
                                 </div>
                             </div>
@@ -58,7 +60,9 @@
                                     </div>
                                     <span class="px-2">
                                         <h6>Total test taken by Users</h6>
-                                        <h5>100+</h5>
+                                        <h5>
+                                            <%= data.testsCount-1 %>+
+                                        </h5>
                                     </span>
                                 </div>
                             </div>
@@ -69,8 +73,10 @@
                                         <i class="icon fas fa-book fa-3x" style="color:#f6476a"></i>
                                     </div>
                                     <span class="px-2">
-                                        <h6>Total topics covered</h6>
-                                        <h5>30+</h5>
+                                        <h6>Total Series Available</h6>
+                                        <h5>
+                                            <%= data.seriesCount-1 %>+
+                                        </h5>
                                     </span>
                                 </div>
                             </div>
@@ -94,28 +100,40 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="effect" style="cursor: pointer;">
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f00ffd864bf25802c6042'">
                                                     <th scope="row" class="py-3 content-tag">1</th>
                                                     <td class="content-tag py-3">Aptitude</td>
-                                                    <td class="content-tag fw-normal py-3 ">10</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.aptitudeCount %>
+                                                    </td>
                                                     <!-- <td class="content-tag py-3">@mdo</td> -->
                                                 </tr>
-                                                <tr class="effect" style="cursor: pointer;">
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f0114d864bf25802c6044'">
                                                     <th scope="row" class="py-3 content-tag">2</th>
                                                     <td class="content-tag py-3">Core Subjects</td>
-                                                    <td class="content-tag fw-normal py-3 ">5</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.coreCount %>
+                                                    </td>
                                                     <!-- <td class="content-tag py-3">@mdo</td> -->
                                                 </tr>
-                                                <tr class="effect" style="cursor: pointer;">
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f011bd864bf25802c6046'">
                                                     <th scope="row" class="py-3 content-tag">3</th>
                                                     <td class="content-tag py-3">DSA</td>
-                                                    <td class="content-tag fw-normal py-3 ">7</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.dsaCount %>
+                                                    </td>
                                                     <!-- <td class="content-tag py-3">@mdo</td> -->
                                                 </tr>
-                                                <tr class="effect" style="cursor: pointer;">
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f0130d864bf25802c6048'">
                                                     <th scope="row" class="py-3 content-tag">4</th>
                                                     <td class="content-tag py-3">Verbal</td>
-                                                    <td class="content-tag fw-normal py-3 ">9</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.verbalCount %>
+                                                    </td>
                                                     <!-- <td class="content-tag py-3">@mdo</td> -->
                                                 </tr>
                                             </tbody>
@@ -139,17 +157,15 @@
                 </div>
             </div>
     </section>
-
-
     <script>
         const ctx = document.getElementById('chart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',
-            data: {
-                labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+            data: { 
+                labels:  <%- JSON.stringify(data.dateCount) %>, 
                 datasets: [{
                     label: 'Tests conducted',
-                    data: [0, 43, 2, 15, 60, 18, 25],
+                    data: <%- JSON.stringify(data.testCount) %>,
                     backgroundColor:
                         [
                             'rgba(255, 99, 132, 0.2)',

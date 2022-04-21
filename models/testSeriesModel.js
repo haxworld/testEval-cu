@@ -36,4 +36,11 @@ testSeriesSchema.set('toJSON', {
         delete ret._id;
     }
 });
+testSeriesSchema.set('toObject', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+    }
+});
 module.exports = mongoose.model('TestSeries', testSeriesSchema);
