@@ -29,6 +29,9 @@ app.use(express.static('./assets'));
 // use express router
 app.use('/', require('./router'));
 
+// Make the uploads path available
+app.use('/uploads',express.static(__dirname + '/uploads'))
+
 // global error handler
 app.use(errorHandler);
 

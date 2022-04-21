@@ -26,6 +26,7 @@ ResultRoute.get('/viewresult', async (req, res) => {
         let year = new Date(element.createdAt).toLocaleDateString('en-us',{year: 'numeric'})
         const FormattedDate = `${date}/${month}/${year}`
         dateList.push(FormattedDate);
+        
         List.push(element.testseriesid._id)
     
     });
@@ -39,7 +40,7 @@ ResultRoute.get('/viewresult', async (req, res) => {
     //     len.push(allquestions.length)
     // })
 
-    // console.log(len)
+    console.log(List)
     data = {
         title: "View Result",
     }
