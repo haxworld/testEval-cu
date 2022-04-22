@@ -78,43 +78,59 @@
                         <p class="pe-4"
                             style="line-height:19px; font-weight:500; font-size:15px; color:rgb(49, 46, 46); width: 95%;"
                             id="editorDisplay">
-                            <%- firstdata.title %>
                         </p>
                         <i class="fa-solid fa-volume-high my-auto" style="width: 5%;" id="tts"
-                            onclick="speak(editorDisplay);"></i>
+                            onclick="speak('editorDisplay');"></i>
                     </div>
                     <div class="row mt-5 justify-content-center">
                         <div class="row">
                             <div class="col-12 col-sm-6">
-                                <div class="form-check shadow-sm">
+                                <div class="form-check shadow-sm d-flex">
                                     <input type="checkbox" name="option" id="option1" onclick="onlyOne(this)"
-                                        class="form-check-input mx-2" />
-                                    <label class="form-check-label" for="option1" id="optionEditor1">Disabled
-                                        checkbox</label>
+                                        class="form-check-input mx-2" value="<%- firstdata.options[0] %>" />
+
+                                    <label class="form-check-label" for="option1" id="optionEditor1"
+                                        style="width: 95%;">
+                                        <%- firstdata.options[0] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor1');"></i>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <div class="form-check shadow-sm">
+                                <div class="form-check shadow-sm d-flex">
                                     <input type="checkbox" name="option" id="option2" onclick="onlyOne(this)"
-                                        class="form-check-input mx-2" />
-                                    <label class="form-check-label" for="option2" id="optionEditor2">Disabled
-                                        checkbox</label>
+                                        class="form-check-input mx-2" value="<%- firstdata.options[1] %>" />
+                                    <label class="form-check-label" for="option2" id="optionEditor2"
+                                        style="width: 95%;">
+                                        <%- firstdata.options[1] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor2');"></i>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <div class="form-check shadow-sm">
+                                <div class="form-check shadow-sm d-flex">
                                     <input type="checkbox" name="option" id="option3" onclick="onlyOne(this)"
-                                        class="form-check-input mx-2" />
-                                    <label class="form-check-label" for="option3" id="optionEditor3">Disabled
-                                        checkbox</label>
+                                        class="form-check-input mx-2" value="<%- firstdata.options[2] %>" />
+                                    <label class="form-check-label" for="option3" id="optionEditor3"
+                                        style="width: 95%;">
+                                        <%- firstdata.options[2] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor3');"></i>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <div class="form-check shadow-sm">
+                                <div class="form-check shadow-sm d-flex">
                                     <input type="checkbox" name="option" id="option4" onclick="onlyOne(this)"
-                                        class="form-check-input mx-2" />
-                                    <label class="form-check-label" for="option4" id="optionEditor4">Disabled
-                                        checkbox</label>
+                                        class="form-check-input mx-2" value="<%- firstdata.options[3] %>" />
+                                    <label class="form-check-label" for="option4" id="optionEditor4"
+                                        style="width: 95%;">
+                                        <%- firstdata.options[3] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor4');"></i>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +155,8 @@
                                 <div class="row m-auto mt-3  ">
                                     <div class="">
                                         <% for( let index=0; index < total; index++ ) { %>
-                                            <button type="button" class="btn  btn-circle m-1"
-                                                style="background-color:#F7B2B2" onclick="buttonclick(this)"
+                                            <button type="button" class="btn btn-circle m-1 unopened"
+                                                onclick="buttonclick(this)"
                                                 value="<%= moreQuestion[index].questionId %>">
                                                 <%= index+1 %>
                                             </button>
@@ -191,15 +207,123 @@
 
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            localStorage.setItem('seriesId', '<%- firstdata.seriesId%>');
+            localStorage.setItem('subjectId', '<%- firstdata.subjectId %>');
 
+            if (!localStorage.getItem("selectedAnswers")) {
+                var answer=[{
+                    id: localStorage.getItem('currentQuesId'),
+                    choice: "",
+                    review: 0,
+                    skip: 0,
+                    opened: 1
+                }];
+                localStorage.setItem("selectedAnswers", JSON.stringify(answer))
+            }
+            isExists=false;
+            let btnColor=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            btnColor.forEach(function (checkbox) {
+                if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                    $("input[value='"+checkbox.choice+"']").prop('checked', true);
+                }
+                if (checkbox.review===1) {
+                    $('#reviewBtn').prop('disabled', true);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 reviewques');
+                } else if (checkbox.skip===1) {
+                    $('#reviewBtn').prop('disabled', true);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 skipques');
+                } else if (checkbox.opened===1&&checkbox.choice==="") {
+                    $('#reviewBtn').prop('disabled', false);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 unanswered');
+                } else {
+                    $('#reviewBtn').prop('disabled', false);
+                    $('#reviewBtn').attr('onClick', 'reviewLater()');
+                    $('#reviewBtn').text('Review');
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered');
+                }
+            });
+            $(`button[value="${localStorage.getItem('currentQuesId')}"]`).addClass("activeques");
+        });
+
+        const reviewLater=() => {
+            let reviewLater=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            reviewLater.forEach(function (checkbox) {
+                try {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=1;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 reviewques activeques');
+                        $('#reviewBtn').prop('disabled', true);
+                    }
+                } catch {
+                    //
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(reviewLater));
+            });
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+
+        const saveandnext=() => {
+            let saveandnext=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            saveandnext.forEach(function (checkbox) {
+                if (checkbox.review===1) {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=0;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered activeques');
+                        $('#reviewBtn').prop('disabled', false);
+                    }
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(saveandnext));
+            });
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const skip=() => {
+            // if not exist in array add new array
+            let skip=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            const currentQuesId=localStorage.getItem('currentQuesId');
+            const removeObj=() => {
+                const findIndex=skip.findIndex(a => a.id===currentQuesId)
+                findIndex!==-1&&skip.splice(findIndex, 1)
+            }
+            removeObj();
+            var answer={
+                id: currentQuesId,
+                choice: "",
+                review: 0,
+                skip: 1,
+                opened: 1
+            };
+            $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 skipques activeques');
+            skip.push(answer);
+            localStorage.setItem("selectedAnswers", JSON.stringify(skip));
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const saveandprevious=() => {
+            let saveandprevious=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            saveandprevious.forEach(function (checkbox) {
+                if (checkbox.review===1) {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=0;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered activeques');
+                        $('#reviewBtn').prop('disabled', false);
+                    }
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(saveandprevious));
+            });
+            $("button.btn.btn-circle.m-1.activeques").prev().click();
+        }
+
+    </script>
     <script>
         function submittest() {
-            let testId = '<%= testId %>';
-            let seriesId = localStorage.getItem('seriesId');
-            let subjectId = localStorage.getItem('subjectId');
-            let selectedAnswers = localStorage.getItem('selectedAnswers') || []
+            window.speechSynthesis.cancel();
+            let testId='<%= testId %>';
+            let seriesId=localStorage.getItem('seriesId');
+            let subjectId=localStorage.getItem('subjectId');
+            let selectedAnswers=localStorage.getItem('selectedAnswers')||[]
 
-            const data = { testId, seriesId, subjectId, selectedAnswers };
+            const data={ testId, seriesId, subjectId, selectedAnswers };
             fetch("/submittest", {
                 method: "POST",
                 headers: {
@@ -208,7 +332,7 @@
                 body: JSON.stringify(data),
             })
                 .then((response) => {
-                    if (response.status == 200) {
+                    if (response.status==200) {
                         localStorage.removeItem('seriesId');
                         localStorage.removeItem('subjectId');
                         localStorage.removeItem('currentQuesId');
@@ -227,9 +351,26 @@
         }
     </script>
     <script>
-        function speak(params) {
-            let text = $('#editorDisplay').text()
-            window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+        async function speak(params) {
+            window.speechSynthesis.cancel()
+            //  "Microsoft Neerja Online (Natural) - English (India)" 
+            let txt=$(`#${params}`).text();
+            await initVoices();
+            const u=new SpeechSynthesisUtterance(txt);
+            u.voice=speechSynthesis.getVoices().filter(function (voice) {
+                return voice.name=="Microsoft Aria Online (Natural) - English (United States)"
+            })[0];
+            speechSynthesis.speak(u);
+        }
+        function initVoices() {
+            return new Promise(function (res, rej) {
+                speechSynthesis.getVoices();
+                if (window.speechSynthesis.onvoiceschanged) {
+                    res();
+                } else {
+                    window.speechSynthesis.onvoiceschanged=() => res();
+                }
+            });
         }
     </script>
 
@@ -238,7 +379,7 @@
             languages: ['javascript', 'ruby', 'python']
         });
 
-        let options = {
+        let options={
             modules: {
                 syntax: true,
             },
@@ -246,11 +387,6 @@
             theme: 'bubble'
 
         };
-        let quillDisplay = new Quill('#editorDisplay', options);
-        let quillOption1 = new Quill('#optionEditor1', options);
-        let quillOption2 = new Quill('#optionEditor2', options);
-        let quillOption3 = new Quill('#optionEditor3', options);
-        let quillOption4 = new Quill('#optionEditor4', options);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -259,118 +395,37 @@
 
 
     <script>
-        $(document).ready(function () {
-            localStorage.setItem('seriesId', '<%- firstdata.seriesId%>');
-            localStorage.setItem('subjectId', '<%- firstdata.subjectId %>');
-            $(`button[value="${localStorage.getItem('currentQuesId')}"]`).addClass("activeques");
-            let buttonclr = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
-            buttonclr.forEach(function (checkbox) {
-                try {
-                    if (checkbox.id === localStorage.getItem('currentQuesId')) {
-                        $("input[value='" + checkbox.choice + "']").prop('checked', true);
-                        if (checkbox.review == 1) {
-                            $('#reviewBtn').prop('disabled', true);
-                        }
-                    }
-                    if (checkbox.review == 1) {
-                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
-                    } else if (checkbox.skip === 1) {
-                        $('#reviewBtn').prop('disabled', true);
-                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#E8630A';
-                    } else {
-                        $('#reviewBtn').prop('disabled', false);
-                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#A0E6B7';
-                    }
-                } catch {
-                    //
-                }
-            });
-        });
-
-        const reviewLater = () => {
-            let reviewLater = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
-            reviewLater.forEach(function (checkbox) {
-                try {
-                    if (checkbox.id === localStorage.getItem('currentQuesId')) {
-                        checkbox.review = 1;
-                        document.querySelector(`button[value="${checkbox.id}"]`).style.backgroundColor = '#B9B5F6';
-                        $('#reviewBtn').prop('disabled', true);
-                    }
-                } catch {
-                    //
-                }
-                localStorage.setItem("selectedAnswers", JSON.stringify(reviewLater));
-            });
-        }
-
-        const saveandnext = () => {
-            $("button.btn.btn-circle.m-1.activeques").next().click();
-        }
-        const skip = () => {
-            // if not exist in array add new array
-            let skip = JSON.parse(localStorage.getItem("selectedAnswers") || "[]");
-            const currentQuesId = localStorage.getItem('currentQuesId');
-            const removeObj = () => {
-                const findIndex = skip.findIndex(a => a.id === currentQuesId)
-                findIndex !== -1 && skip.splice(findIndex, 1)
-            }
-            removeObj();
-            var answer = {
-                id: currentQuesId,
-                choice: "",
-                review: 0,
-                skip: 1,
-            };
-            document.querySelector(`button[value="${currentQuesId}"]`).style.backgroundColor = '#E8630A';
-            skip.push(answer);
-            localStorage.setItem("selectedAnswers", JSON.stringify(skip));
-            $("button.btn.btn-circle.m-1.activeques").next().click();
-        }
-        const saveandprevious = () => {
-            $("button.btn.btn-circle.m-1.activeques").prev().click();
-        }
-    </script>
-    <script>
         localStorage.setItem('currentQuesId', `<%- firstdata.questionId %>`)
         //First Question
-        quillDisplay.root.innerHTML = `<%- firstdata.question %>`;
-        quillOption1.root.innerHTML = `<%- firstdata.options[0] %>`;
-        quillOption2.root.innerHTML = `<%- firstdata.options[1] %>`;
-        quillOption3.root.innerHTML = `<%- firstdata.options[2] %>`;
-        quillOption4.root.innerHTML = `<%- firstdata.options[3] %>`;
-
-        document.getElementById('option1').value = `<%- firstdata.options[0] %>`;
-        document.getElementById('option2').value = `<%- firstdata.options[1] %>`;
-        document.getElementById('option3').value = `<%- firstdata.options[2] %>`;
-        document.getElementById('option4').value = `<%- firstdata.options[3] %>`;
+        $('#editorDisplay').html(`<%- firstdata.question %>`);
 
         //Timer left
-        var end = new Date('<%= timer %>');
+        var end=new Date('<%= timer %>');
 
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
+        var _second=1000;
+        var _minute=_second*60;
+        var _hour=_minute*60;
+        var _day=_hour*24;
         var timer;
 
         function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
+            var now=new Date();
+            var distance=end-now;
+            if (distance<0) {
                 clearInterval(timer);
-                document.getElementById('timer').innerHTML = 'EXPIRED!';
+                document.getElementById('timer').innerHTML='EXPIRED!';
                 setTimeout(submittest(), 10000);
                 return;
             }
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
+            var hours=Math.floor((distance%_day)/_hour);
+            var minutes=Math.floor((distance%_hour)/_minute);
+            var seconds=Math.floor((distance%_minute)/_second);
 
-            document.getElementById('timer').innerHTML = hours + ':';
-            document.getElementById('timer').innerHTML += minutes + ':';
-            document.getElementById('timer').innerHTML += seconds + ' left';
+            document.getElementById('timer').innerHTML=hours+':';
+            document.getElementById('timer').innerHTML+=minutes+':';
+            document.getElementById('timer').innerHTML+=seconds+' left';
         }
-        timer = setInterval(showRemaining, 1000);
+        timer=setInterval(showRemaining, 1000);
 
 
     </script>

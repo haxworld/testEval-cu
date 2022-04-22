@@ -7,6 +7,7 @@
     </title>
 
     <%- include('../partials/head'); %>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body id="body-pd">
@@ -29,7 +30,7 @@
                             </div>
                         </div>
                         <% } %>
-                            <form action="/admin/testseries/<%= data.url %>" method="post">
+                            <form action="/admin/testseries/<%= data.url %>" method="post" id="series-form">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="title" placeholder="Title" name="title"
@@ -54,7 +55,7 @@
                                             <% if (data.TestSeries) { %>
                                                 <!-- match the id with all the series id -->
                                                 <% if (data.TestSeries.category.toString()===course._id.toString()) { %>
-                                                    <option value="<%= data.TestSeries._id %>" class="text-primary"
+                                                    <option value="<%= course._id %>" class="text-primary"
                                                         selected="selected">
                                                         <%=course.title %>
                                                     </option>
@@ -78,6 +79,9 @@
             </div>
     </section>
     <%- include('../partials/footer'); %>
+    <script>
+
+        </script>
 </body>
 
 </html>

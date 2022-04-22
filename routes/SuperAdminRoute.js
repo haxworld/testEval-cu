@@ -5,10 +5,7 @@ const subjectCategoryModel = require('../models/subjectCategoryModel');
 const testSeriesModel = require('../models/testSeriesModel');
 const userModel = require('../models/userModel');
 const SuperAdminRoute = express.Router();
-var ejs = require('ejs');
-// ejs.openDelimiter = '{{';
-// ejs.closeDelimiter = '}}';
-// ejs.delimiter = '?';
+
 SuperAdminRoute
     .get('/', async (req, res) => {
         let aptitudeCount = await testSeriesModel.countDocuments({ category: '624f00ffd864bf25802c6042' })
@@ -132,9 +129,8 @@ SuperAdminRoute
         res.render('admin/series/addSeries', { data, subjects: SubjectCategories })
     })
     .post("/testseries/edit/:id", async (req, res) => {
-        testSeriesModel.findOneAndUpdate({ _id: req.params.id }, req.body, {
-            new: true
-        }, async (err, doc) => {
+        console.log(req.body);
+        testSeriesModel.findOneAndUpdate({ _id: req.params.id }, req.body, async (err, doc) => {
             var SubjectCategories = await subjectCategoryModel.find({})
             var TestSeries = await testSeriesModel.findOne({ _id: req.params.id })
             if (!err) {
@@ -165,6 +161,7 @@ SuperAdminRoute
         res.json("deleted successfully")
     })
     .post("/question/add", async (req, res) => {
+        console.log(req.body);
         var Question = new questionModel(req.body)
         Question.save((err, data) => {
             if (!err) {

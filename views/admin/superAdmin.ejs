@@ -158,14 +158,14 @@
             </div>
     </section>
     <script>
-        const ctx = document.getElementById('chart').getContext('2d');
-        const myChart = new Chart(ctx, {
+        const ctx=document.getElementById('chart').getContext('2d');
+        const myChart=new Chart(ctx, {
             type: 'line',
-            data: { 
-                labels:  <%- JSON.stringify(data.dateCount) %>, 
+            data: {
+                labels:  <%- JSON.stringify(data.dateCount)%>,
                 datasets: [{
                     label: 'Tests conducted',
-                    data: <%- JSON.stringify(data.testCount) %>,
+                    data: <%- JSON.stringify(data.testCount)%>,
                     backgroundColor:
                         [
                             'rgba(255, 99, 132, 0.2)',
