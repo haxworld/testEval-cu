@@ -37,6 +37,9 @@ AuthRoute
         let email = req.body.email
         let password = req.body.password
         var redirectionUrl = req.cookies.redirect || req.headers.referer || '/dashboard';
+        if (redirectionUrl === "http://localhost:3000/") {
+            redirectionUrl = '/dashboard';
+        }
         signIn(email, password)
             .then(async (user) => {
                 if (user._id) {

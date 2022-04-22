@@ -2,8 +2,9 @@
     "liveServer.settings.port": 5501,
     "html.validate.scripts": false,
         "[html]": { // custom settings for the language « ejs »
-            "editor.formatOnSave": false
+            "editor.formatOnSave": true
         },
+        "javascript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
     // "files.associations": {
     //     "*.ejs": "html"
     // },

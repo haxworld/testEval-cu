@@ -1,3 +1,13 @@
+
+:root{
+  --active-ques-border: #6fba43;
+  --unopened-bg: #DADAE1;
+  --unanswered-bg: #F7B2B2;
+  --text-dark-color: black;
+  --skip-bg: #EF8362;
+  --review-bg: #B9B5F6;
+  --option-select: #C0E5FF;
+}
 #body-color{
     background-color: #f5f5f5;
     font-family: 'Poppins', sans-serif;
@@ -16,6 +26,36 @@
   li{
     color: #51517b;
   }
+/* exam */
+.unopened{
+  background-color: var(--unopened-bg);
+  color: var(--text-dark-color);
+}
+.unanswered{
+  background-color: var(--unanswered-bg) !important;
+  color: var(--text-dark-color) !important;
+}
+.activeques {
+  border: 2px solid var(--active-ques-border)  !important;
+  background-color: var(--ash) !important;
+  color: var(--active-ques-border) !important;
+}
+.reviewques {
+  /* border: 2px solid var(--active-ques-border); */
+  background-color: var(--review-bg);
+  color: var(--text-dark-color);
+}
+.skipques {
+  border: 2px solid var(--skip-bg);
+  background-color: var(--ash);
+  color: var(--skip-bg);
+}
+.answered{
+  /* border: 2px solid var(--skip-bg); */
+  background-color: var(--active-ques-border);
+  color: var(--ash) ;
+}
+
 .profile-pic {
     clip-path: circle();
     border-radius: 50%;
@@ -101,8 +141,8 @@ margin: 4px 1px;
     display: none;
   }
     input:checked+label {
-      border-color: #4BB543;
-      color: #4BB543;
+      border-color: #84ccff;
+      background-color: #C0E5FF; 
     }
 
   label{
@@ -116,7 +156,11 @@ margin: 4px 1px;
       display: flex;
       align-items: center;
       column-gap: 7px;
+      background-color: #F2FAFF;
   }
   label:hover{
-    border: 1px solid #4BB543;
+    border: 1px solid #84ccff;
+  }
+  label > p {
+    margin: 0;
   }

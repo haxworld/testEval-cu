@@ -49,7 +49,7 @@ const addQuestion = () => {
     let explaination = quillExplaination.root.innerHTML.split('  ').join(' &nbsp;');
     let subjectId = document.getElementById('autoSizingSelect').value;
     const data = { title, incorrectOptions, correctAnswer, subjectId, explaination };
-    fetch("/question/add", {
+    fetch("/admin/question/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
