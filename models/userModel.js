@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const multer = require('multer');
-const path = require('path');
-const AVATAR_PATH = path.join('/uploads/users/avatars')
+const mongoose=require('mongoose');
+const multer=require('multer');
+const path=require('path');
+const AVATAR_PATH=path.join('/uploads/users/avatars')
 
-const Schema = mongoose.Schema;
-const UserSchema = new Schema({
+const Schema=mongoose.Schema;
+const UserSchema=new Schema({
     name: String,
     email: {
         type: String,
@@ -62,26 +62,26 @@ const UserSchema = new Schema({
     timestamps: true
 });
 
-let storage = multer.diskStorage({
+let storage=multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname,'..',AVATAR_PATH))
+        cb(null, path.join(__dirname, '..', AVATAR_PATH))
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix)
+        const uniqueSuffix=Date.now()+'-'+Math.round(Math.random()*1E9)
+        cb(null, file.fieldname+'-'+uniqueSuffix+'-'+file.originalname)
     }
-  })
-  const filefilter = (req, file, cb) => {
-    if (file.mimetype === "image/png" ||file.mimetype === "image/jpg") {
-      cb(null, true);
+})
+const filefilter=(req, file, cb) => {
+    if (file.mimetype==="image/png"||file.mimetype==="image/jpg") {
+        cb(null, true);
     } else {
-        
-      cb(null, false);
+
+        cb(null, false);
     }
-  };
+};
 //   static functions
-UserSchema.statics.uploadedAvatar = multer({storage:storage,filefilter:filefilter}).single('avatar');
-UserSchema.statics.avatarPath = AVATAR_PATH;
+UserSchema.statics.uploadedAvatar=multer({ storage: storage, filefilter: filefilter }).single('avatar');
+UserSchema.statics.avatarPath=AVATAR_PATH;
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports=mongoose.model('User', UserSchema);

@@ -37,8 +37,8 @@ DashboardRoute
     })
 
 DashboardRoute.get('/edit-profile', async (req, res) => {
-    let user=await userModel.findOne({ _id: req.user.id });
 
+    let user=await userModel.findOne({ _id: req.user.id });
     let data={
         title: 'Edit Profile',
         user: user
@@ -71,12 +71,16 @@ DashboardRoute.post('/edit-profile/update-info', async (req, res) => {
             res.clearCookie('avatar', { path: '/' });
             res.cookie('avatar', user.avatar)
         }
+        user.save((err, data) => {
+            if (!err) {
+                res.clearCookie('name', { path: '/' });
+                res.cookie('name', user.name)
+                return res.redirect('back');
+            } else {
+                return res.json({ msg: err.message, success: false })
+            }
+        })
 
-        user.save();
-        res.clearCookie('name', { path: '/' });
-        res.cookie('name', user.name)
-
-        return res.redirect('back');
     })
     //    let user = userModel.findById(req.user.id)
     //         user.name = req.body.name
