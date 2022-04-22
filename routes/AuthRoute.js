@@ -45,6 +45,8 @@ AuthRoute
                     res.cookie('refreshToken', refreshToken.token);
                     res.cookie('token', token);
                     res.cookie('name', user.name);
+                    res.cookie('avatar', user.avatar);
+                    
                     // // POSTMAN
                     // return res.header('auth-token', token).json({
                     //     token, refreshToken: refreshToken.token
@@ -131,6 +133,7 @@ AuthRoute
         res.clearCookie('token', { path: '/' })
         res.clearCookie('refreshToken', { path: '/' });
         res.clearCookie('name', { path: '/' });
+        res.clearCookie('avatar', { path: '/' });
         return res.redirect('/')
     });
 

@@ -11,6 +11,7 @@ const router = express.Router();
 const ExamRouter = require('./routes/ExamRoute');
 const resultModel = require('./models/resultModel');
 
+
 router.get('/', (req, res) => {
     data = {
         title: 'Home | Grabitt',

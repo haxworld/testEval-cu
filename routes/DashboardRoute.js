@@ -1,8 +1,9 @@
 const express = require('express');
 const userModel = require('../models/userModel');
+const DashboardRoute = express.Router();
 const fs = require('fs')
 const path = require('path')
-const DashboardRoute = express.Router();
+
 
 // ProfileRoute
 //     .get('/profile', async (req, res) => {
@@ -18,13 +19,13 @@ const DashboardRoute = express.Router();
 DashboardRoute
     .get('/dashboard', async (req, res) => {
         let user = await userModel.findOne({ _id: req.user.id });
-        const { name, email, username, photo, collegeName, graduationYear, createdAt } = user;
+        const { name, email, username, avatar, collegeName, graduationYear, createdAt } = user;
         const data = {
             title: 'Dashboard',
             name,
             email,
             username,
-            photo,
+            avatar,
             collegeName,
             graduationYear,
             createdAt,
@@ -42,44 +43,52 @@ DashboardRoute.get('/edit-profile',async(req,res)=>{
     return res.render('admin/editProfile',{data});
 })
 
-DashboardRoute.post('/edit-profile/update/:id',async(req,res)=>{
-    if(req.user.id==req.params.id)
-    {
-        try {
-           let user = await userModel.findById(req.params.id)
-            userModel.uploadedAvatar(req,res,(err)=>{
-                if(err)
-                {
-                    console.log("Multer error");
-                    return;
-                }
-                user.name = req.body.name
-                user.email = req.body.email
-                console.log(req.file)
-                if(req.file)
-                {
-                    if(user.avatar)
-                    {
-                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
-                    }
-                    user.avatar = User.avatarPath + '/' + req.file.filename
-                }
-
-                user.save();
-                return res.redirect('back');
-            })    
-        } catch (error) {
-            
-
+DashboardRoute.post('/edit-profile/update-info',async (req,res)=>{
+    
+    let user = await userModel.findById(req.user.id)
+    userModel.uploadedAvatar(req,res,(err)=>{
+        if(err)
+        {
+            console.log("Multer error");
             return res.redirect('back');
         }
-    }
+                
+                user.name = req.body.name
+                // user.email = req.body.email
+                user.username = req.body.username
+                user.collegeName = req.body.collegeName
+                user.graduationYear = req.body.graduationYear
 
-    else
-    {
+        // console.log(req.file)
+        if(req.file)
+        {
+            if(user.avatar)
+            {
+                fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+            }
+            user.avatar = userModel.avatarPath + '/' + req.file.filename
+
+            res.clearCookie('avatar', { path: '/' });
+            res.cookie('avatar', user.avatar)
+        }
+
+        user.save();
+        res.clearCookie('name', { path: '/' });
+        res.cookie('name', user.name)
         
-        return res.status(401).send('Unauthorized');
-    }
-       
+        return res.redirect('back');
+    })
+        //    let user = userModel.findById(req.user.id)
+        //         user.name = req.body.name
+        //         user.email = req.body.email
+        //         user.username = req.body.username
+        //         user.collegeName = req.body.collegeName
+        //         user.graduationYear = req.body.graduationYear
+
+                
+               
+        //         user.save(); 
+        //         return res.redirect('back');
+                
 })
 module.exports = DashboardRoute

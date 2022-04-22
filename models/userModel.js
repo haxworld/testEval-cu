@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
-const AVATAR_PATH = path.join('/uploads/avatars');
+const AVATAR_PATH = path.join('/uploads/users/avatars')
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
@@ -24,9 +24,9 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
-    photo: {
+    avatar: {
         type: String,
-        default: './uploads/avatars/profile.png'
+        default: null
     },
     collegeName: {
         type: String,
@@ -71,9 +71,16 @@ let storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + uniqueSuffix)
     }
   })
-
+  const filefilter = (req, file, cb) => {
+    if (file.mimetype === "image/png" ||file.mimetype === "image/jpg") {
+      cb(null, true);
+    } else {
+        
+      cb(null, false);
+    }
+  };
 //   static functions
-UserSchema.statics.uploadedAvatar = multer({storage:storage}).single('avatar');
+UserSchema.statics.uploadedAvatar = multer({storage:storage,filefilter:filefilter}).single('avatar');
 UserSchema.statics.avatarPath = AVATAR_PATH;
 
 
