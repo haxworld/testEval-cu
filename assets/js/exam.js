@@ -41,7 +41,7 @@ const checkIfCheckboxChecked=() => {
 }
 //button
 function buttonclick(e) {
-    window.speechSynthesis.cancel()
+    window.speechSynthesis.cancel();
     $('#reviewBtn').attr('onClick', 'skip()');
     $('#reviewBtn').text('Skip');
     $("button").removeClass("activeques")

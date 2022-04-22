@@ -27,6 +27,7 @@ ResultRoute.get('/viewresult', async (req, res) => {
         let year = new Date(element.createdAt).toLocaleDateString('en-us', { year: 'numeric' })
         const FormattedDate = `${date}/${month}/${year}`
         dateList.push(FormattedDate);
+        
         List.push(element.testseriesid._id)
 
     });
@@ -98,7 +99,7 @@ ResultRoute.get('/result/:id', async (req, res) => {
                     i++;
                 }
                 else {
-                    choiceBucket.push(`<p>Unanswered</p>`);
+                    choiceBucket.push(`<p class="design">Unanswered</p>`);
                     outcomeBucket.push(`0`);
                 }
 

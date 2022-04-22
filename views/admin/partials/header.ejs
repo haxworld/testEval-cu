@@ -2,7 +2,7 @@
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
     <div class="d-flex align-items-center">
         <div class="header_img">
-            <img src="/images/profile.png" alt="" />
+            <img src="" alt="user" id="profile-pic" />
         </div>
         <span class="px-2" id="name">
         </span>
@@ -61,4 +61,14 @@
     }
     var name = getCookie('name') || "User";
     document.getElementById("name").innerText = decodeURIComponent(name);
+
+    var avatar = getCookie('avatar') || "Profile pic";
+    
+    if(decodeURIComponent(avatar)=='j:null'|| decodeURIComponent(avatar)=='null')
+    {
+        document.getElementById("profile-pic").setAttribute('src','/images/profile.png')
+    }
+    else
+    document.getElementById("profile-pic").setAttribute('src',decodeURIComponent(avatar))
+    
 </script>

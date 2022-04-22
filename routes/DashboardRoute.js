@@ -1,7 +1,11 @@
-const express = require('express');
-const userModel = require('../models/userModel');
-const DashboardRoute = express.Router();
-const resultModel = require('../models/resultModel');
+const express=require('express');
+const userModel=require('../models/userModel');
+const DashboardRoute=express.Router();
+const resultModel=require('../models/resultModel');
+const fs=require('fs')
+const path=require('path')
+
+
 // ProfileRoute
 //     .get('/profile', async (req, res) => {
 //         try {
@@ -15,15 +19,15 @@ const resultModel = require('../models/resultModel');
 
 DashboardRoute
     .get('/dashboard', async (req, res) => {
-        let user = await userModel.findOne({ _id: req.user.id });
-        const { name, email, username, photo, collegeName, graduationYear, createdAt } = user;
-        let totalTestCount = await resultModel.countDocuments({ userid: req.user.id });
-        const data = {
+        let user=await userModel.findOne({ _id: req.user.id });
+        const { name, email, username, photo, collegeName, graduationYear, createdAt, avatar }=user;
+        let totalTestCount=await resultModel.countDocuments({ userid: req.user.id });
+        const data={
             title: 'Dashboard',
             name,
             email,
             username,
-            photo,
+            avatar,
             collegeName,
             graduationYear,
             createdAt,
@@ -32,7 +36,59 @@ DashboardRoute
         return res.render('admin/user_dashboard', { data });
     })
 
-DashboardRoute.get('/edit-profile', (req, res) => {
-    return res.render('admin/editProfile');
+DashboardRoute.get('/edit-profile', async (req, res) => {
+    let user=await userModel.findOne({ _id: req.user.id });
+
+    let data={
+        title: 'Edit Profile',
+        user: user
+    }
+    return res.render('admin/editProfile', { data });
 })
-module.exports = DashboardRoute
+
+DashboardRoute.post('/edit-profile/update-info', async (req, res) => {
+
+    let user=await userModel.findById(req.user.id)
+    userModel.uploadedAvatar(req, res, (err) => {
+        if (err) {
+            console.log("Multer error");
+            return res.redirect('back');
+        }
+
+        user.name=req.body.name
+        // user.email = req.body.email
+        user.username=req.body.username
+        user.collegeName=req.body.collegeName
+        user.graduationYear=req.body.graduationYear
+
+        // console.log(req.file)
+        if (req.file) {
+            if (user.avatar) {
+                fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+            }
+            user.avatar=userModel.avatarPath+'/'+req.file.filename
+
+            res.clearCookie('avatar', { path: '/' });
+            res.cookie('avatar', user.avatar)
+        }
+
+        user.save();
+        res.clearCookie('name', { path: '/' });
+        res.cookie('name', user.name)
+
+        return res.redirect('back');
+    })
+    //    let user = userModel.findById(req.user.id)
+    //         user.name = req.body.name
+    //         user.email = req.body.email
+    //         user.username = req.body.username
+    //         user.collegeName = req.body.collegeName
+    //         user.graduationYear = req.body.graduationYear
+
+
+
+    //         user.save();
+    //         return res.redirect('back');
+
+})
+module.exports=DashboardRoute

@@ -19,6 +19,12 @@
     height: 30px;
 }
 
+.design
+{
+    font-weight: bold;
+    color: #ff850c;
+}
+
 .table-border
 {
     border: 2px solid var(--primary);

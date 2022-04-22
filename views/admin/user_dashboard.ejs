@@ -22,8 +22,17 @@
                     <div class="shadow-sm rounded h-100 hero-container">
                         <div class="me-2  w-100 px-4">
                             <div class="d-flex py-2">
-                                <img src="/images/profile.png" alt="profile"
-                                    class="m-auto rounded-circle border border-3 border-white" height="120" width="120">
+                                <%if (data.avatar){%>
+                                    <img src="<%= data.avatar %>"
+                                    class="m-auto rounded-circle border border-3 border-white " height="120" width="120">
+                                  <%}else{%>
+                                  <img src="/images/profile.png" alt="profile"
+                                    class="rounded-circle border border-3 border-white m-auto " height="120" width="120" >
+                                    
+                                <%}%>
+                                
+                                
+
                             </div>
                             <div class=" text-center">
                                 <h5 class="text-center fw-bold mb-0">
