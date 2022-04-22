@@ -294,7 +294,7 @@
                 skip: 1,
                 opened: 1
             };
-            $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 skipques activeques');
+            $(`button[value="${answer.id}"]`).prop('class', 'btn btn-circle m-1 skipques activeques');
             skip.push(answer);
             localStorage.setItem("selectedAnswers", JSON.stringify(skip));
             $("button.btn.btn-circle.m-1.activeques").next().click();
