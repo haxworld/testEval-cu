@@ -3,9 +3,10 @@ const userModel=require('../models/userModel');
 const DashboardRoute=express.Router();
 const resultModel=require('../models/resultModel');
 const fs=require('fs')
-const path=require('path')
+const path=require('path');
+const notesModel=require('../models/notesModel');
 
-
+const mongoose=require('mongoose');
 // ProfileRoute
 //     .get('/profile', async (req, res) => {
 //         try {
@@ -22,6 +23,7 @@ DashboardRoute
         let user=await userModel.findOne({ _id: req.user.id });
         const { name, email, username, photo, collegeName, graduationYear, createdAt, avatar }=user;
         let totalTestCount=await resultModel.countDocuments({ userid: req.user.id });
+        let notes=await notesModel.findOne({ userid: req.user.id })
         const data={
             title: 'Dashboard',
             name,
@@ -31,7 +33,8 @@ DashboardRoute
             collegeName,
             graduationYear,
             createdAt,
-            totalTestCount
+            totalTestCount,
+            notes
         }
         return res.render('admin/user_dashboard', { data });
     })
@@ -94,5 +97,40 @@ DashboardRoute.post('/edit-profile/update-info', async (req, res) => {
     //         user.save();
     //         return res.redirect('back');
 
+})
+DashboardRoute.post('/note/add', async (req, res) => {
+    let user=req.user.id;
+    let title=req.body.todo_data
+
+    let note=await notesModel.findOne({ userid: user })
+    let data={
+        userid: user,
+        notes: {
+            title: title,
+            completed: 0
+        }
+    }
+    if (!note) {
+        let addNote=new notesModel(data)
+        await addNote.save()
+    } else {
+        let notes={
+            title: title,
+            completed: 0
+        }
+        note.notes.push(notes);
+        note.save();
+    }
+
+    return res.redirect('/dashboard')
+})
+DashboardRoute.post('/note/update', async (req, res) => {
+    let note=await notesModel.findOneAndUpdate({ notes: { $elemMatch: { _id: mongoose.Types.ObjectId(req.body.noteId) } } }, {
+        '$set': {
+            'notes.$.completed': req.body.completed
+        }
+    })
+
+    return res.json("done")
 })
 module.exports=DashboardRoute
