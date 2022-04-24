@@ -19,22 +19,22 @@
                     <button onclick="history.back()" class="align-self-center btn btn-light"><i
                             class="fa-solid fa-arrow-left fs-4"></i></button>
                     <h2 class="text-center m-auto fs-2 fw-bold">
-                        <%= data.title %>
+                        <%= TestSeries ? `${TestSeries.title} ${data.title}`: `All ${data.title}` %>
                     </h2>
-                    <a href="/admin/testseries/create" class="align-self-center btn btn-primary">Add Series</a>
+                    <a href="/admin/Question/create" class="align-self-center btn btn-primary">Add Question</a>
                 </div>
                 <!-- table data -->
                 <table class="table mt-4">
                     <thead>
                         <tr>
                             <th scope="col">Sr No.</th>
-                            <th scope="col">Series Name</th>
-                            <th scope="col">Total Questions</th>
+                            <th scope="col">Question</th>
+                            <th scope="col">Test Series</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% series.forEach((e, index)=> { %>
+                        <% questions.forEach((e, index)=> { %>
                             <tr>
                                 <td scope="row">
                                     <p style="font-weight: bold;">
@@ -43,22 +43,22 @@
                                 </td>
                                 <td scope="row">
                                     <p style="font-weight: bold;">
-                                        <%=e.title%>
+                                        <%-e.title%>
                                     </p>
                                 </td>
                                 <td scope="row">
-                                    <%=e.count%>
+                                    <%= TestSeries ? TestSeries.title : '' %>
                                 </td>
                                 <td class="text-start">
                                     <div class="d-flex gap-1">
                                         <button
-                                            onclick="viewmodal('<%= e.title %>','<%= e.category %>','<%= e.desc %>','<%= e.totalTime %>','<%= e.hidden %>','<%= e.updatedAt %>')"
+                                            onclick="viewmodal(`<%=e.title%>`,`<%=e.correctAnswer%>`,`<%=e.incorrectOptions%>`,`<%=e.explaination%>`,`<%= e.hidden %>`,`<%= e.updatedAt %>`)"
                                             class="btn btn-outline-dark" data-bs-toggle="modal"
                                             data-bs-target="#seriesModal"><i class="fa-solid fa-eye"></i></button>
-                                        <a href="/admin/testseries/edit/<%= e._id %>" class="btn btn-outline-primary"><i
+                                        <a href="/admin/question/edit/<%= e._id %>" class="btn btn-outline-primary"><i
                                                 class="fa-solid fa-pencil"></i></a>
                                         <!-- delete test series TODO: change output -->
-                                        <a href="/admin/testseries/delete/<% e._id %>" class="btn btn-outline-danger"><i
+                                        <a href="/admin/question/delete/<% e._id %>" class="btn btn-outline-danger"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </div>
                                 </td>
@@ -83,18 +83,18 @@
                                 </div>
                                 <hr />
                                 <div class="row my-1">
-                                    <div class="col-6 fw-bold">Category:</div>
-                                    <div class="col-6" id="category">demo</div>
+                                    <div class="col-6 fw-bold">Correct Answer:</div>
+                                    <div class="col-6" id="correct">demo</div>
                                 </div>
                                 <hr />
                                 <div class="row my-1">
-                                    <div class="col-6 fw-bold">Description:</div>
-                                    <div class="col-6" id="desc">demo</div>
+                                    <div class="col-6 fw-bold">Incorrect Answer:</div>
+                                    <div class="col-6" id="incorrect">demo</div>
                                 </div>
                                 <hr />
                                 <div class="row my-1">
-                                    <div class="col-6 fw-bold">Total Time: </div>
-                                    <div class="col-6" id="totalTime">demo</div>
+                                    <div class="col-6 fw-bold">Explaination: </div>
+                                    <div class="col-6" id="explaination">demo</div>
                                 </div>
                                 <hr />
                                 <div class="row my-1">
@@ -119,14 +119,23 @@
 
         <%- include('../partials/footer'); %>
             <script>
-                function viewmodal(title, category, desc, totalTime, hidden, updatetime) {
-                    $('#title').text(title);
-                    $('#category').text(category);
-                    $('#desc').text(desc);
-                    $('#totalTime').text(totalTime);
+
+                function viewmodal(title, correct, incorrect, explaination, hidden, updatetime) {
+                    $('#title').html(title);
+                    $('#correct').html(correct);
+                    $('#incorrect').html(incorrect);
+                    $('#explaination').html(explaination);
                     $('#hidden').text(hidden);
                     $('#updatetime').text(updatetime);
                 }
+                // function viewmodal(title, correct, incorrect, explaination, hidden, updatetime) {
+                //     $('#title').html(title);
+                //     $('#correct').html(correct);
+                //     $('#desc').html(incorrect);
+                //     $('#explaination').html(explaination);
+                //     $('#hidden').text(hidden);
+                //     $('#updatetime').text(updatetime);
+                // }
             </script>
 </body>
 

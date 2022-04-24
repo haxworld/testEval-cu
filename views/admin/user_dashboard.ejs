@@ -24,14 +24,16 @@
                             <div class="d-flex py-2">
                                 <%if (data.avatar){%>
                                     <img src="<%= data.avatar %>"
-                                    class="m-auto rounded-circle border border-3 border-white " height="120" width="120">
-                                  <%}else{%>
-                                  <img src="/images/profile.png" alt="profile"
-                                    class="rounded-circle border border-3 border-white m-auto " height="120" width="120" >
-                                    
-                                <%}%>
-                                
-                                
+                                        class="m-auto rounded-circle border border-3 border-white " height="120"
+                                        width="120">
+                                    <%}else{%>
+                                        <img src="/images/profile.png" alt="profile"
+                                            class="rounded-circle border border-3 border-white m-auto " height="120"
+                                            width="120">
+
+                                        <%}%>
+
+
 
                             </div>
                             <div class=" text-center">
@@ -68,7 +70,9 @@
                                     <i class='bx bxs-book-add my-auto ms-2 me-4 fs-1 text-danger'></i>
                                     <div>
                                         <h5 class="mb-0 fw-bold">Total Test Attempted</h5>
-                                        <p class="mb-0"><%= data.totalTestCount %> </p>
+                                        <p class="mb-0">
+                                            <%= data.totalTestCount %>
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- accuracy -->
@@ -174,28 +178,42 @@
                                 <div class="slimScrollNote" style="overflow: hidden; width: auto; height: 310px;">
                                     <div class="todo-box-wrap">
                                         <ul class="todo-list">
-                                            <!-- 1st Item -->
-                                            <li class="todo-item">
-                                                <div class="checkbox checkbox-default">
-                                                    <input class="to-do" data-id="0" data-value="1" type="checkbox"
-                                                        id="0" checked="">
-                                                    <label for="0">jbdfgdfg</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <hr class="light-grey-hr">
-                                            </li>
-                                            <!-- 2nd Item -->
-                                            <li class="todo-item">
-                                                <div class="checkbox checkbox-default">
-                                                    <input class="to-do" data-id="0" data-value="2" type="checkbox"
-                                                        id="1">
-                                                    <label for="1">jbdfgdfg</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <hr class="light-grey-hr">
-                                            </li>
+                                            <% if (data.notes) { %>
+                                                <% data.notes.notes.forEach(e=> { %>
+                                                    <li class="todo-item">
+                                                        <div class="checkbox checkbox-default">
+                                                            <input class="to-do" data-id="0" data-value="1"
+                                                                type="checkbox" id="<%=e._id %>" <% if(data.notes &&
+                                                                e.completed) {%>
+                                                            checked <%}%> onclick="updateStatus(this)">
+                                                                <label for="<%= e._id %>">
+                                                                    <%- e.title %>
+                                                                </label>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="light-grey-hr">
+                                                    </li>
+                                                    <% }) %>
+                                                        <% } else { %>
+                                                            <li>
+                                                                <label>
+                                                                    No Tasks
+                                                                </label>
+                                                            </li>
+                                                            <% } %>
+
+                                                                <!-- <li class="todo-item">
+                                                        <div class="checkbox checkbox-default">
+                                                            <input class="to-do" data-id="0" data-value="1"
+                                                                type="checkbox" id="0" checked="">
+                                                            <label for="0">jbdfgdfg</label>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="light-grey-hr">
+                                                    </li> -->
+
                                         </ul>
                                     </div>
                                 </div>
@@ -208,15 +226,11 @@
                             </div>
                         </div>
                         <div class="new-todo">
-                            <form method="post" enctype="multipart/form-data" id="add_todo" novalidate="novalidate"
-                                _lpchecked="1">
+                            <form action="/note/add" method="post" id="add_todo">
                                 <div class="input-group">
                                     <input type="text" id="todo_data" name="todo_data" class="form-control"
                                         style="border: 1px solid bg-light !IMPORTANT;" placeholder="Add new task">
                                     <span class="input-group-btn">
-
-                                        <input type="hidden" name="userid" id="userid" value="U214">
-
                                         <button type="submit" class="btn btn-primary todo-submit"
                                             style="background-color: var(--first-color);"><i
                                                 class="fa fa-plus"></i></button>
@@ -230,8 +244,30 @@
             </div>
         </div>
         <script>
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
+            const updateStatus=(e) => {
+
+                let noteId=e.id
+                let completed=e.checked;
+                const data={ noteId, completed };
+                fetch("/note/update", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            }
+        </script>
+        <script>
+            const ctx=document.getElementById('myChart').getContext('2d');
+            const myChart=new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Aptitude', 'Core', 'DSA', 'Verbal'],

@@ -33,8 +33,9 @@
                 <a href="/admin" class="nav_link <%= data.title === 'Admin Menu' && 'active' %>">
                     <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Super Admin</span>
                 </a>
-                <a href="/admin/question/add" class="nav_link <%= data.title === 'Add Question' && 'active' %>">
-                    <i class='bx bx-add-to-queue'></i><span class="nav_name">Add Question</span>
+                <a href="/admin/question/series"
+                    class="nav_link <%= data.title === 'View Questions (by series)' && 'active' %>">
+                    <i class='bx bx-add-to-queue'></i><span class="nav_name">Manage Questions</span>
                 </a>
 
                 <!--  <a href="#" class="nav_link">
@@ -52,23 +53,22 @@
 </div>
 <script>
     function getCookie(cookieName) {
-        let cookie = {};
+        let cookie={};
         document.cookie.split(';').forEach(function (el) {
-            let [key, value] = el.split('=');
-            cookie[key.trim()] = value;
+            let [key, value]=el.split('=');
+            cookie[key.trim()]=value;
         })
         return cookie[cookieName];
     }
-    var name = getCookie('name') || "User";
-    document.getElementById("name").innerText = decodeURIComponent(name);
+    var name=getCookie('name')||"User";
+    document.getElementById("name").innerText=decodeURIComponent(name);
 
-    var avatar = getCookie('avatar') || "Profile pic";
-    
-    if(decodeURIComponent(avatar)=='j:null'|| decodeURIComponent(avatar)=='null')
-    {
-        document.getElementById("profile-pic").setAttribute('src','/images/profile.png')
+    var avatar=getCookie('avatar')||"Profile pic";
+
+    if (decodeURIComponent(avatar)=='j:null'||decodeURIComponent(avatar)=='null') {
+        document.getElementById("profile-pic").setAttribute('src', '/images/profile.png')
     }
     else
-    document.getElementById("profile-pic").setAttribute('src',decodeURIComponent(avatar))
-    
+        document.getElementById("profile-pic").setAttribute('src', decodeURIComponent(avatar))
+
 </script>
