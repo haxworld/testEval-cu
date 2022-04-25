@@ -151,7 +151,10 @@ background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
 background: linear-gradient(to right, #4A00E0, #8E2DE2);  */
 
     background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+    
+    background-image: linear-gradient(62deg, #b1d8fa 0%,#dbf2f2 0%, #ffe0e6 100%);
+    
 }
 .bg-hover:hover{
     background-image: radial-gradient( circle 820px at 9.1% 22.8%,  rgba(216,247,229,1) 0%, rgba(249,238,238,1) 74.7% );

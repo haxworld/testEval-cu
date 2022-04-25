@@ -80,8 +80,12 @@ ResultRoute.get('/result/:id', async (req, res) => {
 
 
         let allquestions = await questionModel.find({ subjectId: result[0].testseriesid._id })
-        quesidList = element.map(item => item.quesid)
-        // console.log(quesidList.length)
+        quesidList = element.map(item => 
+            {
+                if(item.quesid && item.userchoice !='')
+                return item.quesid
+            })
+        // console.log(quesidList)
         let i = 0;
 
         let choiceBucket = []
@@ -106,6 +110,7 @@ ResultRoute.get('/result/:id', async (req, res) => {
             }
         });
 
+        // console.log(choiceBucket)
 
         let data = {
 

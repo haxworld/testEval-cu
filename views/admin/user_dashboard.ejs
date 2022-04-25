@@ -18,18 +18,18 @@
         <!--Container Main start-->
         <div class="bg-light p-2">
             <div class="row pb-2">
-                <div class="col-12 col-sm-6 col-lg-9">
+                <div class="col-12 col-sm-6 col-lg-8">
                     <div class="shadow-sm rounded h-100 hero-container">
                         <div class="me-2  w-100 px-4">
                             <div class="d-flex py-2">
                                 <%if (data.avatar){%>
                                     <img src="<%= data.avatar %>"
                                         class="m-auto rounded-circle border border-3 border-white " height="120"
-                                        width="120">
+                                        width="120" style="background-color: white">
                                     <%}else{%>
                                         <img src="/images/profile.png" alt="profile"
                                             class="rounded-circle border border-3 border-white m-auto " height="120"
-                                            width="120">
+                                            width="120" style="background-color: white">
 
                                         <%}%>
 
@@ -51,39 +51,86 @@
                     </div>
                 </div>
                 <!-- start statis -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <div class="panel no-border bg-white shadow-sm">
                         <div class="p-3 shadow-sm bg-white">
                             <div class="">
                                 <!-- accuracy -->
-                                <div class="d-flex border border-dark rounded-3 py-2 my-2 bg-hover">
-                                    <!-- <img src="/images/accurate.png" alt="" srcset="" height="40" class="my-auto ms-2 me-4"> -->
-                                    <i class='bx bxs-badge-check my-auto ms-2 me-4 fs-1 text-success'></i>
-                                    <div>
-                                        <h5 class="mb-0 fw-bold">Badges</h5>
-                                        <p class="mb-0">Complete 5 tests</p>
+
+
+                                <%if(!(data.badge[0] || data.badge[1]|| data.badge[2] || data.badge[3])){%>
+                                    <div class="d-flex border border-dark rounded-3 py-2 my-2 bg-hover"
+                                        style="position: relative;">
+                                        <img src="/images/medal.png" alt="" srcset="" height="40"
+                                            class="my-auto ms-2 me-4">
+
+
+                                        <div>
+                                            <h5 class="mb-0 fw-bold">Badges</h5>
+                                            <p class="mb-0">Complete the testseries</p>
+                                        </div>
+                                        <img data-toggle="tooltip" src="images/i.png" data-placement="bottom"
+                                            style="height: 20px; width: 20px; position: absolute; right: 5px;"
+                                            title="To get the subject badge, complete all the test series present in it with atleast 80% accuracy" />
+
                                     </div>
-                                </div>
-                                <!-- accuracy -->
-                                <div class="d-flex border border-dark rounded-3 py-2 my-2">
-                                    <!-- <img src="/images/accurate.png" alt="" srcset="" height="40" class="my-auto ms-2 me-4"> -->
-                                    <i class='bx bxs-book-add my-auto ms-2 me-4 fs-1 text-danger'></i>
-                                    <div>
-                                        <h5 class="mb-0 fw-bold">Total Test Attempted</h5>
-                                        <p class="mb-0">
-                                            <%= data.totalTestCount %>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- accuracy -->
-                                <div class="d-flex border border-dark rounded-3 py-2 my-2">
-                                    <img src="/images/accurate.png" alt="" srcset="" height="40"
-                                        class="my-auto ms-2 me-4">
-                                    <div>
-                                        <h5 class="mb-0 fw-bold">Accuracy Level</h5>
-                                        <p class="mb-0">82%</p>
-                                    </div>
-                                </div>
+                                    <%}else{%>
+                                        <div class="d-flex border border-dark rounded-3 py-2 my-2 bg-hover justify-content-evenly"
+                                            style="position: relative;">
+                                            <%if(data.badge[0]){%>
+                                                <img src="/images/aptitude-badge.png" alt="" data-placement="top"
+                                                    height="40" class="" title="Aptitude">
+                                                <%}%>
+
+                                                    <%if(data.badge[1]){%>
+                                                        <img src="/images/core-badge.png" alt="" data-placement="top"
+                                                            height="40" class="" title="Core">
+                                                        <%}%>
+
+                                                            <%if(data.badge[2]){%>
+                                                                <img src="/images/dsa-badge.png" alt="" height="40"
+                                                                    class="" data-placement="top" title="DSA">
+                                                                <%}%>
+
+                                                                    <%if(data.badge[3]){%>
+                                                                        <img src="/images/verbal-badge.png" alt=""
+                                                                            height="40" class="" data-placement="top"
+                                                                            title="Verbal">
+                                                                        <%}%>
+                                                                            <img data-toggle="tooltip"
+                                                                                src="images/i.png"
+                                                                                data-placement="bottom"
+                                                                                style="height: 20px; width: 20px; position: absolute; right: 5px;"
+                                                                                title="To get the subject badge, complete all the test series present in it with atleast 80% accuracy" />
+
+
+                                                                            <%}%>
+
+
+                                        </div>
+                                        <!-- accuracy -->
+                                        <div class="d-flex border border-dark rounded-3 py-2 my-2">
+                                            <img src="/images/test.png" alt="" srcset="" height="40"
+                                                class="my-auto ms-2 me-4">
+                                            <!-- <i class='bx bxs-book-add my-auto ms-2 me-4 fs-1 text-danger'></i> -->
+                                            <div>
+                                                <h5 class="mb-0 fw-bold">Total Test Attempted</h5>
+                                                <p class="mb-0">
+                                                    <%= data.totalTestCount %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- accuracy -->
+                                        <div class="d-flex border border-dark rounded-3 py-2 my-2">
+                                            <img src="/images/accuracy.png" alt="" srcset="" height="40"
+                                                class="my-auto ms-2 me-4">
+                                            <div>
+                                                <h5 class="mb-0 fw-bold">Current Accuracy Level</h5>
+                                                <p class="mb-0">
+                                                    <%= data.final_accuracy %>%
+                                                </p>
+                                            </div>
+                                        </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +141,7 @@
                 <div class="col-12 col-sm-6 col-lg-4 ">
                     <div class="panel no-border bg-white shadow-sm">
                         <div class="table_banner">
-                            <h5 class="table_banner_title border-short">Test Score</h5>
+                            <h5 class="table_banner_title border-short">Subject-wise Accuracy</h5>
                         </div>
                         <div style="position: relative;" class="p-4">
                             <canvas id="myChart"></canvas>
@@ -273,7 +320,7 @@
                     labels: ['Aptitude', 'Core', 'DSA', 'Verbal'],
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5],
+                        data: [<%= data.final_ap%>, <%= data.final_core%>, <%= data.final_dsa%>, <%= data.final_v%>],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
