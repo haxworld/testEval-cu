@@ -243,12 +243,25 @@ DashboardRoute.post('/note/add', async (req, res) => {
     return res.redirect('/dashboard')
 })
 DashboardRoute.post('/note/update', async (req, res) => {
-    let note=await notesModel.findOneAndUpdate({ notes: { $elemMatch: { _id: mongoose.Types.ObjectId(req.body.noteId) } } }, {
+    await notesModel.findOneAndUpdate({ notes: { $elemMatch: { _id: mongoose.Types.ObjectId(req.body.noteId) } } }, {
         '$set': {
             'notes.$.completed': req.body.completed
         }
     })
 
     return res.json("done")
+})
+DashboardRoute.post('/note/delete', async (req, res) => {
+    let note=await notesModel.findOneAndUpdate({ notes: { $elemMatch: { _id: mongoose.Types.ObjectId(req.body.noteId) } } }, {
+        $pull: {
+            notes: { _id: mongoose.Types.ObjectId(req.body.noteId) }
+        }
+    }, { multi: true })
+
+    if (note) {
+        return res.redirect('/dashboard')
+    }
+
+
 })
 module.exports=DashboardRoute

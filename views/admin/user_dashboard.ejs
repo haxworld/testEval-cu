@@ -225,9 +225,9 @@
                                 <div class="slimScrollNote" style="overflow: hidden; width: auto; height: 310px;">
                                     <div class="todo-box-wrap">
                                         <ul class="todo-list">
-                                            <% if (data.notes) { %>
+                                            <% if (data.notes && data.notes.notes.length> 0) { %>
                                                 <% data.notes.notes.forEach(e=> { %>
-                                                    <li class="todo-item">
+                                                    <li class="todo-item d-flex justify-content-between">
                                                         <div class="checkbox checkbox-default">
                                                             <input class="to-do" data-id="0" data-value="1"
                                                                 type="checkbox" id="<%=e._id %>" <% if(data.notes &&
@@ -237,6 +237,8 @@
                                                                     <%- e.title %>
                                                                 </label>
                                                         </div>
+                                                        <i class="fa-solid fa-trash align-self-center"
+                                                            onclick="deleteNote(this)" id="<%=e._id %>"></i>
                                                     </li>
                                                     <li>
                                                         <hr class="light-grey-hr">
@@ -310,6 +312,20 @@
                     .catch((error) => {
                         console.error("Error:", error);
                     });
+            }
+            const deleteNote=(e) => {
+
+                let noteId=e.id
+                const data={ noteId };
+                fetch("/note/delete", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => window.location.href="/dashboard")
+
             }
         </script>
         <script>
