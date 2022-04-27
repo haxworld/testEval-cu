@@ -103,55 +103,55 @@
         </div>
         <!--Container Main end-->
         <script>
-            const search = () => {
-                let searchedText = document.getElementById('search-box').value.toUpperCase();
-                let resultTable = document.getElementById('resultTable');
+            const search=() => {
+                let searchedText=document.getElementById('search-box').value.toUpperCase();
+                let resultTable=document.getElementById('resultTable');
 
-                let tr = resultTable.getElementsByTagName('tr');
+                let tr=resultTable.getElementsByTagName('tr');
 
-                for (let i = 1; i < tr.length; i++) {
-                    let td_sub = tr[i].getElementsByTagName('td')[0];
-                    let td_series = tr[i].getElementsByTagName('td')[1];
+                for (let i=1; i<tr.length; i++) {
+                    let td_sub=tr[i].getElementsByTagName('td')[0];
+                    let td_series=tr[i].getElementsByTagName('td')[1];
 
-                    if (td_sub || td_series) {
-                        let textVal1 = td_sub.textContent || td_sub.innerHTML;
-                        let textVal2 = td_series.textContent || td_series.innerHTML;
+                    if (td_sub||td_series) {
+                        let textVal1=td_sub.textContent||td_sub.innerHTML;
+                        let textVal2=td_series.textContent||td_series.innerHTML;
 
-                        if (textVal1.toUpperCase().indexOf(searchedText) > -1 || textVal2.toUpperCase().indexOf(searchedText) > -1) {
-                            tr[i].style.display = ""
+                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1) {
+                            tr[i].style.display=""
                         }
                         else {
-                            tr[i].style.display = "none"
+                            tr[i].style.display="none"
                         }
                     }
                 }
             }
             $('#subject').on('click', function () {
-                var $tbody = $('#resultTable tbody');
+                var $tbody=$('#resultTable tbody');
 
                 $('#topic').css("background-color", "white");
                 $('#subject').css("background-color", "gray");
                 $('#dropdownMenuLink').text("Subject");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
-                    var tda = $(a).find('td p:first-child').text()
-                    var tdb = $(b).find('td p:first-child').text()
-                    return tda > tdb ? 1 : tda < tdb ? -1 : 0;
+                    var tda=$(a).find('td p:first-child').text()
+                    var tdb=$(b).find('td p:first-child').text()
+                    return tda>tdb? 1:tda<tdb? -1:0;
                 }).appendTo($tbody);
 
             });
             $('#topic').on('click', function () {
-                var $tbody = $('#resultTable tbody');
+                var $tbody=$('#resultTable tbody');
 
                 $('#subject').css("background-color", "white");
                 $('#topic').css("background-color", "gray");
                 $('#dropdownMenuLink').text("Topic");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
-                    var tda = $(a).find('.series').text()
-                    var tdb = $(b).find('.series').text()
+                    var tda=$(a).find('.series').text()
+                    var tdb=$(b).find('.series').text()
                     console.log(tda)
-                    return tda > tdb ? 1 : tda < tdb ? -1 : 0;
+                    return tda>tdb? 1:tda<tdb? -1:0;
                 }).appendTo($tbody);
 
             });

@@ -5,7 +5,7 @@ const resultModel=require('../models/resultModel');
 const fs=require('fs')
 const path=require('path');
 const notesModel=require('../models/notesModel');
-const testseriesModel = require('../models/testSeriesModel')
+const testseriesModel=require('../models/testSeriesModel')
 
 const mongoose=require('mongoose');
 // ProfileRoute
@@ -26,18 +26,17 @@ DashboardRoute
         let totalTestCount=await resultModel.countDocuments({ userid: req.user.id });
         let notes=await notesModel.findOne({ userid: req.user.id })
 
-        let results = await resultModel.find({userid:req.user.id});
-        
-        let distinct = function(arr)
-        {
-            let newArray = [];
-            let uniqueObject = {};
-            
+        let results=await resultModel.find({ userid: req.user.id });
+
+        let distinct=function (arr) {
+            let newArray=[];
+            let uniqueObject={};
+
             for (let i in arr) {
 
-                objTitle = arr[i]['testseriesid'];
-    
-                uniqueObject[objTitle] = arr[i];
+                objTitle=arr[i]['testseriesid'];
+
+                uniqueObject[objTitle]=arr[i];
             }
 
             for (i in uniqueObject) {
@@ -47,104 +46,93 @@ DashboardRoute
             return newArray
         }
 
-        let newArray = []
-        if(results)
-        {
-            newArray = distinct(results)
+        let newArray=[]
+        if (results) {
+            newArray=distinct(results)
         }
-       
-        let returnLarger = (arr, num) => {
-            return arr.map(v => v.accuracy >= num ? v : "").filter(Boolean)
-          }
 
-          getBadgeTests = returnLarger(results,80)
-        
-          let verbal = await testseriesModel.find({category: "624f0130d864bf25802c6048"}) ;
-          let dsa = await testseriesModel.find({category: "624f011bd864bf25802c6046"}) ;
-          let core = await testseriesModel.find({category: "624f0114d864bf25802c6044"}) ;
-          let aptitude = await testseriesModel.find({category: "624f00ffd864bf25802c6042"}) ;
-          
-          let badge = [];
-          let getBadge = function(arr)
-          {
-                let c = 0;
-                for(let i = 0;i<arr.length;i++)
-                {
-                    for(let j = 0;j<getBadgeTests.length;j++)
-                    {
-                        if(arr[i].id == getBadgeTests[j].testseriesid)
-                        {
-                            c++;
-                            break;
-                        }
+        let returnLarger=(arr, num) => {
+            return arr.map(v => v.accuracy>=num? v:"").filter(Boolean)
+        }
+
+        getBadgeTests=returnLarger(results, 80)
+
+        let verbal=await testseriesModel.find({ category: "624f0130d864bf25802c6048" });
+        let dsa=await testseriesModel.find({ category: "624f011bd864bf25802c6046" });
+        let core=await testseriesModel.find({ category: "624f0114d864bf25802c6044" });
+        let aptitude=await testseriesModel.find({ category: "624f00ffd864bf25802c6042" });
+
+        let badge=[];
+        let getBadge=function (arr) {
+            let c=0;
+            for (let i=0; i<arr.length; i++) {
+                for (let j=0; j<getBadgeTests.length; j++) {
+                    if (arr[i].id==getBadgeTests[j].testseriesid) {
+                        c++;
+                        break;
                     }
                 }
-    
-                if(c == arr.length)
-                {
-                    badge.push(1);
+            }
+
+            if (c==arr.length) {
+                badge.push(1);
+            }
+            else {
+                badge.push(0)
+            }
+
+            return badge;
+        }
+
+        getBadge(aptitude);
+        getBadge(core)
+        getBadge(dsa)
+        badge=getBadge(verbal)
+
+
+        let l_aptitude=0;
+        let l_dsa=0;
+        let l_core=0;
+        let l_verbal=0;
+        let sum_ap=0;
+        let sum_dsa=0;
+        let sum_core=0;
+        let sum_v=0;
+        let final_accuracy=0;
+        let final_ap=0;
+        let final_dsa=0;
+        let final_core=0;
+        let final_v=0;
+
+        if (newArray.length!=0) {
+            newArray.forEach(item => {
+                if (item.subjectid=='624f00ffd864bf25802c6042') {
+                    l_aptitude++;
+                    sum_ap+=item.accuracy;
                 }
-                else{
-                    badge.push(0)
+                else if (item.subjectid=='624f011bd864bf25802c6046') {
+                    l_dsa++;
+                    sum_core+=item.accuracy;
+                }
+                else if (item.subjectid=='624f0114d864bf25802c6044') {
+                    l_core++;
+                    sum_dsa+=item.accuracy;
+                }
+                else {
+                    l_verbal++;
+                    sum_v+=item.accuracy;
                 }
 
-                return badge;
-          }
 
-          getBadge(aptitude);
-          getBadge(core)
-          getBadge(dsa)
-          badge = getBadge(verbal)
-          
+            })
 
-        let l_aptitude = 0;
-        let l_dsa = 0;
-        let l_core = 0;
-        let l_verbal = 0;
-        let sum_ap = 0;
-        let sum_dsa = 0;
-        let sum_core = 0;
-        let sum_v = 0;
-        let final_accuracy = 0;
-        let final_ap = 0;
-        let final_dsa= 0;
-        let final_core = 0;
-        let final_v = 0;
+            final_accuracy=((sum_ap+sum_core+sum_dsa+sum_v)/newArray.length).toFixed(2);
+            final_ap=(sum_ap/l_aptitude).toFixed(2);
+            final_dsa=(sum_dsa/l_dsa).toFixed(2);
+            final_core=(sum_core/l_core).toFixed(2);
+            final_v=(sum_v/l_verbal).toFixed(2);
 
-     if(newArray.length !=0)
-     {
-        newArray.forEach(item => {
-            if(item.subjectid == '624f00ffd864bf25802c6042')
-            {
-                l_aptitude++; 
-                sum_ap+=item.accuracy;
-            }
-            else if(item.subjectid == '624f011bd864bf25802c6046')
-            {
-                l_dsa++;
-                sum_core+=item.accuracy;
-            }
-            else if(item.subjectid == '624f0114d864bf25802c6044')
-            {
-                l_core++; 
-                sum_dsa+=item.accuracy;
-            }
-            else
-            {
-                l_verbal++; 
-                sum_v+=item.accuracy;
-            }
-            
-            
-        })
-
-        final_accuracy = ((sum_ap + sum_core + sum_dsa + sum_v)/newArray.length).toFixed(2);
-        final_ap = (sum_ap/l_aptitude).toFixed(2);
-        final_dsa = (sum_dsa/l_dsa).toFixed(2);
-        final_core = (sum_core/l_core).toFixed(2);
-        final_v = (sum_v/l_verbal).toFixed(2);
-        
-     }
+        }
 
         const data={
             title: 'Dashboard',
@@ -162,7 +150,8 @@ DashboardRoute
             final_core,
             final_dsa,
             final_v,
-            badge
+            badge,
+            role: req.user.role
         }
         return res.render('admin/user_dashboard', { data });
     })
@@ -172,7 +161,8 @@ DashboardRoute.get('/edit-profile', async (req, res) => {
     let user=await userModel.findOne({ _id: req.user.id });
     let data={
         title: 'Edit Profile',
-        user: user
+        user: user,
+        role: req.user.role
     }
     return res.render('admin/editProfile', { data });
 })

@@ -1,54 +1,64 @@
-const express = require('express');
-const { isSignedIn, isAdmin } = require('./helpers/verifyToken');
-const AuthRouter = require('./routes/AuthRoute');
-const ResetRouter = require('./routes/ResetPasswordRoute');
-const DashboardRouter = require('./routes/DashboardRoute');
-const ResultRouter = require('./routes/ResultRoute');
-const QuestionRouter = require('./routes/QuestionRoute');
-const SubjectRouter = require('./routes/SubjectRoute');
-const SuperAdminRoute = require('./routes/SuperAdminRoute');
-const router = express.Router();
-const ExamRouter = require('./routes/ExamRoute');
-const resultModel = require('./models/resultModel');
+const express=require('express');
+const { isSignedIn, isAdmin }=require('./helpers/verifyToken');
+const AuthRouter=require('./routes/AuthRoute');
+const ResetRouter=require('./routes/ResetPasswordRoute');
+const DashboardRouter=require('./routes/DashboardRoute');
+const ResultRouter=require('./routes/ResultRoute');
+const QuestionRouter=require('./routes/QuestionRoute');
+const SubjectRouter=require('./routes/SubjectRoute');
+const SuperAdminRoute=require('./routes/SuperAdminRoute');
+const router=express.Router();
+const ExamRouter=require('./routes/ExamRoute');
+const resultModel=require('./models/resultModel');
 
 
 router.get('/', (req, res) => {
-    data = {
+    data={
         title: 'Home | Grabitt',
         isLoggedIn: false
     }
     if (req.cookies.token) {
-        data.isLoggedIn = true;
+        data.isLoggedIn=true;
     }
     return res.render('home', data);
 })
+router.get('/contact-us', (req, res) => {
+    data={
+        title: 'Home | Grabitt',
+        isLoggedIn: false
+    }
+    if (req.cookies.token) {
+        data.isLoggedIn=true;
+    }
+    return res.render('contactus', data);
+})
 
 router.get('/s', isSignedIn, (req, res) => {
-    data = {
+    data={
         title: "super admin menu"
     }
     res.render('admin/superAdmin_n', data);
 })
 router.get('/demo', async (req, res) => {
-    let datesub7 = new Date()
-    datesub7.setDate(datesub7.getDate() - 7);
-    let date = await resultModel.find({
+    let datesub7=new Date()
+    datesub7.setDate(datesub7.getDate()-7);
+    let date=await resultModel.find({
         createdAt: {
             $gte: datesub7,
             $lt: new Date()
         }
     }).sort({ createdAt: 'asc' })
-    data = {
+    data={
         title: "super admin menu",
         date
     }
-    const counts = {};
+    const counts={};
     date.forEach(item => {
-        let x = new Date(item.createdAt).toISOString().split('T')[0];
+        let x=new Date(item.createdAt).toISOString().split('T')[0];
         if (counts[x]) {
-            counts[x] = counts[x] + 1
+            counts[x]=counts[x]+1
         } else {
-            counts[x] = 1;
+            counts[x]=1;
         }
     })
 
@@ -65,4 +75,4 @@ router.use(isSignedIn, ResultRouter);
 router.use(('/admin'), isSignedIn, isAdmin, SuperAdminRoute);
 
 
-module.exports = router;
+module.exports=router;

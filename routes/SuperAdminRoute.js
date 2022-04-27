@@ -48,7 +48,8 @@ SuperAdminRoute
             testsCount,
             seriesCount,
             testCount,
-            dateCount
+            dateCount,
+            role: req.user.role
         }
         res.render('admin/superAdmin', data);
     })
@@ -57,6 +58,7 @@ SuperAdminRoute
         // 624f00ffd864bf25802c6042
         const data={
             title: "Test Series",
+            role: req.user.role
         }
         let TestSeries;
         if (query) {
@@ -74,7 +76,8 @@ SuperAdminRoute
         const data={
             title: 'Add Test Series',
             submitBtn: "Add Series",
-            url: 'create'
+            url: 'create',
+            role: req.user.role
         }
         var SubjectCategories=await subjectCategoryModel.find({})
         res.render('admin/series/addSeries', { data, subjects: SubjectCategories })
@@ -116,7 +119,8 @@ SuperAdminRoute
             title: 'Edit Test Series',
             submitBtn: "Update Series",
             url: `edit/${req.params.id}`,
-            TestSeries
+            TestSeries,
+            role: req.user.role
         }
         res.render('admin/series/addSeries', { data, subjects: SubjectCategories })
     })
@@ -132,7 +136,8 @@ SuperAdminRoute
                     url: `edit/${req.params.id}`,
                     msg: "Updated Successfully!",
                     success: true,
-                    TestSeries
+                    TestSeries,
+                    role: req.user.role
                 }
                 return res.render('admin/series/addSeries', { data, subjects: SubjectCategories })
             } else {
@@ -157,6 +162,7 @@ SuperAdminRoute
         let TestSeries;
         const data={
             title: "View Questions (by series)",
+            role: req.user.role
         }
         TestSeries=await testSeriesModel.find({}).populate(
             "count"
@@ -169,6 +175,7 @@ SuperAdminRoute
         // 62517c0b465edfee91112580 -apti
         const data={
             title: "Questions",
+            role: req.user.role
         }
         if (query) {
             questions=await questionModel.find({ subjectId: query })
@@ -184,6 +191,7 @@ SuperAdminRoute
             title: 'Add Question',
             submitBtn: "Add Series",
             url: `create`,
+            role: req.user.role
 
         }
         var TestSeries=await testSeriesModel.find({})
@@ -209,7 +217,8 @@ SuperAdminRoute
             title: 'Edit Question',
             submitBtn: "Update Series",
             url: `edit/${req.params.quesId}`,
-            question
+            question,
+            role: req.user.role
             // msg: "Updated Successfully!",
         }
         var TestSeries=await testSeriesModel.find({})
