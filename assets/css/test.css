@@ -164,3 +164,16 @@ margin: 4px 1px;
   label > p {
     margin: 0;
   }
+
+  /* speech rec */
+
+.start-recording {
+      display: flex;
+      flex-direction: column; 
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
+}
