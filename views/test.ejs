@@ -61,7 +61,7 @@
 
                 <div class="d-flex">
 
-                    <button class="btn text-white" type="submit"><i
+                    <button onclick="submittest()" class="btn text-white" type="button"><i
                             class="fa-solid fa-arrow-right-from-bracket text-white"></i>
                         Exit</button>
                 </div>
@@ -91,7 +91,7 @@
 
                                     <label class="form-check-label" for="option1" id="optionEditor1"
                                         style="width: 95%;">
-                                        <%- firstdata.options[0] %>
+                                        1. <%- firstdata.options[0] %>
                                     </label>
                                     <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
                                         style="width: 5%;" id="tts" onclick="speak('optionEditor1');"></i>
@@ -103,7 +103,7 @@
                                         class="form-check-input mx-2" value='<%- firstdata.options[1] %>' />
                                     <label class="form-check-label" for="option2" id="optionEditor2"
                                         style="width: 95%;">
-                                        <%- firstdata.options[1] %>
+                                        2. <%- firstdata.options[1] %>
                                     </label>
                                     <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
                                         style="width: 5%;" id="tts" onclick="speak('optionEditor2');"></i>
@@ -115,7 +115,7 @@
                                         class="form-check-input mx-2" value='<%- firstdata.options[2] %>' />
                                     <label class="form-check-label" for="option3" id="optionEditor3"
                                         style="width: 95%;">
-                                        <%- firstdata.options[2] %>
+                                        3. <%- firstdata.options[2] %>
                                     </label>
                                     <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
                                         style="width: 5%;" id="tts" onclick="speak('optionEditor3');"></i>
@@ -127,7 +127,7 @@
                                         class="form-check-input mx-2" value='<%- firstdata.options[3] %>' />
                                     <label class="form-check-label" for="option4" id="optionEditor4"
                                         style="width: 95%;">
-                                        <%- firstdata.options[3] %>
+                                        4. <%- firstdata.options[3] %>
                                     </label>
                                     <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
                                         style="width: 5%;" id="tts" onclick="speak('optionEditor4');"></i>
@@ -192,8 +192,17 @@
                     <!------ end questions -->
                     <!------  -->
                     <div class="row">
-                        <h6 class="m-2">Rough Work</h6>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <!-- <h6 class="m-2">Rough Work</h6>
+                        <textarea name="" id="" cols="30" rows="10"></textarea> -->
+
+                        <!-- voice command start -->
+                        <div class="col my-4">
+                            <h6 class="m-2">Voice Assistance</h6>
+                            <button id="StartVoice" class="btn btn-outline-success start-recording mt-4"><i
+                                    class="fa-solid fa-microphone"></i>Start</button>
+                            <p id="voiceText" class="d-none"></p>
+                        </div>
+                        <!-- voice command end -->
                     </div>
                     <!------ end questions -->
                 </div>
@@ -207,6 +216,135 @@
 
         </div>
     </section>
+    <script>
+        var recognizing=false;
+        $("#StartVoice").bind("click", function () {
+            window.SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition
+            var recognition=new window.SpeechRecognition();
+            if (recognizing==true) {
+                recognizing=false;
+                $('#StartVoice').prop('class', 'btn btn-outline-success start-recording');
+                $('#StartVoice').text('Start');
+                $('#voiceText').prop('class', 'd-none');
+                return;
+            }
+            recognizing=false;
+            // recognition.continuous=true;
+            recognition.lang='en-US';
+            recognition.interimResults=true;
+            // recognition.maxAlternatives=1;
+            recognition.start();
+
+            recognition.addEventListener('start', (e) => {
+                recognizing=true;
+                $('#StartVoice').prop('class', 'btn btn-outline-danger start-recording');
+                $('#StartVoice').text('Stop');
+                $('#voiceText').prop('class', 'd-block');
+                $('#voiceText').text('')
+            })
+
+            recognition.addEventListener('end', (e) => {
+                if (recognizing==false) {
+                    recognition.abort();
+                    recognizing=false;
+                    $('#StartVoice').prop('class', 'btn btn-outline-success start-recording');
+                    $('#StartVoice').text('Start');
+                    $('#voiceText').prop('class', 'd-none');
+                    return;
+                }
+                recognition.start();
+            })
+
+            recognition.addEventListener('result', (e) => {
+                if (recognizing) {
+                    const rawText=Array.from(e.results)
+                        .map(result => result[0])
+                        .map(result => result.transcript)
+                        .join('')
+
+                    const finalText=rawText.trim().toLowerCase()
+                    if (e.results[0].isFinal) {
+                        switch (true) {
+                            case finalText.includes('next'):
+                                saveandnext();
+                                console.log("next question done");
+                                break;
+
+                            case finalText.includes('previous'):
+                                saveandprevious();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('skip'):
+                                skip();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('review'):
+                                reviewLater();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('submit')||finalText.includes('exit'):
+                                recognition.abort();
+                                recognizing=false;
+                                submittest();
+                                break;
+
+                            case finalText.includes('stop'):
+                                recognition.abort();
+                                recognizing=false;
+                                break;
+
+                            case finalText.includes('read question')||finalText.includes('read questions'):
+                                speak('editorDisplay');
+                                console.log("speak done");
+                                break;
+
+                            //unselect option
+                            case finalText.includes('unselect option')||finalText.includes('unselect options')||finalText.includes('clear options')||finalText.includes('clear option'):
+                                $('input[type="checkbox"]').prop('checked', false);
+                                $('#reviewBtn').attr('onClick', 'skip()');
+                                $('#reviewBtn').text('Skip');
+                                break;
+                            //select options
+                            case finalText.includes('select option 1')||finalText.includes('select option one')||finalText.includes('select option first')||finalText.includes('select option 1st'):
+                                $("#option1").click();
+                                break;
+                            case finalText.includes('select option 2')||finalText.includes('select option two')||finalText.includes('select option second')||finalText.includes('select option 2nd'):
+                                $("#option2").click();
+                                break;
+                            case finalText.includes('select option 3')||finalText.includes('select option three')||finalText.includes('select option third')||finalText.includes('select option 3rd'):
+                                $("#option3").click();
+                                break;
+                            case finalText.includes('select option 4')||finalText.includes('select option four')||finalText.includes('select option fourth')||finalText.includes('select option 4th'):
+                                $("#option4").click();
+                                break;
+                            //read options
+                            case finalText.includes('read option 1')||finalText.includes('read option one')||finalText.includes('read option first')||finalText.includes('read option 1st'):
+                                speak('optionEditor1');
+                                break;
+                            case finalText.includes('read option 2')||finalText.includes('read option two')||finalText.includes('read option second')||finalText.includes('read option 2nd'):
+                                speak('optionEditor2');
+                                break;
+                            case finalText.includes('read option 3')||finalText.includes('read option three')||finalText.includes('read option third')||finalText.includes('read option 3rd'):
+                                speak('optionEditor3');
+                                break;
+                            case finalText.includes('read option 4')||finalText.includes('read option four')||finalText.includes('read option fourth')||finalText.includes('read option 4th'):
+                                speak('optionEditor4');
+                                break;
+
+                            default:
+                                $('#voiceText').addClass('text-danger');
+                                break;
+                        }
+                    }
+                    $('#voiceText').text(finalText)
+                    console.log(finalText);
+                }
+            })
+        });
+    </script>
     <script>
         $(document).ready(function () {
             localStorage.setItem('seriesId', '<%- firstdata.seriesId%>');
@@ -317,6 +455,10 @@
     </script>
     <script>
         function submittest() {
+            if (recognizing) {
+                recognition.abort();
+                recognizing=false;
+            }
             window.speechSynthesis.cancel();
             let testId='<%= testId %>';
             let seriesId=localStorage.getItem('seriesId');
