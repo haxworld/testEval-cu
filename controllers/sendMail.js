@@ -43,7 +43,7 @@ module.exports.sendEmail = (to, user_name, url) => {
         to: to,
         subject: `🔑 Reset Password`,
         html: `<div style="width:60%;margin:auto;font-family:'Poppins';">
-        <img src="https://grabitt.haxworld.net/logo/logo.png" height="80" alt="Grabitt"/>
+        <img src="https://grabitt.haxworld.net/logo/logo.png" height="35" alt="Grabitt"/>
         <h2>Hi, ${user_name}</h2>
         <p style = "color:gray;">Forgot your password? Let&rsquo;s set up a new one!</p>
         <p style="color:black; font-weight:bold">Click this link: </p>
