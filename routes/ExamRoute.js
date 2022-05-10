@@ -1,12 +1,12 @@
-const express = require('express');
-const questionModel = require('../models/questionModel');
-const ExamRoute = express.Router();
-const uuid4 = require('uuid4');
-const userModel = require('../models/userModel');
-const testSeriesModel = require('../models/testSeriesModel');
+const express=require('express');
+const questionModel=require('../models/questionModel');
+const ExamRoute=express.Router();
+const uuid4=require('uuid4');
+const userModel=require('../models/userModel');
+const testSeriesModel=require('../models/testSeriesModel');
 
-const _ = require('lodash');
-const resultModel = require('../models/resultModel');
+const _=require('lodash');
+const resultModel=require('../models/resultModel');
 ExamRoute
     // .get('/profile', async (req, res) => {
     //     try {
@@ -22,9 +22,9 @@ ExamRoute
     })
     .post('/submittest', async (req, res) => {
         try {
-            let userSubmission = JSON.parse(req.body.selectedAnswers)
-            let allquestions = await questionModel.find({ subjectId: req.body.seriesId })
-            let analysis = {
+            let userSubmission=JSON.parse(req.body.selectedAnswers)
+            let allquestions=await questionModel.find({ subjectId: req.body.seriesId })
+            let analysis={
                 "userid": req.user.id,
                 "testid": req.body.testId,
                 "testseriesid": req.body.seriesId,
@@ -33,35 +33,35 @@ ExamRoute
                 "score": 0
             }
             allquestions.forEach((element) => {
-                for (let i = 0; i < userSubmission.length; i++) {
-                    if ((element._id).toString() == userSubmission[i].id) {
-                        resultmeta = {
+                for (let i=0; i<userSubmission.length; i++) {
+                    if ((element._id).toString()==userSubmission[i].id) {
+                        resultmeta={
                             quesid: userSubmission[i].id,
                             userchoice: userSubmission[i].choice
                         }
-                        if ((element.correctAnswer == userSubmission[i].choice)) {
-                            resultmeta.outcome = 1
+                        if ((element.correctAnswer==userSubmission[i].choice)) {
+                            resultmeta.outcome=1
                             analysis.resultmeta.push(resultmeta);
-                            analysis.score += 1
+                            analysis.score+=1
                         } else {
-                            resultmeta.outcome = 0
+                            resultmeta.outcome=0
                             analysis.resultmeta.push(resultmeta)
                         }
                     }
                 }
             });
-            let accuracyCal = analysis.score / allquestions.length * 100
-            analysis.accuracy = accuracyCal.toFixed(2);
-            let { testStartTime } = await userModel.findById({ _id: req.user.id })
-            let now = new Date();
-            let timeTakenCal = now - testStartTime
-            var _second = 1000;
-            var _minute = _second * 60;
-            var _hour = _minute * 60;
-            var minutes = Math.ceil((timeTakenCal % _hour) / _minute);
-            analysis.timetaken = minutes
+            let accuracyCal=analysis.score/allquestions.length*100
+            analysis.accuracy=accuracyCal.toFixed(2);
+            let { testStartTime }=await userModel.findById({ _id: req.user.id })
+            let now=new Date();
+            let timeTakenCal=now-testStartTime
+            var _second=1000;
+            var _minute=_second*60;
+            var _hour=_minute*60;
+            var minutes=Math.ceil((timeTakenCal%_hour)/_minute);
+            analysis.timetaken=minutes
             // update user db
-            let update = {
+            let update={
                 $set: {
                     currentTestId: null,
                     isTestOn: false,
@@ -70,7 +70,7 @@ ExamRoute
                 }
             };
             await userModel.updateMany({ _id: req.user.id }, update);
-            let result = new resultModel(analysis);
+            let result=new resultModel(analysis);
             result.save()
             return res.status(200).json(analysis)
         } catch (error) {
@@ -79,15 +79,15 @@ ExamRoute
 
     })
     .get('/start/:seriesId', async (req, res) => {
-        let testId = uuid4();
-        let seriesId = req.params.seriesId
-        let series = await testSeriesModel.find({ _id: seriesId })
+        let testId=uuid4();
+        let seriesId=req.params.seriesId
+        let series=await testSeriesModel.find({ _id: seriesId })
             .populate('category');
-        let { isTestOn, currentTestSeriesId, currentTestId } = await userModel.findById({ _id: req.user.id })
+        let { isTestOn, currentTestSeriesId, currentTestId }=await userModel.findById({ _id: req.user.id })
         if (isTestOn) {
             return res.json(`complete or submit previous test first before proceeding for the new one! http://localhost:3000/exam/${currentTestSeriesId}/${currentTestId}`)
         }
-        data = {
+        data={
             title: "Exam Instructions",
             testId,
             series
@@ -98,15 +98,15 @@ ExamRoute
     })
 
     .get('/exam/:seriesId/:testId', async (req, res) => {
-        let user = req.user.id;
-        let oldResult = await resultModel.findOne({ testid: req.params.testId })
+        let user=req.user.id;
+        let oldResult=await resultModel.findOne({ testid: req.params.testId })
         if (oldResult) {
             return res.send("Either the test is already complete or expired! try again")
         }
-        let { isTestOn } = await userModel.findById({ _id: user })
-        let now = new Date();
+        let { isTestOn }=await userModel.findById({ _id: user })
+        let now=new Date();
         if (!isTestOn) {
-            let update = {
+            let update={
                 $set: {
                     currentTestId: req.params.testId,
                     isTestOn: true,
@@ -116,19 +116,19 @@ ExamRoute
             };
             await userModel.updateMany({ _id: user }, update)
         }
-        let { currentTestSeriesId, testStartTime, name } = await userModel.findById({ _id: user })
-        testStartTime.setMinutes(testStartTime.getMinutes() + 60); //set one hour TODO dynamic
-        let question = await questionModel.find({ subjectId: currentTestSeriesId })
-        let subject = await testSeriesModel.findOne({ _id: currentTestSeriesId })
-        const questionData = question.map((e) => {
-            let formattedQues = {
+        let { currentTestSeriesId, testStartTime, name }=await userModel.findById({ _id: user })
+        let subject=await testSeriesModel.findOne({ _id: currentTestSeriesId })
+        testStartTime.setMinutes(testStartTime.getMinutes()+parseInt(subject.totalTime));
+        let question=await questionModel.find({ subjectId: currentTestSeriesId })
+        const questionData=question.map((e) => {
+            let formattedQues={
                 questionId: e._id,
                 subjectId: e.subjectId,
             }
             return formattedQues
         })
 
-        let formattedFirstQues = {
+        let formattedFirstQues={
             questionId: question[0]._id,
             question: question[0].title,
             seriesId: question[0].subjectId,
@@ -137,8 +137,8 @@ ExamRoute
             options: question[0].incorrectOptions
         }
         // console.log(formattedFirstQues)
-        let anschoice = _.random(1, 4);
-        formattedFirstQues.options.splice(anschoice - 1, 0, question[0].correctAnswer)
+        let anschoice=_.random(1, 4);
+        formattedFirstQues.options.splice(anschoice-1, 0, question[0].correctAnswer)
 
         res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, seriesId: req.params.seriesId, subjectTitle: subject.title, timer: testStartTime, name });
     });
@@ -150,4 +150,4 @@ ExamRoute
 //  res.end("sUCCESS")
 // })
 
-module.exports = ExamRoute
+module.exports=ExamRoute

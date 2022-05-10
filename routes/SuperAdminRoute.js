@@ -189,7 +189,7 @@ SuperAdminRoute
     .get("/question/create", async (req, res) => {
         const data={
             title: 'Add Question',
-            submitBtn: "Add Series",
+            submitBtn: "Add Question",
             url: `create`,
             role: req.user.role
 
