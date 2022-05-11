@@ -24,13 +24,23 @@ router.get('/', (req, res) => {
 })
 router.get('/contact-us', (req, res) => {
     data={
-        title: 'Home | Grabitt',
+        title: 'Contact Us | Grabitt',
         isLoggedIn: false
     }
     if (req.cookies.token) {
         data.isLoggedIn=true;
     }
     return res.render('contactus', data);
+})
+router.get('/privacy', (req, res) => {
+    data={
+        title: 'Privacy Policy | Grabitt',
+        isLoggedIn: false
+    }
+    if (req.cookies.token) {
+        data.isLoggedIn=true;
+    }
+    return res.render('privacy', data);
 })
 
 router.get('/s', isSignedIn, (req, res) => {

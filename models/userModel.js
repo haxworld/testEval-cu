@@ -53,7 +53,6 @@ const UserSchema=new Schema({
         type: Date,
         default: null
     },
-    // TODO: past result
     pastTestId: [{
         type: String,
         default: null

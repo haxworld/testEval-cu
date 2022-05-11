@@ -1,11 +1,11 @@
-const express = require("express");
-const app = express();
-const port = 3000;
-const db = require('./config/mongoose');
-const expressLayouts = require('express-ejs-layouts');
-const cors = require('cors');
-const errorHandler = require('./helpers/errorHandler');
-const cookieParser = require('cookie-parser')
+const express=require("express");
+const app=express();
+const port=3000;
+const db=require('./config/mongoose');
+const expressLayouts=require('express-ejs-layouts');
+const cors=require('cors');
+const errorHandler=require('./helpers/errorHandler');
+const cookieParser=require('cookie-parser')
 require('dotenv').config();
 app.use(cookieParser())
 app.use(cors())
@@ -30,7 +30,7 @@ app.use(express.static('./assets'));
 app.use('/', require('./router'));
 
 // Make the uploads path available
-app.use('/uploads',express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname+'/uploads'))
 
 // global error handler
 app.use(errorHandler);

@@ -30,6 +30,20 @@ h2 {
   color: var(--secondary);
   font-size: 2.5rem;
 }
+.btn-grad { 
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad {
+background-image: linear-gradient(to right, #393f93 0%, #44126d 51%, #393f93 100%);
+}
 
 .headline {
   color: var(--secondary);
