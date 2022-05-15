@@ -7,18 +7,22 @@
         <%=data.title%>
     </title>
     <meta name="description" content="">
-    <%- include('./partials/head'); %>
+    <%- include('../partials/head'); %>
         <link rel="stylesheet" href="/css/view_result.css" />
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body id="body-pd">
-    <%- include('./partials/header'); %>
+    <%- include('../partials/header'); %>
         <!--Container Main start-->
         <div class="row px-0">
 
             <!-- ------------------------------------------------------------ -->
-            <% if (testTakenList.length>=1) { %>
+            <% if (users.length>=1) { %>
+                <h3 class="mt-4 d-flex justify-content-center">
+                    <%=data.title%>
+                </h3>
                 <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
 
                     <div class="d-flex align-items-center">
@@ -40,8 +44,8 @@
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">Subject</a></li>
-                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Topic </a></li>
+                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">Name</a></li>
+                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Date </a></li>
                             </ul>
                         </div>
                     </div>
@@ -49,42 +53,55 @@
                         <table class="table mt-4" id="resultTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Subject Name</th>
-                                    <th scope="col">Series Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Total Score</th>
-
+                                    <th scope="col">Name/Username</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">College Name</th>
+                                    <th scope="col">createdAt</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% let i=0 %>
-                                    <% for(test of testTakenList){%>
-
-                                        <tr onclick="window.location='/result/<%=test._id%>';" style="cursor: pointer;"
-                                            class="effect">
+                                    <% for(user of users){%>
+                                        <tr onclick="window.location='/admin/viewresult/<%=user._id%>';"
+                                            style="cursor: pointer;" class="effect">
 
                                             <td scope="row" class="content-tag">
                                                 <p style="font-weight: bold;">
-                                                    <%=test.subjectid.title%>
+                                                    <%=user.name%>
                                                 </p>
                                                 <p class="fs-7">
-                                                    <%=test.testid%>
+                                                    <%=user.username%>
                                                 </p>
                                             </td>
-                                            <td class="content-tag py-4 new series">
-                                                <%=test.testseriesid.title%>
+                                            <td class="content-tag py-4 new ">
+                                                <% if (user.role==1) { %>
+                                                    <p>admin</p>
+                                                    <% } else { %>
+                                                        <p>user</p>
+                                                        <%}%>
                                             </td>
-                                            <td class="content-tag py-4 date">
-                                                <%=dateList[i]%>
-
+                                            <td class="content-tag py-4 new">
+                                                <%=user.email%>
                                             </td>
-
-                                            <td class="content-tag py-4">
-                                                <%=test.score%>/<%=countQuestions[i++]%>
+                                            <td class="content-tag py-4 new">
+                                                <% if (user.avatar) { %>
+                                                    <img src="<%=user.avatar%>" alt="user profile pic" width="45"
+                                                        height="45" class="rounded-circle">
+                                                    <% } else {%>
+                                                        <p>NA</p>
+                                                        <% } %>
+                                            </td>
+                                            <td class="content-tag py-4 new">
+                                                <%=user.collegeName%><br />
+                                                    <%= user.graduationYear %>
+                                            </td>
+                                            <td class="content-tag py-4 date series">
+                                                <%=user.createdAt%>%>
                                             </td>
 
                                         </tr>
-
                                         <%}%>
                             </tbody>
                         </table>
@@ -96,13 +113,12 @@
                     <div class="col-lg-12 px-4 shadow-sm my-4 rounded text-center ">
                         <img src="/images/kingdom-list-is-empty.png" alt="Empty bin" style="max-width: 400px;"
                             class="empty">
-                        <p style="font-weight: 500;">Waiting for you to take down a test</p>
+                        <p style="font-weight: 500;">No user found.</p>
                     </div>
                     <%}%>
         </div>
         <!--Container Main end-->
         <script>
-
             const search=() => {
                 let searchedText=document.getElementById('search-box').value.toUpperCase();
                 let resultTable=document.getElementById('resultTable');
@@ -112,12 +128,18 @@
                 for (let i=1; i<tr.length; i++) {
                     let td_sub=tr[i].getElementsByTagName('td')[0];
                     let td_series=tr[i].getElementsByTagName('td')[1];
+                    let td_email=tr[i].getElementsByTagName('td')[2];
+                    let td_college=tr[i].getElementsByTagName('td')[4];
+                    let td_date=tr[i].getElementsByTagName('td')[5];
 
-                    if (td_sub||td_series) {
+                    if (td_sub||td_series||td_email) {
                         let textVal1=td_sub.textContent||td_sub.innerHTML;
                         let textVal2=td_series.textContent||td_series.innerHTML;
+                        let textVal3=td_email.textContent||td_email.innerHTML;
+                        let textVal4=td_college.textContent||td_college.innerHTML;
+                        let textVal5=td_date.textContent||td_date.innerHTML;
 
-                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1) {
+                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1||textVal3.toUpperCase().indexOf(searchedText)>-1||textVal4.toUpperCase().indexOf(searchedText)>-1||textVal5.toUpperCase().indexOf(searchedText)>-1) {
                             tr[i].style.display=""
                         }
                         else {
@@ -131,7 +153,7 @@
 
                 $('#topic').css("background-color", "white");
                 $('#subject').css("background-color", "gray");
-                $('#dropdownMenuLink').text("Subject");
+                $('#dropdownMenuLink').text("Name");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
                     var tda=$(a).find('td p:first-child').text()
@@ -145,7 +167,7 @@
 
                 $('#subject').css("background-color", "white");
                 $('#topic').css("background-color", "gray");
-                $('#dropdownMenuLink').text("Topic");
+                $('#dropdownMenuLink').text("Date");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
                     var tda=$(a).find('.series').text()
@@ -156,7 +178,7 @@
 
             });
         </script>
-        <%- include('./partials/footer'); %>
+        <%- include('../partials/footer'); %>
 </body>
 
 </html>

@@ -7,18 +7,20 @@
         <%=data.title%>
     </title>
     <meta name="description" content="">
-    <%- include('./partials/head'); %>
+    <%- include('../partials/head'); %>
         <link rel="stylesheet" href="/css/view_result.css" />
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body id="body-pd">
-    <%- include('./partials/header'); %>
+    <%- include('../partials/header'); %>
         <!--Container Main start-->
         <div class="row px-0">
 
             <!-- ------------------------------------------------------------ -->
-            <% if (testTakenList.length>=1) { %>
+            <% if (feedbacks.length>=1) { %>
+                <h3 class="mt-4 d-flex justify-content-center">All Feedback</h3>
                 <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
 
                     <div class="d-flex align-items-center">
@@ -40,8 +42,8 @@
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">Subject</a></li>
-                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Topic </a></li>
+                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">User Id</a></li>
+                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Ratings </a></li>
                             </ul>
                         </div>
                     </div>
@@ -49,38 +51,31 @@
                         <table class="table mt-4" id="resultTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Subject Name</th>
-                                    <th scope="col">Series Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Total Score</th>
-
+                                    <th scope="col">UserId</th>
+                                    <th scope="col">Rating</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Date & Time</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% let i=0 %>
-                                    <% for(test of testTakenList){%>
+                                    <% for(feedback of feedbacks){%>
 
-                                        <tr onclick="window.location='/result/<%=test._id%>';" style="cursor: pointer;"
-                                            class="effect">
+                                        <tr onclick="window.location='/admin/users?s=<%=feedback.userid%>';"
+                                            style="cursor: pointer;" class="effect">
 
-                                            <td scope="row" class="content-tag">
-                                                <p style="font-weight: bold;">
-                                                    <%=test.subjectid.title%>
-                                                </p>
-                                                <p class="fs-7">
-                                                    <%=test.testid%>
-                                                </p>
+                                            <td scope="row" class="content-tag py-4" style="font-weight: bold;">
+                                                <%=feedback.userid%>
                                             </td>
                                             <td class="content-tag py-4 new series">
-                                                <%=test.testseriesid.title%>
+                                                <%=feedback.rating%>
                                             </td>
                                             <td class="content-tag py-4 date">
-                                                <%=dateList[i]%>
-
+                                                <%=feedback.message%>
                                             </td>
 
                                             <td class="content-tag py-4">
-                                                <%=test.score%>/<%=countQuestions[i++]%>
+                                                <%=feedback.createdAt%>
                                             </td>
 
                                         </tr>
@@ -96,13 +91,12 @@
                     <div class="col-lg-12 px-4 shadow-sm my-4 rounded text-center ">
                         <img src="/images/kingdom-list-is-empty.png" alt="Empty bin" style="max-width: 400px;"
                             class="empty">
-                        <p style="font-weight: 500;">Waiting for you to take down a test</p>
+                        <p style="font-weight: 500;">No Feedback at the moment.</p>
                     </div>
                     <%}%>
         </div>
         <!--Container Main end-->
         <script>
-
             const search=() => {
                 let searchedText=document.getElementById('search-box').value.toUpperCase();
                 let resultTable=document.getElementById('resultTable');
@@ -112,12 +106,16 @@
                 for (let i=1; i<tr.length; i++) {
                     let td_sub=tr[i].getElementsByTagName('td')[0];
                     let td_series=tr[i].getElementsByTagName('td')[1];
+                    let td_email=tr[i].getElementsByTagName('td')[2];
+                    let td_college=tr[i].getElementsByTagName('td')[3];
 
-                    if (td_sub||td_series) {
+                    if (td_sub||td_series||td_email) {
                         let textVal1=td_sub.textContent||td_sub.innerHTML;
                         let textVal2=td_series.textContent||td_series.innerHTML;
+                        let textVal3=td_email.textContent||td_email.innerHTML;
+                        let textVal4=td_college.textContent||td_college.innerHTML;
 
-                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1) {
+                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1||textVal3.toUpperCase().indexOf(searchedText)>-1||textVal4.toUpperCase().indexOf(searchedText)>-1) {
                             tr[i].style.display=""
                         }
                         else {
@@ -131,7 +129,7 @@
 
                 $('#topic').css("background-color", "white");
                 $('#subject').css("background-color", "gray");
-                $('#dropdownMenuLink').text("Subject");
+                $('#dropdownMenuLink').text("User Id");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
                     var tda=$(a).find('td p:first-child').text()
@@ -145,7 +143,7 @@
 
                 $('#subject').css("background-color", "white");
                 $('#topic').css("background-color", "gray");
-                $('#dropdownMenuLink').text("Topic");
+                $('#dropdownMenuLink').text("Ratings");
                 $tbody.find('tr').sort(function (a, b) {
                     // console.log($(a).find('td p:first-child').text())
                     var tda=$(a).find('.series').text()
@@ -156,7 +154,7 @@
 
             });
         </script>
-        <%- include('./partials/footer'); %>
+        <%- include('../partials/footer'); %>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ const testSeriesModel=require('../models/testSeriesModel');
 
 const _=require('lodash');
 const resultModel=require('../models/resultModel');
+const feedbackModel=require('../models/feedbackModel');
 ExamRoute
     // .get('/profile', async (req, res) => {
     //     try {
@@ -19,6 +20,20 @@ ExamRoute
     // })
     .get('/success', (req, res) => {
         return res.render('testSubmitted')
+    })
+    .post('/feedback', async (req, res) => {
+        let feedback=req.body;
+        let fb_rating=feedback.rating||"";
+        let fb_msg=feedback.message||"";
+        let data={
+            "userid": req.user.id,
+            "rating": fb_rating,
+            "message": fb_msg
+        }
+        // console.log(data);
+        let feedbackSave=new feedbackModel(data);
+        await feedbackSave.save();
+        return res.redirect('/dashboard')
     })
     .post('/submittest', async (req, res) => {
         try {

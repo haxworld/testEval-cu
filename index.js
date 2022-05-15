@@ -11,7 +11,6 @@ app.use(cookieParser())
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 // extract styles and scripts from subpages into the layouts
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);

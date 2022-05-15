@@ -14,6 +14,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- external css link / -->
         <link rel="stylesheet" href="/css/superAdmin.css" />
+
 </head>
 
 <body id="body-pd">
@@ -38,22 +39,23 @@
     <!--Container Main start-->
                     <div class="container-fluid py-4">
                         <div class="row features mb-5">
-                            <div class="col-lg-4">
-                                <div class="d-flex justify-content-center my-1 py-4 shadow-sm"
-                                    style="background-color:#D7ECFB">
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/users';"
+                                    style="cursor: pointer;background-color:#D7ECFB">
                                     <div class="me-3">
                                         <i class="icon fas fa-users fa-3x" style="color:#3343b7"></i>
                                     </div>
                                     <span class="px-2">
                                         <h6>Total Users till date</h6>
                                         <h5>
-                                            <%= data.usersCount-1 %>+
+                                            <%= data.usersCount %>
                                         </h5>
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="d-flex justify-content-center my-1 py-4 shadow-sm"
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm"
                                     style="background-color:#FFF5DD">
                                     <div class="me-3">
                                         <i class="icon fas fa-pen-to-square fa-3x" style="color:#f7bb30"></i>
@@ -61,22 +63,75 @@
                                     <span class="px-2">
                                         <h6>Total test taken by Users</h6>
                                         <h5>
-                                            <%= data.testsCount-1 %>+
+                                            <%= data.testsCount %>
                                         </h5>
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="d-flex justify-content-center my-1 py-4 shadow-sm"
-                                    style="background-color:#FFE0E6">
+                            <div class="col-6 col-lg-4">
+                                <div onclick="window.location='/admin/question/series';"
+                                    class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    style="background-color:#FFE0E6; cursor: pointer;">
                                     <div class="me-3">
                                         <i class="icon fas fa-book fa-3x" style="color:#f6476a"></i>
                                     </div>
                                     <span class="px-2">
                                         <h6>Total Series Available</h6>
                                         <h5>
-                                            <%= data.seriesCount-1 %>+
+                                            <%= data.seriesCount %>
                                         </h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- feedback -->
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/feedback';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-message fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="px-2 my-auto">
+                                        <h6>View all feedback</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- all questions -->
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/questions';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-circle-question fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="px-2 my-auto">
+                                        <h6>View All Questions</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- add questions -->
+                            <div class="col-6 col-lg-2">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/question/create';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-clipboard-question fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="my-auto">
+                                        <h6>Add Question</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- add series -->
+                            <div class="col-6 col-lg-2">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/testseries/create';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-book-medical fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="my-auto">
+                                        <h6>Add Series</h6>
                                     </span>
                                 </div>
                             </div>

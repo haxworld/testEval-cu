@@ -1,4 +1,5 @@
 const express=require('express');
+const feedbackModel=require('../models/feedbackModel');
 const questionModel=require('../models/questionModel');
 const resultModel=require('../models/resultModel');
 const subjectCategoryModel=require('../models/subjectCategoryModel');
@@ -52,6 +53,84 @@ SuperAdminRoute
             role: req.user.role
         }
         res.render('admin/superAdmin', data);
+    })
+    .get("/users", async (req, res) => {
+        let query=req.query.s;
+        const data={
+            title: "All users details",
+            role: req.user.role
+        }
+        if (query) {
+            data.title="User Detail"
+            let users=await userModel.find({ _id: query });
+            return res.render('admin/superAdmin/allUsers', {
+                data, users
+            })
+        }
+
+        let users=await userModel.find({})
+        return res.render('admin/superAdmin/allUsers', {
+            data, users
+        })
+    })
+    .get("/feedback", async (req, res) => {
+        const data={
+            title: "All Feedback",
+            role: req.user.role
+        }
+
+        let feedbacks=await feedbackModel.find({})
+        return res.render('admin/superAdmin/feedback', {
+            data, feedbacks
+        })
+    })
+    .get('/viewresult/:userId', async (req, res) => {
+        let user=await req.params.userId;
+        let currentUser=await userModel.find({ _id: user });
+        let userName=currentUser[0].name
+
+
+        let testTakenList=await resultModel.find({ userid: user })
+            .sort('-createdAt')
+            .populate('userid')
+            .populate('testseriesid')
+            .populate('subjectid')
+
+
+        let dateList=[]
+        let List=[]
+
+        testTakenList.forEach(element => {
+            let date=new Date(element.createdAt).toLocaleDateString('en-us', { day: 'numeric' })
+            let month=new Date(element.createdAt).toLocaleDateString('en-us', { month: 'numeric' })
+            let year=new Date(element.createdAt).toLocaleDateString('en-us', { year: 'numeric' })
+            const FormattedDate=`${date}/${month}/${year}`
+            dateList.push(FormattedDate);
+
+            List.push(element.testseriesid._id)
+
+        });
+
+
+        const countQuestions=await Promise.all(
+            List.map(async item => {
+                let { count }=await testSeriesModel.findOne({ _id: item })
+                    .populate(
+                        "count"
+                    )
+                return count
+            })
+        )
+        data={
+            title: "View Result",
+            role: req.user.role
+        }
+        res.render('admin/view_result', {
+            testTakenList: testTakenList,
+            userName: userName,
+            countQuestions,
+            dateList: dateList
+        });
     })
     .get("/testseries", async (req, res) => {
         let query=req.query.q
@@ -215,7 +294,7 @@ SuperAdminRoute
         }
         const data={
             title: 'Edit Question',
-            submitBtn: "Update Series",
+            submitBtn: "Update Question",
             url: `edit/${req.params.quesId}`,
             question,
             role: req.user.role
