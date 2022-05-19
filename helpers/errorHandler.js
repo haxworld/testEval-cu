@@ -44,7 +44,7 @@ module.exports=async (err, req, res, next) => {
             if (redirect.match("/login")===null) {
                 res.cookie('redirect', redirect, { maxAge: 50000, httpOnly: true });
             }
-            console.log("SDd");
+            // console.log("SDd");
             return res.status(401).redirect('/login')
         // return res.status(401).json({ message: 'Unauthorized' });
 
