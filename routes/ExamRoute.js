@@ -9,15 +9,7 @@ const _=require('lodash');
 const resultModel=require('../models/resultModel');
 const feedbackModel=require('../models/feedbackModel');
 ExamRoute
-    // .get('/profile', async (req, res) => {
-    //     try {
-    //         let user = await userModel.findOne({ _id: req.user.id })
-    //         const { name, email, username, photo, collegeName, graduationYear, createdAt } = user
-    //         return res.json({ name, email, username, photo, collegeName, graduationYear, joined: createdAt })
-    //     } catch (error) {
-    //         return res.json("redirect to login")
-    //     }
-    // })
+
     .get('/success', (req, res) => {
         return res.render('testSubmitted')
     })
@@ -157,12 +149,5 @@ ExamRoute
 
         res.render('test', { firstdata: formattedFirstQues, total: question.length, moreQuestion: questionData, testId: req.params.testId, seriesId: req.params.seriesId, subjectTitle: subject.title, timer: testStartTime, name });
     });
-// ExamRoute.post('/fetch', (req, res) => {
-//     console.log(req.body)
-//     const result = new resultModel(req.body);
-//     result.save();
-
-//  res.end("sUCCESS")
-// })
 
 module.exports=ExamRoute

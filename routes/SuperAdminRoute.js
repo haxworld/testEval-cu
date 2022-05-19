@@ -20,6 +20,7 @@ SuperAdminRoute
         // date
         let datesub7=new Date()
         datesub7.setDate(datesub7.getDate()-7);
+
         let date=await resultModel.find({
             createdAt: {
                 $gte: datesub7,
@@ -36,6 +37,7 @@ SuperAdminRoute
                 dateCounts[x]=1;
             }
         })
+
         const testCount=Object.values(dateCounts);
         const dateCount=Object.keys(dateCounts);
         // end date

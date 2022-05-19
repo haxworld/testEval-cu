@@ -31,17 +31,6 @@ ResultRoute.get('/viewresult', async (req, res) => {
         List.push(element.testseriesid._id)
 
     });
-
-    // console.log("testTakenList", List);
-    let len=[];
-    let allquestions=[]
-
-    // List.map(async item => {
-    //     allquestions = await questionModel.find({ subjectId: item })
-    //     console.log(allquestions.length);
-    //     return len.push(allquestions.length)
-    // })
-
     const countQuestions=await Promise.all(
         List.map(async item => {
             let { count }=await testSeriesModel.findOne({ _id: item })
